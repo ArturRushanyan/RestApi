@@ -2,6 +2,7 @@
 import Item from './item/item';
 import User from './user/user';
 import Authentication from './authentication/authentication';
+//import Search from './search/search';
 
 const getItemRoutes = (app) => {
 
