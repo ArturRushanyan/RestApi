@@ -30,13 +30,13 @@ exports.create = (req, res) => {
         });
     }
 
-    const Item = new Item({
+    const Item1 =  new Item({
         type: req.body.type,
         title: req.body.title,
         price: req.body.price,
     });
 
-    Item.save().then((data) => {
+    Item1.save().then((data) => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({

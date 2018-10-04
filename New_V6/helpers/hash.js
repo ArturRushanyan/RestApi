@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import Error from '../helpers/errorMessage';
 
 class Hash {
     constructor() {
@@ -13,6 +12,19 @@ class Hash {
                     reject();
                 }
                 resolve(hash);
+            })
+        });
+    };
+
+    CpmparyPassword(password, UserPassword) {
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(password, UserPassword, (err, hash) => {
+                if(err) {
+                    reject();
+                } else if(hash) {
+                    resolve(hash);
+                }
+
             })
         });
     };
