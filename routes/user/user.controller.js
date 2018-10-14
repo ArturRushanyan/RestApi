@@ -1,11 +1,11 @@
 import User from '../../models/User';
-import errors from '../../helpers/errorMessage';
+import Errors from '../../helpers/errorMessage';
 
 exports.getAll = (req, res) => {
     User.find().then((User) => {
         res.send(User);
     }).catch((err) => {
-        errors.sendError(res, 400, err);
+        Errors.sendError(res, 400, err);
     });
 };
 
@@ -18,10 +18,9 @@ exports.get = (req, res) => {
         }
         res.send(user);
     }).catch((err) => {
-        errors.sendError(res, 400, err);
+        Errors.sendError(res, 400, err);
     });
 };
-
 
 exports.update = (req, res) => {
     if(!req.body.type) {

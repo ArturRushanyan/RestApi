@@ -5,13 +5,13 @@ import config from './config';
 import routes from './routes/index';
 import logger from 'morgan';
 import mongoose  from 'mongoose';
-
+import cookieParser from 'cookie-parser';
 
 const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
+app.use(cookieParser());
 
 mongoose.connect(config.Db.url, {
     useNewUrlParser: true

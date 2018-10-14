@@ -1,12 +1,11 @@
 import Item from '../../models/Item';
-import errors from '../../helpers/errorMessage';
-
+import Errors from '../../helpers/errorMessage';
 
 exports.getAll = (req, res) => {
     Item.find().then((Items) => {
         res.send(Items);
     }).catch((err) => {
-        errors.sendError(res, 400, err);
+        Errors.sendError(res, 400, err);
     });
 };
 
@@ -19,7 +18,7 @@ exports.get = (req, res) => {
         }
         res.send(item);
     }).catch((err) => {
-        errors.sendError(res, 400, err);
+        Errors.sendError(res, 400, err);
     });
 };
 
