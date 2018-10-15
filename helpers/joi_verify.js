@@ -12,20 +12,4 @@ exports.Joi = (req, res, next) => {
         return;
     }
     return next();
-}; 
-
-
-/*
-module.exports = {
-    UserSchema: (JoiSchema) => {
-        return (req, res, next) => {
-            const result = Joi.validate(req.body, JoiSchema);
-            if(!result) {
-                Error.sendError(res, 400, result.error);
-                return
-            }
-            next();
-        }   
-    }
-}
-*/
+};
