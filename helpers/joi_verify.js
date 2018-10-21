@@ -1,15 +1,33 @@
 import Joi from 'joi';
 import Error from './errorMessage';
+import Schema from './schema';
 
-exports.Joi = (req, res, next) => {
-    const JoiSchema = Joi.object().keys({
-        email: Joi.string().email().required().min(3).max(20),
-        password: Joi.string().min(8).max(12),
-    });
-    const result = Joi.validate(req.body, JoiSchema);
-    if(!result) {
-        Error.sendError(res, 400, result.error);
-        return;
-    }
-    return next();
+exports.Registration = (req, res) => {
+  const schemaResult = Schema.Signup(req, res);
+  const result = Joi.validate(req.body, schemaResult);
+  if (!result) {
+    Error.sendError(res, 400, result.error);
+    return false;
+  }
+  return true;
+};
+
+exports.Login = (req, res) => {
+  const schemaResult = Schema.Signin();
+  const result = Joi.validate(req.body, schemaResult);
+  if (!result) {
+    Error.sendError(res, 400, result.error);
+    return false;
+  }
+  return true;
+};
+
+exports.Item = (req, res) => {
+  const schemaResult = Schema.itemSchema();
+  const result = Joi.validate(req.body, schemaResult);
+  if (!result) {
+    Error.sendError(res, 400, result.error);
+    return false;
+  }
+  return true;
 };

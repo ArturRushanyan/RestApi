@@ -1,9 +1,9 @@
-import express from 'express'
-import Authentication from './authentication.controller'
-import joiAuthentication from '../../helpers/joi_verify';
+import express from 'express';
+import Authentication from './authentication.controller';
+
 const router = express.Router();
 
-router.post('/signup', joiAuthentication.Joi, Authentication.SignUp);
-router.post('/login', joiAuthentication.Joi, Authentication.Login);
+router.post('/signup', Authentication.SignUp);
+router.post('/login', Authentication.Login);
 
 export default router;
