@@ -1,15 +1,11 @@
 import Joi from 'joi';
-import Error from './errorMessage';
 
-function Signup(req, res) {
-  if (req.body.password !== req.body.confirmPassword) {
-    Error.sendError(res, 500, 'passwords does not match');
-  }
+function Signup() {
   const R = Joi.object().keys({
     email: Joi.string().email().required().min(3).max(20),
     password: Joi.string().min(6).max(16),
   });
-  return !R ? false : true;
+  return R;
 }
 
 function Signin() {
@@ -17,7 +13,7 @@ function Signin() {
     email: Joi.string().email().required().min(3).max(20),
     password: Joi.string().min(6).max(12),
   });
-  return !L ? false : true;
+  return L;
 }
 
 function itemSchema() {
@@ -27,11 +23,11 @@ function itemSchema() {
     price: Joi.string().required().min(1),
     count: Joi.number().min(1),   
   });
-  return !result ? false : true;
+  return result;
 }
 
 module.exports = {
-  Signup: Signup,
-  Signin: Signin,
-  itemSchema: itemSchema,
+  Signup,
+  Signin,
+  itemSchema,
 };

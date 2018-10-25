@@ -53,7 +53,6 @@ exports.update = (req, res) => {
     Error.sendError(req, 400, 'Item body can not be empty');
     return;
   }
-
   Item.findByIdAndUpdate(req.params.id, {
     type: req.body.type,
     title: req.body.title,

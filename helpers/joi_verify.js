@@ -3,7 +3,10 @@ import Error from './errorMessage';
 import Schema from './schema';
 
 exports.Registration = (req, res) => {
-  const schemaResult = Schema.Signup(req, res);
+  const schemaResult = Schema.Signup();
+  if (req.body.password !== req.body.confirmPassword) {
+    Error.sendError(res, 500, 'passwords does not match');
+  }
   const result = Joi.validate(req.body, schemaResult);
   if (!result) {
     Error.sendError(res, 400, result.error);

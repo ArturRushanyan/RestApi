@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
-import Jwt from 'jsonwebtoken';
 import User from '../../models/User';
 import Error from '../../helpers/errorMessage';
 import * as Hash from '../../helpers/hash';
-import Config from '../../config';
 import authenticationWithJoi from '../../helpers/joi_verify';
 import Token from '../../helpers/token_verify';
 
@@ -26,13 +24,11 @@ exports.SignUp = (req, res) => {
     });
     return newUser.save();
   }).then((result) => {
-    const token = Jwt.sign({}, Config.JWT_KEY, {
-      expiresIn: 86400,
-    });
-    res.cookie('access.token', token);
+    if (!Token.isAuthenticated(res, req.body.email)) {
+      Error.sendError(res, 403, 'No token');
+    }
     res.status(200).json({
       message: result,
-      token,
     });
   })
     .catch((err) => {
@@ -45,9 +41,6 @@ exports.Login = (req, res) => {
   if (!authenticationWithJoi.Login(req, res)) {
     Error.sendError(res, 400, 'Bad request');
   }
-  if (!Token.isAuthenticated(req, res)) {
-    Error.sendError(res, 403, 'No token');
-  }
   User.findOne({ email: req.body.email }).then((user) => {
     if (user.length > 0) {
       Error.sendError(res, 401, 'Auth failed');
@@ -57,13 +50,11 @@ exports.Login = (req, res) => {
     if (!isPasswordsMatch) {
       Error.sendError(res, 401, 'Auth failed');
     }
-    const token = Jwt.sign({}, Config.JWT_KEY, {
-      expiresIn: 86400,
-    });
-    res.cookie('access.token', token);
-    res.status(200).json({
-      message: 'Auth successful',
-    });
+    if (Token.isAuthenticated(res, req.body.email)) {
+      res.status(200).json({
+        message: 'Auth successful',
+      });
+    }
   }).catch((err) => {
     Error.sendError(res, 500, err);
   });
