@@ -1,6 +1,6 @@
 import Item from '../../models/Item';
 import Error from '../../helpers/errorMessage';
-import IsAuthenticate from '../../helpers/token_verify';
+import authenticationWithJoi from '../../helpers/joi_verify';
 
 exports.getAll = (req, res) => {
   Item.find().then((Items) => {
@@ -11,14 +11,14 @@ exports.getAll = (req, res) => {
 };
 
 exports.get = (req, res) => {
-  if (!IsAuthenticate.Item(req, res)) {
+  if (!authenticationWithJoi.Item(req, res)) {
     Error.sendError(res, 400, 'Bad request');
     return;
   }
   Item.findById(req.params.id).then((item) => {
     if (!item) {
       return res.status(404).send({
-        message: "Item not found with id " + req.params.id,
+        message: 'Item not found',
       });
     }
     res.send(item);
@@ -28,7 +28,7 @@ exports.get = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  if (!IsAuthenticate.Item(req, res)) {
+  if (!authenticationWithJoi.Item(req, res)) {
     Error.sendError(req, 400, 'Item body can not be empty');
     return;
   }
@@ -42,14 +42,12 @@ exports.create = (req, res) => {
   Item1.save().then((data) => {
     res.send(data);
   }).catch((err) => {
-    res.status(500).send({
-      message: err.message || "Some error occurred while creating the Item.",
-    });
+    Error.sendError(res, 500, err || 'Some error occurred while creating the Item.');
   });
 };
 
 exports.update = (req, res) => {
-  if (!IsAuthenticate.Item(req, res)) {
+  if (!authenticationWithJoi.Item(req, res)) {
     Error.sendError(req, 400, 'Item body can not be empty');
     return;
   }
@@ -61,40 +59,26 @@ exports.update = (req, res) => {
   }, { new: true })
     .then((item) => {
       if (!item) {
-        return res.status(404).send({
-          message: "Item not found with id " + req.params.itemId,
-        });
+        Error.sendError(res, 404, 'Item not found');
+        return;
       }
       res.send(item);
     }).catch((err) => {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send({
-          message: "Item not found with id " + req.params.itemId,
-        });
-      }
-      return res.status(500).send({
-        message: "Error updating item with id " + req.params.itemId,
-      });
+      Error.sendError(res, 404, err || 'Item not found');
     });
+  Error.sendError(res, 500, 'Error updating item');
 };
 
 exports.remove = (req, res) => {
   Item.findByIdAndRemove(req.params.id)
     .then((item) => {
       if (!item) {
-        return res.status(404).send({
-          message: "Item not found with id " + req.params.itemId,
-        });
+        Error.sendError(res, 404, 'Item not found');
+        return;
       }
-      res.send({ message: "Item deleted successfully!" });
+      res.send({ message: 'Item deleted successfully!' });
     }).catch((err) => {
-      if (err.kind === 'ObjectId' || err.name === 'NotFound') {
-        return res.status(404).send({
-          message: "Item not found with id " + req.params.itemId,
-        });
-      }
-      return res.status(500).send({
-        message: "Could not delete Item with id " + req.params.itemId,
-      });
+      Error.sendError(res, 404, err || 'Item not found');
     });
+  Error.sendError(res, 500, 'Could not delete Item');
 };

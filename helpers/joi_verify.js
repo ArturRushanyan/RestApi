@@ -6,6 +6,7 @@ exports.Registration = (req, res) => {
   const schemaResult = Schema.Signup();
   if (req.body.password !== req.body.confirmPassword) {
     Error.sendError(res, 500, 'passwords does not match');
+    return false;
   }
   const result = Joi.validate(req.body, schemaResult);
   if (!result) {
