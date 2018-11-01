@@ -1,9 +1,11 @@
 import User from '../../models/User';
-import Errors from '../../helpers/errorMessage';
+import Errors from '../../helpers/Errors';
+import Messages from '../../helpers/Messages';
+
 
 exports.getAll = (req, res) => {
-  User.find().then((User) => {
-    res.send(User);
+  User.find().then((NewUser) => {
+    res.status(200).json({ NewUser });
   }).catch((err) => {
     Errors.sendError(res, 400, err);
   });
@@ -13,10 +15,10 @@ exports.get = (req, res) => {
   User.findById(req.params.id).then((user) => {
     if (!user) {
       return res.status(404).send({
-        message: 'User not found with id ' + req.params.id,
+        message: Messages.User_not_found_with_id + user.id,
       });
     }
-    return res.send(user);
+    return res.status(200).json({ user });
   }).catch((err) => {
     Errors.sendError(res, 400, err);
   });
@@ -24,9 +26,8 @@ exports.get = (req, res) => {
 
 exports.update = (req, res) => {
   if (!req.body.type) {
-    return res.status(400).send({
-      message: "User body can not be empty"
-    });
+    Error.sendError(res, 400, Messages.User_body_can_not_be_empty);
+    return;
   }
 
   User.findByIdAndUpdate(req.params.id, {
@@ -34,18 +35,11 @@ exports.update = (req, res) => {
   }).then((user) => {
     if (!user) {
       return res.status(404).send({
-        message: "User not found with id " + req.params.userId
+        message: Messages.User_not_found_with_id + req.params.id,
       });
     }
-    return res.send(user);
+    return res.status(200).json({ user });
   }).catch((err) => {
-    if (err.kind === 'ObjectId') {
-      return res.status(404).send({
-        message: "User not found with id " + req.params.userId
-      });
-    }
-    return res.status(500).send({
-      message: "Error updating user with id " + req.params.userId
-    });
+    Error.sendError(res, 500, err);
   });
 };

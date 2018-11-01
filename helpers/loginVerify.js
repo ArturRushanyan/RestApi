@@ -1,5 +1,5 @@
 import JWT from 'jsonwebtoken';
-import Error from './errorMessage';
+import Error from './Errors';
 import Config from '../config';
 
 const isAuthenticated = (req, res, next) => {
