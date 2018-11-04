@@ -1,6 +1,6 @@
 import User from '../../models/User';
 import Errors from '../../helpers/Errors';
-import Messages from '../../helpers/Messages';
+import Constants from '../../helpers/Messages';
 
 
 exports.getAll = (req, res) => {
@@ -15,7 +15,7 @@ exports.get = (req, res) => {
   User.findById(req.params.id).then((user) => {
     if (!user) {
       return res.status(404).send({
-        message: Messages.User_not_found_with_id + user.id,
+        message: Constants.Messages.USER_NOT_FOUND_WITH_ID + user.id,
       });
     }
     return res.status(200).json({ user });
@@ -26,16 +26,15 @@ exports.get = (req, res) => {
 
 exports.update = (req, res) => {
   if (!req.body.type) {
-    Error.sendError(res, 400, Messages.User_body_can_not_be_empty);
+    Error.sendError(res, 400, Constants.Messages.USER_BODY_CAN_NOT_BE_EMPTY);
     return;
   }
-
   User.findByIdAndUpdate(req.params.id, {
     type: req.body.type,
   }).then((user) => {
     if (!user) {
       return res.status(404).send({
-        message: Messages.User_not_found_with_id + req.params.id,
+        message: Constants.Messages.USER_NOT_FOUND_WITH_ID + req.params.id,
       });
     }
     return res.status(200).json({ user });

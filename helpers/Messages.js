@@ -1,19 +1,19 @@
-const messages = {
-  passwords_does_not_match: 'passwords does not match',
-  Mail_exists: 'Mail exists',
-  Auth_failed: 'Auth failed',
-  Auth_successful: 'Auth successful',
-  Bad_request: 'Bad request',
-  Item_not_found: 'Item not found',
-  Item_body_can_not_be_empty: 'Item body can not be empty',
-  User_body_can_not_be_empty: 'User body can not be empty',
-  Some_error: 'Some error occurred while creating the Item.',
-  Error_updating_item: 'Error updating item',
-  Item_deleted_successfully: 'Item deleted successfully!',
-  Could_not_delete_Item: 'Could not delete Item',
-  Please_enter_the_name_for_searching_item: 'Please enter the name for searching item',
-  No_result: 'No result',
-  User_not_found_with_id: 'User not found with id ',
+module.exports = {
+  Messages: {
+    PASSWORDS_DOES_NOT_MATCH: 'passwords does not match',
+    MAIL_EXISTS: 'Mail exists',
+    AUTH_FAILED: 'Auth failed',
+    AUTH_SUCCESSFUL: 'Auth successful',
+    BAD_REQUEST: 'Bad request',
+    ITEM_NOT_FOUND: 'Item not found',
+    ITEM_BODY_CAN_NOT_BE_EMPTY: 'Item body can not be empty',
+    USER_BODY_CAN_NOT_BE_EMPTY: 'User body can not be empty',
+    SOME_ERROR: 'Some error occurred while creating the Item.',
+    ERROR_UPDATING_ITEM: 'Error updating item',
+    ITEM_DELETED_SUCCESSFULLY: 'Item deleted successfully!',
+    COULD_NOT_DELETE_ITEM: 'Could not delete Item',
+    PLEASE_ENTER_THE_NAME_FOR_SEARCHING_ITEM: 'Please enter the name for searching item',
+    NO_RESULT: 'No result',
+    USER_NOT_FOUND_WITH_ID: 'User not found with id ',
+  },
 };
-
-module.exports = messages;

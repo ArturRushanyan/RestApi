@@ -15,11 +15,12 @@ function Signin() {
 }
 
 function itemSchema() {
-  return Joi.object.keys({
+  return Joi.object().keys({
     type: Joi.string().min(3).max(20).required(),
     title: Joi.string().min(3).max(20).required(),
     price: Joi.number().required(),
-    count: Joi.number().required(),
+    count: Joi.number(),
+    barcode: Joi.number(),
   });
 }
 
