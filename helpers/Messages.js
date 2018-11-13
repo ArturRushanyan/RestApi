@@ -1,5 +1,5 @@
 module.exports = {
-  Messages: {
+  MESSAGES: {
     PASSWORDS_DOES_NOT_MATCH: 'passwords does not match',
     MAIL_EXISTS: 'Mail exists',
     AUTH_FAILED: 'Auth failed',
@@ -15,5 +15,7 @@ module.exports = {
     PLEASE_ENTER_THE_NAME_FOR_SEARCHING_ITEM: 'Please enter the name for searching item',
     NO_RESULT: 'No result',
     USER_NOT_FOUND_WITH_ID: 'User not found with id ',
+    FAILED_TO_AUTHENTICATE_TOKEN: 'Failed to authenticate token',
+    YOU_ARE_NOT_LOGGED_IN: 'You are not logged in',
   },
 };

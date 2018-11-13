@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import JWT from 'jsonwebtoken';
 import User from '../../models/User';
 import Error from '../../helpers/Errors';
 import authenticationWithJoi from '../../helpers/joi_verify';
@@ -7,17 +8,28 @@ import * as Hash from '../../helpers/hash';
 import Constants from '../../helpers/Messages';
 import Config from '../../config';
 
+exports.Me = (req, res) => {
+  const token = req.cookies.access_token;
+  if (!token) {
+    return Error.sendError(res, 401, Constants.MESSAGES.BAD_REQUEST);
+  }
+  JWT.verify(token, Config.JWT_KEY, (err, user) => {
+    if (err) {
+      return Error.sendError(res, 500, Constants.MESSAGES.FAILED_TO_AUTHENTICATE_TOKEN);
+    }
+    res.status(200).send(user);
+  });
+};
+
 exports.SignUp = (req, res) => {
   if (!authenticationWithJoi.Registration(req)) {
-    Error.sendError(res, 500, Constants.Messages.PASSWORDS_DOES_NOT_MATCH);
-    return;
+    return Error.sendError(res, 500, Constants.MESSAGES.PASSWORDS_DOES_NOT_MATCH);
   }
-  User.find({ 
-    email: req.body.email 
+  User.find({
+    email: req.body.email,
   }).then((user) => {
-    if (!user) {
-      Error.sendError(res, 409, Constants.Messages.MAIL_EXISTS);
-      return;
+    if (user.length > 0) {
+      return Error.sendError(res, 409, Constants.MESSAGES.MAIL_EXISTS);
     }
     return Hash.HashingPassword(req.body.password);
   }).then((hashedPassword) => {
@@ -40,18 +52,15 @@ exports.SignUp = (req, res) => {
   });
 };
 
-
 exports.Login = (req, res) => {
   if (!authenticationWithJoi.Login(req)) {
-    Error.sendError(res, 400, Constants.Messages.AUTH_FAILED);
-    return;
+    return Error.sendError(res, 400, Constants.MESSAGES.AUTH_FAILED);
   }
-  User.findOne({ 
-    email: req.body.email 
+  User.findOne({
+    email: req.body.email,
   }).then((user) => {
     if (!user) {
-      Error.sendError(res, 401, Constants.Messages.AUTH_FAILED);
-      return;
+      return Error.sendError(res, 401, Constants.MESSAGES.AUTH_FAILED);
     }
     return Hash.CpmparyPassword(req.body.password, user.password);
   }).then(() => {
@@ -60,9 +69,14 @@ exports.Login = (req, res) => {
       httpOnly: true,
     });
     res.status(200).json({
-      message: Constants.Messages.AUTH_SUCCESSFUL,
+      message: Constants.MESSAGES.AUTH_SUCCESSFUL
     });
   }).catch((err) => {
     Error.sendError(res, 500, err);
   });
+};
+
+exports.Logout = (req, res) => {
+  res.clearCookie(Config.access_token);
+  res.status(200).send();
 };

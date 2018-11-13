@@ -6,8 +6,10 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import config from './config';
 import routes from './routes/index';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

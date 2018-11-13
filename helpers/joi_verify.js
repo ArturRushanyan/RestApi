@@ -1,5 +1,4 @@
 import Joi from 'joi';
-import Error from './Errors';
 import Schema from './schema';
 
 exports.Registration = (req) => {
@@ -8,27 +7,17 @@ exports.Registration = (req) => {
     return false;
   }
   const result = Joi.validate(req.body, schemaResult);
-  if (!result) {
-    return false;
-  }
-  return true;
+  return !result ? false : true;
 };
 
 exports.Login = (req) => {
   const schemaResult = Schema.Signin();
   const result = Joi.validate(req.body, schemaResult);
-  if (!result) {
-    return false;
-  }
-  return true;
+  return !result ? false : true;
 };
 
 exports.Item = (req, res) => {
   const schemaResult = Schema.itemSchema();
   const result = Joi.validate(req.body, schemaResult);
-  if (!result) {
-    Error.sendError(res, 400, result.error);
-    return false;
-  }
-  return true;
+  return !result ? false : true;
 };
