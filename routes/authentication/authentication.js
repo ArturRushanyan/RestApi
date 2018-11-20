@@ -3,7 +3,6 @@ import Authentication from './authentication.controller';
 
 const router = express.Router();
 
-router.get('/me', Authentication.Me);
 router.get('/logout', Authentication.Logout);
 router.post('/signup', Authentication.SignUp);
 router.post('/login', Authentication.Login);
