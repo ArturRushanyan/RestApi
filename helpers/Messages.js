@@ -17,5 +17,6 @@ module.exports = {
     USER_NOT_FOUND_WITH_ID: 'User not found with id ',
     FAILED_TO_AUTHENTICATE_TOKEN: 'Failed to authenticate token',
     YOU_ARE_NOT_LOGGED_IN: 'You are not logged in',
+    YOU_ARE_LOGGEDOUT: 'You are logged out',
   },
 };

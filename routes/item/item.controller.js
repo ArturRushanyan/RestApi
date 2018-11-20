@@ -1,7 +1,7 @@
-import Item from '../../models/Item';
-import Error from '../../helpers/Errors';
+import Item from '../../models/item';
+import Error from '../../helpers/errors';
 import authenticationWithJoi from '../../helpers/joi_verify';
-import Constants from '../../helpers/Messages';
+import Constants from '../../helpers/messages';
 
 exports.getAll = (req, res) => {
   Item.find().then((Items) => {

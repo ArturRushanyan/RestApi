@@ -1,4 +1,3 @@
-
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
@@ -9,7 +8,8 @@ import routes from './routes/index';
 import cors from 'cors';
 
 const app = express();
-app.use(cors());
+const whitelist = ['http://localhost:3000', 'http://localhost:4200']
+app.use(cors({ origin: whitelist}));
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

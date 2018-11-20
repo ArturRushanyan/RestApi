@@ -2,22 +2,22 @@ import Joi from 'joi';
 import Schema from './schema';
 
 exports.Registration = (req) => {
-  const schemaResult = Schema.Signup();
+  const schemaResult = Schema.Signup;
   if (req.body.password !== req.body.confirmPassword) {
     return false;
   }
   const result = Joi.validate(req.body, schemaResult);
-  return !result ? false : true;
+  return !!result;
 };
 
 exports.Login = (req) => {
-  const schemaResult = Schema.Signin();
+  const schemaResult = Schema.Signin;
   const result = Joi.validate(req.body, schemaResult);
-  return !result ? false : true;
+  return !!result;
 };
 
 exports.Item = (req, res) => {
-  const schemaResult = Schema.itemSchema();
+  const schemaResult = Schema.itemSchema;
   const result = Joi.validate(req.body, schemaResult);
-  return !result ? false : true;
+  return !!result;
 };

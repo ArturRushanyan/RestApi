@@ -1,4 +1,3 @@
-
 import Item from './item/item';
 import User from './user/user';
 import Authentication from './authentication/authentication';

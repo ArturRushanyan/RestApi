@@ -1,12 +1,27 @@
-import User from '../../models/User';
-import Errors from '../../helpers/Errors';
-import Constants from '../../helpers/Messages';
+import JWT from 'jsonwebtoken';
+import User from '../../models/user';
+import Errors from '../../helpers/errors';
+import Constants from '../../helpers/messages';
+import Config from '../../config';
 
 exports.getAll = (req, res) => {
   User.find().then((NewUser) => {
     res.status(200).json({ NewUser });
   }).catch((err) => {
-    Errors.sendError(res, 400, err);
+    return Errors.sendError(res, 400, err);
+  });
+};
+
+exports.me = (req, res) => {
+  const token = req.cookies.access_token;
+  if (!token) {
+    return Error.sendError(res, 401, Constants.MESSAGES.BAD_REQUEST);
+  }
+  JWT.verify(token, Config.JWT_KEY, (err, user) => {
+    if (err) {
+      return Error.sendError(res, 500, Constants.MESSAGES.FAILED_TO_AUTHENTICATE_TOKEN);
+    }
+    res.status(200).send(user);
   });
 };
 
@@ -20,7 +35,7 @@ exports.get = (req, res) => {
       }
       return res.status(200).json({ user });
     }).catch((err) => {
-      Errors.sendError(res, 400, err);
+      return Errors.sendError(res, 400, err);
     });
 };
 
@@ -38,6 +53,6 @@ exports.update = (req, res) => {
     }
     return res.status(200).json({ user });
   }).catch((err) => {
-    Error.sendError(res, 500, err);
+    return Error.sendError(res, 500, err);
   });
 };

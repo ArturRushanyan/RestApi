@@ -1,6 +1,6 @@
 import express from 'express';
 import * as itemController from './item.controller';
-import isAuthenticated from '../../helpers/isAuthenticated';
+import isAuthenticated from '../../helpers/is_authenticated';
 
 const router = express.Router();
 
