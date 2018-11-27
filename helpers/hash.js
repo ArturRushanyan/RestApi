@@ -12,7 +12,7 @@ exports.HashingPassword = (password) => {
   });
 };
 
-exports.CpmparyPassword = (password, UserPassword) => {
+exports.ComparyPassword = (password, UserPassword) => {
   return new Promise((resolve, reject) => {
     bcrypt.compare(password, UserPassword, (err, hash) => {
       if (err) {

@@ -50,13 +50,13 @@ exports.Login = (req, res) => {
     if (!user) {
       return Error.sendError(res, 401, Constants.MESSAGES.AUTH_FAILED);
     }
-    return Hash.CpmparyPassword(req.body.password, user.password);
+    return Hash.ComparyPassword(req.body.password, user.password);
   }).then(() => {
     const token = generateToken(req.body.email);
     res.cookie(Config.access_token, token, {
       httpOnly: true,
     });
-    res.status(200).json({
+    return res.status(200).json({
       message: Constants.MESSAGES.AUTH_SUCCESSFUL,
       token: token,
     });
