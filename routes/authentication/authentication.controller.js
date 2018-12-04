@@ -50,8 +50,8 @@ exports.Login = (req, res) => {
     if (!user) {
       return Error.sendError(res, 401, Constants.MESSAGES.AUTH_FAILED);
     }
-    return Hash.ComparyPassword(req.body.password, user.password);
-  }).then(() => {
+    return (Hash.ComparyPassword(req.body.password, user.password), user);
+  }).then((user) => {
     const token = generateToken(req.body.email);
     res.cookie(Config.access_token, token, {
       httpOnly: true,
@@ -59,6 +59,7 @@ exports.Login = (req, res) => {
     return res.status(200).json({
       message: Constants.MESSAGES.AUTH_SUCCESSFUL,
       token: token,
+      user: user,
     });
   }).catch((err) => {
     Error.sendError(res, 500, err);
