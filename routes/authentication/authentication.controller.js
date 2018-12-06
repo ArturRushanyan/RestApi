@@ -27,17 +27,17 @@ exports.SignUp = (req, res) => {
     });
     return newUser.save();
   }).then((result) => {
-    const token = generateToken(req.body.email);
+    const token = generateToken.newToken(req.body.email);
     res.cookie(Config.access_token, token, {
       httpOnly: true,
     });
     res.status(200).json({
       message: result,
-      token: token,
     });
-  }).catch((err) => {
-    Error.sendError(res, 500, err);
-  });
+  })
+    .catch((err) => {
+      Error.sendError(res, 500, err);
+    });
 };
 
 exports.Login = (req, res) => {
@@ -50,16 +50,14 @@ exports.Login = (req, res) => {
     if (!user) {
       return Error.sendError(res, 401, Constants.MESSAGES.AUTH_FAILED);
     }
-    return (Hash.ComparyPassword(req.body.password, user.password), user);
-  }).then((user) => {
-    const token = generateToken(req.body.email);
+    return Hash.ComparyPassword(req.body.password, user.password);
+  }).then(() => {
+    const token = generateToken.newToken(res, req.body.email);
     res.cookie(Config.access_token, token, {
       httpOnly: true,
     });
     return res.status(200).json({
       message: Constants.MESSAGES.AUTH_SUCCESSFUL,
-      token: token,
-      user: user,
     });
   }).catch((err) => {
     Error.sendError(res, 500, err);
@@ -69,6 +67,6 @@ exports.Login = (req, res) => {
 exports.Logout = (req, res) => {
   res.clearCookie(Config.access_token);
   res.status(200).json({
-    message: Constants.MESSAGES.YOU_ARE_LOGGEDOUT
+    message: Constants.MESSAGES.YOU_ARE_LOGGEDOUT,
   });
 };

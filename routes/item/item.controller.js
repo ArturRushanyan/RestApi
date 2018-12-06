@@ -54,7 +54,7 @@ exports.update = (req, res) => {
     count: req.body.count,
     barcode: req.body.barcode,
   }, {
-    new: true
+    new: true,
   }).then((item) => {
     if (!item) {
       return Error.sendError(res, 404, Constants.MESSAGES.ITEM_NOT_FOUND);
