@@ -27,13 +27,16 @@ exports.SignUp = (req, res) => {
     });
     return newUser.save();
   }).then((result) => {
-    const token = generateToken.newToken(req.body.email);
-    res.cookie(Config.access_token, token, {
-      httpOnly: true,
-    });
-    res.status(200).json({
-      message: result,
-    });
+    generateToken.newToken(res, result.email)
+      .then(token => {
+        res.cookie(Config.access_token, token, {
+          httpOnly: true,
+        });
+        res.status(200).json({
+          message: result,
+          token: token,
+        });
+      });
   })
     .catch((err) => {
       Error.sendError(res, 500, err);
@@ -52,13 +55,16 @@ exports.Login = (req, res) => {
     }
     return Hash.ComparyPassword(req.body.password, user.password);
   }).then(() => {
-    const token = generateToken.newToken(res, req.body.email);
-    res.cookie(Config.access_token, token, {
-      httpOnly: true,
-    });
-    return res.status(200).json({
-      message: Constants.MESSAGES.AUTH_SUCCESSFUL,
-    });
+    generateToken.newToken(res, req.body.email)
+      .then(token => {
+        res.cookie(Config.access_token, token, {
+          httpOnly: true,
+        });
+        return res.status(200).json({
+          message: Constants.MESSAGES.AUTH_SUCCESSFUL,
+          token: token,
+        });
+      });
   }).catch((err) => {
     Error.sendError(res, 500, err);
   });

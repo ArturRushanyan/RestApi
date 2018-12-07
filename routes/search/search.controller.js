@@ -11,7 +11,7 @@ exports.search = (req, res) => {
     if (!Item1) {
       return Error.sendError(res, 404, Constants.MESSAGES.NO_RESULT);
     }
-    return res.status(200).json(Item);
+    return res.status(200).json(Item1);
   }).catch((err) => {
     Error.sendError(res, 400, err);
   });
