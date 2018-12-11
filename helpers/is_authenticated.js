@@ -4,9 +4,8 @@ import Constants from './messages';
 import generateToken from './generate_token';
 
 const isAuthenticated = (req, res, next) => {
-  const token = req.cookies.access_token;
+  const token = req.cookies.token;
   if (token) {
-    console.log('+_+_+_+- token', token);
     generateToken.tokenVerify(res, token)
       .then(decoded => User.findOne({
         email: decoded.email,
@@ -19,7 +18,7 @@ const isAuthenticated = (req, res, next) => {
         return Error.sendError(res, 401, err || Constants.MESSAGES.YOU_ARE_NOT_LOGGED_IN);
       });
   } else {
-    return Error.sendError(res, 400, Constants.MESSAGES.BAD_REQUEST);
+    return Error.sendError(res, 400, Constants.MESSAGES.YOU_ARE_NOT_LOGGED_IN);
   }
 };
 

@@ -1,11 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import config from './config';
 import routes from './routes/index';
-import cors from 'cors';
+
 
 const app = express();
 const whitelist = ['http://localhost:3000', 'http://localhost:4200']

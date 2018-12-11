@@ -5,7 +5,6 @@ import Constants from './messages';
 
 exports.newToken = (res, email) => {
   return new Promise((resolve, reject) => {
-    console.log('generate token email ', email);
     if (!email) {
       reject(Error.sendError(res, 400, Constants.MESSAGES.MISSING_MAIL));
     }

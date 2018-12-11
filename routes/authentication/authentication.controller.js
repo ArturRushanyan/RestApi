@@ -29,11 +29,11 @@ exports.SignUp = (req, res) => {
   }).then((result) => {
     generateToken.newToken(res, result.email)
       .then(token => {
-        res.cookie(Config.access_token, token, {
+        res.cookie(Config.token, token, {
           httpOnly: true,
         });
         res.status(200).json({
-          message: result,
+          result: result,
           token: token,
         });
       });
@@ -57,12 +57,17 @@ exports.Login = (req, res) => {
   }).then(() => {
     generateToken.newToken(res, req.body.email)
       .then(token => {
-        res.cookie(Config.access_token, token, {
+        res.cookie(Config.token, token, {
           httpOnly: true,
         });
-        return res.status(200).json({
-          message: Constants.MESSAGES.AUTH_SUCCESSFUL,
-          token: token,
+        User.findOne({
+          email: req.body.email,
+        }).then((user) => {
+          return res.status(200).json({
+            message: Constants.MESSAGES.AUTH_SUCCESSFUL,
+            token: token,
+            user: user,
+          });
         });
       });
   }).catch((err) => {
@@ -71,7 +76,7 @@ exports.Login = (req, res) => {
 };
 
 exports.Logout = (req, res) => {
-  res.clearCookie(Config.access_token);
+  res.clearCookie(Config.token);
   res.status(200).json({
     message: Constants.MESSAGES.YOU_ARE_LOGGEDOUT,
   });

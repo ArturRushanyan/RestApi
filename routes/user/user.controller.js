@@ -13,7 +13,7 @@ exports.getAll = (req, res) => {
 };
 
 exports.me = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.cookies.token;
   if (!token) {
     return Error.sendError(res, 401, Constants.MESSAGES.BAD_REQUEST);
   }

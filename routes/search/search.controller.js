@@ -7,7 +7,7 @@ exports.search = (req, res) => {
   if (!ItemName) {
     return Error.sendError(res, 400, Constants.MESSAGES.PLEASE_ENTER_THE_NAME_FOR_SEARCHING_ITEM);
   }
-  Item.findOne({ title: ItemName }).then((Item1) => {
+  Item.find({ title: ItemName }).then((Item1) => {
     if (!Item1) {
       return Error.sendError(res, 404, Constants.MESSAGES.NO_RESULT);
     }
