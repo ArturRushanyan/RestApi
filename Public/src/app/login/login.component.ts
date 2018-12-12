@@ -7,17 +7,14 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   loginUserData = {}
-  constructor(private _auth: AuthService,
+  constructor(private _authService: AuthService,
     private _router: Router) { }
 
-  ngOnInit() {
-  }
-
   loginUser() {
-    this._auth.loginUser(this.loginUserData)
+    this._authService.loginUser(this.loginUserData)
     .subscribe(
       res => {
         console.log(res);

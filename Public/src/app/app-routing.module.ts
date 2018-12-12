@@ -5,7 +5,6 @@ import { RegisterComponent } from './register/register.component';
 import { AddComponent } from './add/add.component';
 import { ItemComponent } from './item/item.component';
 import { LogoutComponent } from './logout/logout.component';
-import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -32,10 +31,6 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
-  },
-  {
-    path: 'seatch?:name',
-    component: SearchComponent,
   }
 ];
 

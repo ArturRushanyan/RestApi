@@ -13,7 +13,6 @@ import { ItemComponent } from './item/item.component';
 import { EventService } from './event.service';
 import { CookieService } from 'ngx-cookie-service';
 import { LogoutComponent } from './logout/logout.component';
-import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -23,8 +22,7 @@ import { SearchComponent } from './search/search.component';
     LoginComponent,
     AddComponent,
     ItemComponent,
-    LogoutComponent,
-    SearchComponent
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -23,9 +23,9 @@ export class EventService {
     return this.http.post<any>(this._getItemUrl, item);
   }
 
-  searchItem(searchItem) {
-    console.log('_+_+_+_+_+_+ searching Item = ' + searchItem.name);
-    return this.http.get(this._searchUrl + searchItem.name);
-  }
+  // searchItem(Item) {
+  //   // console.log('_+_+_+_+_+_+ searching Item = ' + Item.name);
+  //   return this.http.get<any>(`${this._searchUrl}?name=${Item.name}`);
+  // }
 
 }

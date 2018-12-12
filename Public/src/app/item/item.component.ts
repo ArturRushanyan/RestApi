@@ -18,6 +18,5 @@ export class ItemComponent implements OnInit {
       err => console.log(err),  
     )
   }
-
   
 }
