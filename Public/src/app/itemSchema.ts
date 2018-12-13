@@ -7,5 +7,5 @@ export interface Item {
 }
 
 export interface SearchingItem {
-    name: string
+    title: string
 }

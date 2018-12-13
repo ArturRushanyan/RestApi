@@ -1,42 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { debounceTime } from 'rxjs/operators'; 
-import { distinctUntilChanged } from 'rxjs/operators';
-import { switchMap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
+export interface Item {
+  title: string;
+}
 
 @Injectable()
+export class SearchService {
 
-export class searchService {
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
-  private baseUrl  = 'http://localhost:3000/search';
+  private searchUrl = 'http://3000/localhost/search';
 
   constructor(private http: HttpClient) { }
-  
-  search(terms: Observable<string>) {
-    return terms.pipe(
-                      debounceTime(100),
-                      distinctUntilChanged(),
-                      switchMap(term => this.searchEntries(term)));
+
+  reqSearchItem(item: Item) {
+    return  this.http.get<Item>(`${this.searchUrl}?${item}`, {
+      headers: 
+        new HttpHeaders(
+          {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'MyClientCert': '',
+            'MyToken': ''
+          }
+        )
+        }
+    ).pipe( map(res => res), catchError(err => throwError(err)) );
   }
 
-  searchEntries(term) {
-    return this.http
-        .get(`${this.baseUrl}?name=${term}`, this.httpOptions)
-        .pipe(map((res: Response) => res.json()));
-  }
-
-  // searchingItem(Item) {
-  //   return this.http.get<any>(`${this.baseUrl}?name=${Item}`, )
-  // }
-
-  // `${this.heroesUrl}/?name=${term}`
 }

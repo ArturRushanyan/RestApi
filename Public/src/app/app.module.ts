@@ -13,6 +13,7 @@ import { ItemComponent } from './item/item.component';
 import { EventService } from './event.service';
 import { CookieService } from 'ngx-cookie-service';
 import { LogoutComponent } from './logout/logout.component';
+import { SearchService } from './search.service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { LogoutComponent } from './logout/logout.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, EventService, CookieService],
+  providers: [AuthService, EventService, SearchService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
