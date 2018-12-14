@@ -23,7 +23,7 @@ import { SearchService } from './search.service';
     LoginComponent,
     AddComponent,
     ItemComponent,
-    LogoutComponent
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

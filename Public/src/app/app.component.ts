@@ -1,36 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
-// import { EventService } from './event.service';
+import { HttpClient } from '@angular/common/http';
 import { SearchService } from './search.service';
-
-export interface Item {
-  title: string;
-}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Sweets';
-
-  searchingTitle: {
-    title: string
-  };
   
+  name:string = '' ;
+  found: boolean;
+
+  item = [];
+
   constructor(private _authService: AuthService,
-              private _searchService: SearchService) { }
+              private searchService: SearchService, 
+              private http: HttpClient) { }
               
-  ngOnInit() {
+  onNameKeyUp(event: any) {
+      this.name = event.target.value;
+      this.found = false; 
   }
 
-  searchingItem() {
-    this._searchService.reqSearchItem(this.searchingTitle)
+  Search() {
+    this.searchService.reqSearch(this.name)
     .subscribe(
-      res => console.log(res),
-      err => console.log('+_+_+_+_+_+_+_+_+_', err), 
+      res => {
+        this.found = true;
+        this.item = res;
+        console.log(res);
+      },
+      err => console.log(err),
+      // (data:any[]) => {
+      //   console.log(data); 
+      // } 
     )
+      // this.http.get(`http://localhost:3000/search/${this.name}`)
   }
-
+  
 }
