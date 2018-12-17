@@ -14,14 +14,15 @@ export class LogoutComponent implements OnInit {
               private _router: Router,
               private _cookieService: CookieService) { }
 
-  ngOnInit() {
-    this._cookieService.deleteAll();
-    this._router.navigate(['/item']);
+  ngOnInit() {    
     this._authService.logoutUser()
     .subscribe(
       res => {
         console.log(res),
         localStorage.clear();
+        this._cookieService.deleteAll();
+        this._router.navigate(['/item']);
+
       },
       err => console.log(err)
     )

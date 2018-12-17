@@ -25,6 +25,11 @@ export class AppComponent {
       this.found = false; 
   }
 
+  boolClick() {
+    this.found = false;
+  }
+
+
   Search() {
     this.searchService.reqSearch(this.name)
     .subscribe(

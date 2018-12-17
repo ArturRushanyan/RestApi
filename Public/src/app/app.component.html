@@ -11,15 +11,29 @@
       </li>
     </ul>
     
+    <!--  
+
+      <div class="input-group">
+        <input type="text" class="form-control" 
+        data-clear-btn="true"
+        (keydown.enter)="onNameKeyUp($event)" (keydown.enter)="Search()" 
+        placeholder="Search" >
+        <button (click)="Search()" class="btn btn-success float-right" type="button">Search</button>
+      </div>
+    -->
     <div class="input-group">
-      <input type="text" class="form-control" (keydown.enter)="onNameKeyUp($event)" (keydown.enter)="Search()" placeholder="Search">
-      <button (click)="Search()" class="btn btn-success float-right" type="button">Search</button>
+        <input type="text" class="form-control" data-clear-btn="true"
+         (keydown.enter)="onNameKeyUp($event)" (keydown.enter)="Search()"
+         placeholder="Search">
+        <button (click)="Search()" class="btn btn-success float-right" type="button">Search</button>
     </div>
-    
+
+
+
     <ul class="navbar-nav ml-auto">
-      <a class="nav-link" *ngIf="!_authService.loggedIn()" style="cursor:pointer" routerLink="/login" routerLinkActive="active">Login</a>
-      <a class="nav-link" *ngIf="!_authService.loggedIn()" style="cursor:pointer" routerLink="/register" routerLinkActive="active">Register</a>
-      <a class="nav-link" *ngIf="_authService.loggedIn()"  style="cursor:pointer" routerLink="/logout" routerLinkActive="active">Logout</a>
+      <a class="nav-link" *ngIf="!_authService.loggedIn()" style="cursor:pointer" routerLink="/login" (click)="boolClick()" routerLinkActive="active">Login</a>
+      <a class="nav-link" *ngIf="!_authService.loggedIn()" style="cursor:pointer" routerLink="/register" (click)="boolClick()" routerLinkActive="active">Register</a>
+      <a class="nav-link" *ngIf="_authService.loggedIn()"  style="cursor:pointer" routerLink="/logout"  (click)="boolClick()" routerLinkActive="active">Logout</a>
     </ul>
   </div>
 

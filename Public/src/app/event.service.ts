@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class EventService {
 
   private _getItemUrl = 'http://localhost:3000/api/v1/item';
-  private _searchUrl = 'http://localhost:3000/search/';
+  // private _searchUrl = 'http://localhost:3000/search/';
 
   constructor(private http: HttpClient, 
               private _cookieService: CookieService) { }
