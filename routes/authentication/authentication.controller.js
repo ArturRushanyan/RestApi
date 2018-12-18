@@ -33,7 +33,7 @@ exports.SignUp = (req, res) => {
           httpOnly: true,
         });
         res.status(200).json({
-          result: result,
+          user: result,
           token: token,
         });
       });

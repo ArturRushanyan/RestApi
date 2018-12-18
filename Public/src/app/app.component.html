@@ -1,61 +1,67 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/item" id='id' >Sweets</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/add" style="cursor:pointer" routerLinkActive="active">Add</a>
-      </li>
-    </ul>
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand"  routerLink="/item" (click)="boolClick()" id='id' >Sweets</a>
+      <button class="navbar-toggler" type="button" 
+        data-toggle="collapse" data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      </button>
     
-    <!--  
-
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="_authService.loggedIn()" 
+            style="cursor:pointer" routerLink="/add" routerLinkActive="active">Add</a>
+        </li>
+      </ul>
+      <!-- -->
       <div class="input-group">
-        <input type="text" class="form-control" 
-        data-clear-btn="true"
-        (keydown.enter)="onNameKeyUp($event)" (keydown.enter)="Search()" 
-        placeholder="Search" >
-        <button (click)="Search()" class="btn btn-success float-right" type="button">Search</button>
+        <input type="search" class="form-control" 
+          data-clear-btn="true"
+          (keydown.enter)="onNameKeyUp($event)"
+          (keydown.enter)="Search()" 
+          placeholder="Search">
+        <button (click)="onNameKeyUp($event)" (click)="Search()" class="btn btn-success float-right" type="button">Search</button>
       </div>
-    -->
-    <div class="input-group">
-        <input type="text" class="form-control" data-clear-btn="true"
-         (keydown.enter)="onNameKeyUp($event)" (keydown.enter)="Search()"
-         placeholder="Search">
-        <button (click)="Search()" class="btn btn-success float-right" type="button">Search</button>
+      
+      <ul class="navbar-nav ml-auto">
+        <a class="nav-link" *ngIf="!_authService.loggedIn()" 
+        style="cursor:pointer" routerLink="/login" 
+        (click)="boolClick()" routerLinkActive="active">Login</a>
+        
+        <a class="nav-link" *ngIf="!_authService.loggedIn()" 
+        style="cursor:pointer" routerLink="/register" 
+        (click)="boolClick()" routerLinkActive="active">Register</a>
+        
+        <a class="nav-link" *ngIf="_authService.loggedIn()"  
+        style="cursor:pointer" routerLink="/logout" 
+        (click)="boolClick()" routerLinkActive="active">Logout</a> 
+      </ul>
     </div>
-
-
-
-    <ul class="navbar-nav ml-auto">
-      <a class="nav-link" *ngIf="!_authService.loggedIn()" style="cursor:pointer" routerLink="/login" (click)="boolClick()" routerLinkActive="active">Login</a>
-      <a class="nav-link" *ngIf="!_authService.loggedIn()" style="cursor:pointer" routerLink="/register" (click)="boolClick()" routerLinkActive="active">Register</a>
-      <a class="nav-link" *ngIf="_authService.loggedIn()"  style="cursor:pointer" routerLink="/logout"  (click)="boolClick()" routerLinkActive="active">Logout</a>
-    </ul>
-  </div>
-
-</nav>    
-<div class="container">
-  <div *ngIf="!found">
-      <router-outlet></router-outlet>  
-  </div>
-  <div class="searchResult" *ngIf="found">
-      <div class="row mt-5">
-        <div class="col-md-4 mb-3" *ngFor="let item of item">
-          <div class="card text-center">
-            <div class="card-body">
-              <h5 class="card-title">{{item.title}}</h5>
-              <p class="card-text">{{item.type}}</p>
-              <a href="#" class="btn btn-primary">Buy</a>
-            </div>
-            <div class="card-footer number-muted">
-              {{item.price}}
+  </nav>   
+    <div class="container">
+      <div *ngIf="!found">
+        <router-outlet></router-outlet>  
+      </div>
+      <div class="searchResult" *ngIf="found">
+        <div class="row mt-5">
+          <div class="col-md-4 mb-3" *ngFor="let item of item">
+            <div class="card text-center">
+              <div class="card-body">
+                <h5 class="card-title">{{item.title}}</h5>
+                <p class="card-text">{{item.type}}</p>
+                <a href="#" class="btn btn-primary">Buy</a>
+              </div>
+              <div class="card-footer number-muted">
+                {{item.price}}
+              </div>
             </div>
           </div>
-        </div>
+        </div>    
       </div>    
-    </div>    
-</div>
+    </div>
+
+  </body>
+</html>
