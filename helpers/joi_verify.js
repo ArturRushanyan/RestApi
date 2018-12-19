@@ -16,7 +16,7 @@ exports.Login = (req) => {
   return !!result;
 };
 
-exports.Item = (req, res) => {
+exports.Item = (req) => {
   const schemaResult = Schema.itemSchema;
   const result = Joi.validate(req.body, schemaResult);
   return !!result;

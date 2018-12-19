@@ -12,11 +12,14 @@ exports.newToken = (res, email) => {
   }); 
 };
 
-exports.tokenVerify = (res, token) => {
+exports.tokenVerify = (req, res, token) => {
+  console.log('+_+_+ generate token log1');
   return new Promise((resolve, reject) => {
     if (!token) {
+      console.log('+_+_+ generate token log2');
       reject(Error.sendError(res, 400, Constants.MESSAGES.YOU_ARE_NOT_LOGGED_IN));
     }
+    console.log('+_+_+ generate token log3');
     resolve(JWT.verify(token, Config.JWT_KEY));
   });
 };

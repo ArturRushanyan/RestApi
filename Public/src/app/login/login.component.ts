@@ -17,8 +17,9 @@ export class LoginComponent {
     this._authService.loginUser(this.loginUserData)
     .subscribe(
       res => {
-        console.log(res);
-        localStorage.setItem('token', res.token);
+        //console.log(res);
+        localStorage.setItem('token', JSON.stringify(res.token));
+        localStorage.setItem('user', JSON.stringify(res.user))
         this._router.navigate(['/item']);
       },
       err => console.log(err),

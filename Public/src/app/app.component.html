@@ -12,18 +12,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" *ngIf="_authService.loggedIn()" 
+          <a class="nav-link" *ngIf="_authService.isAdmin()" 
             style="cursor:pointer" routerLink="/add" routerLinkActive="active">Add</a>
         </li>
       </ul>
-      <!-- -->
+      <!--[(ngModel)]="name" -->
       <div class="input-group">
         <input type="search" class="form-control" 
           data-clear-btn="true"
           (keydown.enter)="onNameKeyUp($event)"
           (keydown.enter)="Search()" 
           placeholder="Search">
-        <button (click)="onNameKeyUp($event)" (click)="Search()" class="btn btn-success float-right" type="button">Search</button>
       </div>
       
       <ul class="navbar-nav ml-auto">

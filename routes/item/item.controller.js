@@ -26,9 +26,12 @@ exports.get = (req, res) => {
 };
 
 exports.create = (req, res) => {
+  console.log('+_+_+_+ item.controller log1');
   if (!authenticationWithJoi.Item(req, res)) {
+    console.log('+_+_+_+ item.controller log2');
     return Error.sendError(req, 400, Constants.MESSAGES.ITEM_BODY_CAN_NOT_BE_EMPTY);
   }
+  console.log('+_+_+_+ item.controller log3');
   const NewItem = new Item({
     type: req.body.type,
     title: req.body.title,
@@ -36,9 +39,12 @@ exports.create = (req, res) => {
     count: req.body.count,
     barcode: req.body.barcode,
   });
+  console.log('+_+_+_+ item.controller log4');
   NewItem.save().then((data) => {
+    console.log('+_+_+_+ item.controller log5');
     res.status(200).json({ data });
   }).catch((err) => {
+    console.log('+_+_+_+ item.controller log6');
     Error.sendError(res, 500, err || Constants.MESSAGES.SOME_ERROR);
   });
 };

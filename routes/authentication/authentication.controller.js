@@ -28,13 +28,13 @@ exports.SignUp = (req, res) => {
     return newUser.save();
   }).then((result) => {
     generateToken.newToken(res, result.email)
-      .then(token => {
-        res.cookie(Config.token, token, {
+      .then(token1 => {
+        res.cookie(Config.token, token1, {
           httpOnly: true,
         });
         res.status(200).json({
-          user: result,
-          token: token,
+          user: result.role,
+          token: token1,
         });
       });
   })
@@ -56,17 +56,17 @@ exports.Login = (req, res) => {
     return Hash.ComparyPassword(req.body.password, user.password);
   }).then(() => {
     generateToken.newToken(res, req.body.email)
-      .then(token => {
-        res.cookie(Config.token, token, {
+      .then(token1 => {
+        res.cookie(Config.token, token1, {
           httpOnly: true,
         });
         User.findOne({
           email: req.body.email,
-        }).then((user) => {
+        }).then((user1) => {
           return res.status(200).json({
             message: Constants.MESSAGES.AUTH_SUCCESSFUL,
-            token: token,
-            user: user,
+            user: user1.role,
+            token: token1,
           });
         });
       });

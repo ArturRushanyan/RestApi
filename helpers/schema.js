@@ -2,12 +2,14 @@ import Joi from 'joi';
 
 module.exports = {
   Signup: Joi.object().keys({
-    email: Joi.string().email().required().min(3).max(20),
+    email: Joi.string().email().required().min(3)
+      .max(20),
     password: Joi.string().min(6).max(12),
     role: Joi.string().min(6).max(10),
   }),
   Signin: Joi.object().keys({
-    email: Joi.string().email().required().min(3).max(20),
+    email: Joi.string().email().required().min(3)
+      .max(20),
     password: Joi.string().min(6).max(12),
     role: Joi.string().min(6).max(10), 
   }),

@@ -22,7 +22,6 @@ export class LogoutComponent implements OnInit {
         localStorage.clear();
         this._cookieService.deleteAll();
         this._router.navigate(['/item']);
-
       },
       err => console.log(err)
     )
