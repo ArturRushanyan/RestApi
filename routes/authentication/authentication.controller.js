@@ -65,7 +65,8 @@ exports.Login = (req, res) => {
         }).then((user1) => {
           return res.status(200).json({
             message: Constants.MESSAGES.AUTH_SUCCESSFUL,
-            user: user1.role,
+            userEmail: user1.email,
+            userRole: user1.role,
             token: token1,
           });
         });

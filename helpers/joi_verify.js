@@ -18,6 +18,6 @@ exports.Login = (req) => {
 
 exports.Item = (req) => {
   const schemaResult = Schema.itemSchema;
-  const result = Joi.validate(req.body, schemaResult);
+  const result = Joi.validate(req.body.item, schemaResult);
   return !!result;
 };

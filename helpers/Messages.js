@@ -19,5 +19,6 @@ module.exports = {
     YOU_ARE_NOT_LOGGED_IN: 'You are not logged in',
     YOU_ARE_LOGGEDOUT: 'You are logged out',
     MISSING_MAIL: 'Missing mail',
+    CAN_NOT_FIND_USER: 'Cannot find user',
   },
 };

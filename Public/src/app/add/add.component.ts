@@ -11,6 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AddComponent implements OnInit {
 
   addUserData = {}
+  userEmail: string;
   constructor(private _event: EventService,
     private _router: Router,
     private _cookieService: CookieService) { }
@@ -21,12 +22,14 @@ export class AddComponent implements OnInit {
   }
 
   addData() {
-    this._event.addItem(this.addUserData)
+    this.userEmail = localStorage.getItem('userEmail');
+    console.log('+_+ addData function userEmail = ', this.userEmail);
+    this._event.addItem(this.addUserData, this.userEmail)
       .subscribe(
         res => {
           console.log(res);
           this._cookieService.get('token');
-          localStorage.setItem('token', res.token);
+          // localStorage.setItem('token', res....);
           this._router.navigate(['/item']);
         },
         err => console.log(err)

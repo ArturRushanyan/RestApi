@@ -17,9 +17,11 @@ export class LoginComponent {
     this._authService.loginUser(this.loginUserData)
     .subscribe(
       res => {
-        //console.log(res);
-        localStorage.setItem('token', JSON.stringify(res.token));
-        localStorage.setItem('user', JSON.stringify(res.user))
+        console.log(res);
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('userRole', JSON.stringify(res.userRole));
+        localStorage.setItem('userEmail', res.userEmail);
+        
         this._router.navigate(['/item']);
       },
       err => console.log(err),

@@ -9,7 +9,7 @@ import routes from './routes/index';
 
 
 const app = express();
-const whitelist = ['http://localhost:3000', 'http://localhost:4200']
+const whitelist = ['http://localhost:3000', 'http://localhost:4200'];
 app.use(cors({ origin: whitelist }));
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));

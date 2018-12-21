@@ -18,7 +18,7 @@ export class EventService {
     return this.http.get<any>(this._getItemUrl);
   }
 
-  addItem(item) {
-    return this.http.post<any>(this._getItemUrl, item);
+  addItem(Item, Email) {
+    return this.http.post<any>(this._getItemUrl, {item: Item, email: Email});
   }
 }

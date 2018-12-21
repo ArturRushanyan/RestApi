@@ -26,25 +26,19 @@ exports.get = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  console.log('+_+_+_+ item.controller log1');
   if (!authenticationWithJoi.Item(req, res)) {
-    console.log('+_+_+_+ item.controller log2');
     return Error.sendError(req, 400, Constants.MESSAGES.ITEM_BODY_CAN_NOT_BE_EMPTY);
   }
-  console.log('+_+_+_+ item.controller log3');
   const NewItem = new Item({
-    type: req.body.type,
-    title: req.body.title,
-    price: req.body.price,
-    count: req.body.count,
-    barcode: req.body.barcode,
+    type: req.body.item.type,
+    title: req.body.item.title,
+    price: req.body.item.price,
+    count: req.body.item.count,
+    barcode: req.body.item.barcode,
   });
-  console.log('+_+_+_+ item.controller log4');
-  NewItem.save().then((data) => {
-    console.log('+_+_+_+ item.controller log5');
+  NewItem.save().then(data => {
     res.status(200).json({ data });
   }).catch((err) => {
-    console.log('+_+_+_+ item.controller log6');
     Error.sendError(res, 500, err || Constants.MESSAGES.SOME_ERROR);
   });
 };

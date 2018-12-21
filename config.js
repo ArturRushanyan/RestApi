@@ -1,6 +1,6 @@
 const config = {
   port: 3000,
-  token: 'token',
+  token: 'token;',
   Db: {
     url: 'mongodb://localhost:27017/NewSweets',
   },

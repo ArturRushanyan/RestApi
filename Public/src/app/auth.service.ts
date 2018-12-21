@@ -29,10 +29,10 @@ export class AuthService {
   }
 
   isAdmin() {
-    this.token = localStorage.getItem('token'); 
+    this.token = localStorage.getItem('token');
     if (this.token) {
       this._CookieService.set('token', this.token);
-      this.user = JSON.parse(localStorage.getItem('user'));
+      this.user = JSON.parse(localStorage.getItem('userRole'));
       if (this.user === 'admin') {
         return true;
       } else {
