@@ -24,14 +24,15 @@ export class AppComponent {
       this.found = false; 
   }
 
-  buyBotton() {
-    
-    if (localStorage.getItem('token')) {
-      alert('Buy');
-      this._router.navigate[('/item')];
-    } else {
-      alert('You are can not buy');
+  buy() {
+    console.log('buy function');
+    if (!localStorage.getItem('token')) {
+      console.log('blabla');
       this._router.navigate[('/login')];
+    } else {
+      //alert('Buyyy');
+      console.log('mlamla');
+      this._router.navigate[('/item')];
     }
   }
 
