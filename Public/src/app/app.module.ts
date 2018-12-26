@@ -5,15 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
-import { AddComponent } from './add/add.component';
-import { ItemComponent } from './item/item.component';
-import { EventService } from './event.service';
+import { RegisterComponent } from  './Pages/register/register.component';
+import { LoginComponent } from './Pages/login/login.component';
+import { AuthService } from  './Services/auth.service';
+import { AddComponent } from './Pages/add/add.component';
+import { ItemComponent } from './Pages/item/item.component';
+import { EventService } from './Services/event.service';
 import { CookieService } from 'ngx-cookie-service';
-import { LogoutComponent } from './logout/logout.component';
-import { SearchService } from './search.service';
+import { SearchService } from './Services/search.service';
 
 
 @NgModule({
@@ -23,7 +22,6 @@ import { SearchService } from './search.service';
     LoginComponent,
     AddComponent,
     ItemComponent,
-    LogoutComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { AddComponent } from './add/add.component';
-import { ItemComponent } from './item/item.component';
-import { LogoutComponent } from './logout/logout.component';
+import { LoginComponent } from './Pages/login/login.component';
+import { RegisterComponent } from './Pages/register/register.component';
+import { AddComponent } from './Pages/add/add.component';
+import { ItemComponent } from './Pages/item/item.component';
 
 const routes: Routes = [
   {
@@ -27,10 +26,6 @@ const routes: Routes = [
   {
     path: 'item',
     component: ItemComponent,
-  },
-  {
-    path: 'logout',
-    component: LogoutComponent,
   }
 ];
 

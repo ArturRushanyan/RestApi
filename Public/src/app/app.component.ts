@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './auth.service';
-import { SearchService } from './search.service';
+import { AuthService } from './Services/auth.service';
+import { SearchService } from './Services/search.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,14 +12,15 @@ export class AppComponent {
   title = 'Sweets';
   
   name:string;
-  found: boolean;
-  item = [];
+  found: boolean = false;
+  itemFromRes = [];
 
   constructor(private _authService: AuthService,
               private _searchService: SearchService, 
               private _router: Router) { }
-              
-  onNameKeyUp(event: any) {
+  
+  
+  onNameKeyUp(event: any):void {
       this.name = event.target.value;
       this.found = false; 
   }
@@ -36,13 +37,25 @@ export class AppComponent {
     }
   }
 
-  boolClick() {
+  boolClick(): void {
     this.found = false;
+  }
+
+  Logout(): void {
+    this._authService.logoutUser()
+    .subscribe(
+      res => {
+        console.log(res),
+        localStorage.clear();
+        this._router.navigate(['/item']);
+      },
+      err => console.log(err)
+    )
   }
 
   Search() {
     if (this.name === '') {
-      // this._router.navigate[('/item')];
+      this._router.navigate[('/item')];
     } else if (this.name.length <= 3) {
       alert('Small name for searching');   
     } else {
@@ -55,7 +68,7 @@ export class AppComponent {
             alert("Don't found");
             this._router.navigate[('/item')];
           } else {
-            this.item = res;
+            this.itemFromRes = res;
             console.log(res);
           }
         },

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head> </head>
-  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand"  routerLink="/item" (click)="boolClick()" id='id' >Sweets</a>
       <button class="navbar-toggler" type="button" 
@@ -13,7 +12,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" *ngIf="_authService.isAdmin()" 
-            style="cursor:pointer" routerLink="/add" routerLinkActive="active">Add</a>
+            style="cursor:pointer" (click)="boolClick()" routerLink="/add" routerLinkActive="active">Add</a>
         </li>
       </ul>
       <!---------------  Search ----------------- -->
@@ -24,7 +23,8 @@
           (keydown.enter)="Search()" 
           placeholder="Search">
       </div>
-      
+      <!-- Search End -->
+
       <ul class="navbar-nav ml-auto">
         <a class="nav-link" *ngIf="!_authService.loggedIn()" 
         style="cursor:pointer" routerLink="/login" 
@@ -35,33 +35,46 @@
         (click)="boolClick()" routerLinkActive="active">Register</a>
         
         <a class="nav-link" *ngIf="_authService.loggedIn()"  
-        style="cursor:pointer" routerLink="/logout" 
+        style="cursor:pointer" (click)="Logout()"
         (click)="boolClick()" routerLinkActive="active">Logout</a> 
       </ul>
     </div>
   </nav>   
+  <!------------------- Searching Item Respons ----------------------->
     <div class="container">
       <div *ngIf="!found">
         <router-outlet></router-outlet>  
       </div>
       <div class="searchResult" *ngIf="found">
         <div class="row mt-5">
-          <div class="col-md-4 mb-3" *ngFor="let item of item">
+          <div class="col-md-4 mb-3" *ngFor="let item of itemFromRes">
+            <img class="card-img-top" src="../../assets/images/Mars.jpg" alt="Card image cap">
             <div class="card text-center">
+              <!--------------- INFO ----------------->
+                <a class="text-left" id="i1" style="cursor:pointer" data-toggle="modal" data-target=".bd-example-modal-sm">Info</a>
+                <div class="modal fade bd-example-modal-sm">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                      <!-- {{item.price}} -->
+                      Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
+                      Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
+                      Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
+                      Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
+                    </div>
+                  </div>
+                </div>
+              <!----------- INFO END ------------>
               <div class="card-body">
                 <h5 class="card-title">{{item.title}}</h5>
                 <p class="card-text">{{item.type}}</p>
-                <button (click)='buy()' style="cursor:pointer" type="button">Buy</button>
-                <!-- <a  class="btn btn-primary">Buy</a> -->
+                <button class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
               </div>
               <div class="card-footer number-muted">
-                {{item.price}}
+                Price {{item.price}}
               </div>
             </div>
           </div>
         </div>    
       </div>    
     </div>
-
-  </body>
 </html>
