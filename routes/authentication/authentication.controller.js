@@ -33,13 +33,15 @@ exports.SignUp = (req, res) => {
           httpOnly: true,
         });
         res.status(200).json({
-          user: result.role,
+          message: Constants.MESSAGES.REGISTRATION_SUCCESSFUL,
+          userEmail: result.email,
+          userRole: result.role,
           token: token1,
         });
       });
   })
     .catch((err) => {
-      Error.sendError(res, 500, err);
+      return Error.sendError(res, 500, err);
     });
 };
 
@@ -54,7 +56,10 @@ exports.Login = (req, res) => {
       return Error.sendError(res, 401, Constants.MESSAGES.AUTH_FAILED);
     }
     return Hash.ComparyPassword(req.body.password, user.password);
-  }).then(() => {
+  }).then((result) => {
+    if(!result) {
+      return Error.sendError(res, 403, Constants.MESSAGES.PASSWORDS_DOES_NOT_MATCH);
+    }
     generateToken.newToken(res, req.body.email)
       .then(token1 => {
         res.cookie(Config.token, token1, {
@@ -72,7 +77,7 @@ exports.Login = (req, res) => {
         });
       });
   }).catch((err) => {
-    Error.sendError(res, 500, err);
+    return Error.sendError(res, 500, err);
   });
 };
 

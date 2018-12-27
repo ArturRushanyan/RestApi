@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Sweets';
   
-  name:string;
-  found: boolean = false;
-  itemFromRes = [];
+  private name:string;
+  public found: boolean = false;
+  public itemFromRes = [];
 
   constructor(private _authService: AuthService,
               private _searchService: SearchService, 
@@ -26,13 +26,11 @@ export class AppComponent {
   }
 
   buy() {
-    console.log('buy function');
     if (!localStorage.getItem('token')) {
-      console.log('blabla');
+      alert('You are can not buy');
       this._router.navigate[('/login')];
     } else {
-      //alert('Buyyy');
-      console.log('mlamla');
+      alert('Buyyy');
       this._router.navigate[('/item')];
     }
   }

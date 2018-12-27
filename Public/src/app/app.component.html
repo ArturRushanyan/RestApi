@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head> </head>
+  <head>
+  <script>
+    if (localStorage.getItem('userRole') === 'admin') {
+      $scope.deleteButtonIsActiv = true;
+    } else {
+      $scope.deleteButtonIsActiv = false;
+    }
+  </script>  
+  </head>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand"  routerLink="/item" (click)="boolClick()" id='id' >Sweets</a>
       <button class="navbar-toggler" type="button" 
@@ -67,7 +75,8 @@
               <div class="card-body">
                 <h5 class="card-title">{{item.title}}</h5>
                 <p class="card-text">{{item.type}}</p>
-                <button class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
+                <button class="btn btn-primary" id="buyButton" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
+                <button ng-show="deleteButtonIsActiv" class="btn btn-danger">Delete</button>
               </div>
               <div class="card-footer number-muted">
                 Price {{item.price}}

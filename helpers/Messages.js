@@ -4,6 +4,7 @@ module.exports = {
     MAIL_EXISTS: 'Mail exists',
     AUTH_FAILED: 'Auth failed',
     AUTH_SUCCESSFUL: 'Auth successful',
+    REGISTRATION_SUCCESSFUL: 'Register successful',
     BAD_REQUEST: 'Bad request',
     ITEM_NOT_FOUND: 'Item not found',
     ITEM_BODY_CAN_NOT_BE_EMPTY: 'Item body can not be empty',

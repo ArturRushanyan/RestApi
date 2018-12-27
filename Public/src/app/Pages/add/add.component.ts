@@ -9,17 +9,16 @@ import { EventService } from '../../Services/event.service';
 })
 export class AddComponent implements OnInit {
 
-  addUserData = {}
-  userEmail: string;
+  public addUserData = {}
+  public userEmail: string;
   constructor(private _event: EventService,
-    private _router: Router,
-    ) { }
+              private _router: Router) { }
 
   ngOnInit() :void {
     const _token = localStorage.getItem('token');
   }
 
-  addData() {
+  addData(): void {
     this.userEmail = localStorage.getItem('userEmail');
     this._event.addItem(this.addUserData, this.userEmail)
       .subscribe(

@@ -22,7 +22,10 @@
         <div class="card-body">
           <h5 class="card-title">{{item.title}}</h5>
           <p class="card-text">{{item.type}}</p>
-          <button class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
+          <button id="buyButton" class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
+          <div *ngIf="deleteButtonIsActiv">
+            <button class="btn btn-danger">Delete</button>
+          </div> 
         </div>
         <div class="card-footer number-muted">
           Price {{item.price}}

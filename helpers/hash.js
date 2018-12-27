@@ -4,10 +4,9 @@ exports.HashingPassword = (password) => {
   return new Promise((resolve, reject) => {
     bcrypt.hash(password, 10, (err, hash) => {
       if (err) {
-        reject(err);
-        return;
+        return reject(err);
       }
-      resolve(hash);
+      return resolve(hash);
     });
   });
 };
@@ -16,10 +15,9 @@ exports.ComparyPassword = (password, UserPassword) => {
   return new Promise((resolve, reject) => {
     bcrypt.compare(password, UserPassword, (err, hash) => {
       if (err) {
-        reject(err);
-        return;
+        return reject(err);
       }
-      resolve(hash);
+      return resolve(hash);
     });
   });
 };

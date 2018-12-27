@@ -9,11 +9,13 @@ import { AuthService } from '../../Services/auth.service';
 })
 export class LoginComponent {
 
-  loginUserData = {}
+  public loginUserData = {}
+  public loading = false;
   constructor(private _authService: AuthService,
-    private _router: Router) { }
+              private _router: Router) { }
 
   loginUser() {
+    this.loading = true;
     this._authService.loginUser(this.loginUserData)
     .subscribe(
       res => {
@@ -23,7 +25,10 @@ export class LoginComponent {
         localStorage.setItem('userEmail', res.userEmail);
         this._router.navigate(['/item']);
       },
-      err => console.log(err),
+      err =>  {
+        console.log(err),
+        this.loading = false;
+      }
     )
   }
 
