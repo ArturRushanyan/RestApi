@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <script>
-    if (localStorage.getItem('userRole') === 'admin') {
-      $scope.deleteButtonIsActiv = true;
-    } else {
-      $scope.deleteButtonIsActiv = false;
-    }
-  </script>  
-  </head>
+  <head></head>  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand"  routerLink="/item" (click)="boolClick()" id='id' >Sweets</a>
       <button class="navbar-toggler" type="button" 
@@ -27,11 +19,11 @@
       <div class="input-group">
         <input type="search" class="form-control" 
           data-clear-btn="true"
-          (keydown.enter)="onNameKeyUp($event)"
+          [(ngModel)]="name"
           (keydown.enter)="Search()" 
           placeholder="Search">
       </div>
-      <!-- Search End -->
+      <!-- Search End  for getting searching item name ----=> (keydown.enter)="onNameKeyUp($event)" -->
 
       <ul class="navbar-nav ml-auto">
         <a class="nav-link" *ngIf="!_authService.loggedIn()" 
@@ -58,12 +50,12 @@
           <div class="col-md-4 mb-3" *ngFor="let item of itemFromRes">
             <img class="card-img-top" src="../../assets/images/Mars.jpg" alt="Card image cap">
             <div class="card text-center">
-              <!--------------- INFO ----------------->
+              <!--------------- INFO ----------------
                 <a class="text-left" id="i1" style="cursor:pointer" data-toggle="modal" data-target=".bd-example-modal-sm">Info</a>
                 <div class="modal fade bd-example-modal-sm">
                   <div class="modal-dialog modal-sm">
                     <div class="modal-content">
-                      <!-- {{item.price}} -->
+                      
                       Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
                       Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
                       Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
@@ -71,12 +63,14 @@
                     </div>
                   </div>
                 </div>
-              <!----------- INFO END ------------>
+              ---------- INFO END ------------>
               <div class="card-body">
                 <h5 class="card-title">{{item.title}}</h5>
                 <p class="card-text">{{item.type}}</p>
                 <button class="btn btn-primary" id="buyButton" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
-                <button ng-show="deleteButtonIsActiv" class="btn btn-danger">Delete</button>
+                <!-- Dellete <div class="text-right">
+                  <button class="btn btn-danger" style="cursor:pointer">Delete</button>
+                </div>  -->
               </div>
               <div class="card-footer number-muted">
                 Price {{item.price}}

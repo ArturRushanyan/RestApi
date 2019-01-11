@@ -8,7 +8,7 @@ exports.newToken = (res, email) => {
     if (!email) {
       reject(Error.sendError(res, 400, Constants.MESSAGES.MISSING_MAIL));
     }
-    resolve(JWT.sign({ email }, Config.JWT_KEY, { expiresIn: '1h' }));
+    resolve(JWT.sign({ email }, Config.JWT_KEY));
   }); 
 };
 

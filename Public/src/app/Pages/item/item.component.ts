@@ -9,24 +9,17 @@ import { EventService } from '../../Services/event.service';
 export class ItemComponent implements OnInit {
 
   public itemFromRes = [];
-  public deleteButtonIsActiv: boolean;
   constructor(private _eventService: EventService) { }
 
   ngOnInit() {
-    this.delleteButton();
     this._eventService.getItems()
     .subscribe(
-      res => this.itemFromRes = res,
+      res =>  {
+        this.itemFromRes = res
+        //console.log(this.itemFromRes);
+      },
       err => console.log(err),  
     );
-    
   }
 
-  delleteButton(): void {
-    if( localStorage.getItem('userRole') === 'admin') {
-      this.deleteButtonIsActiv = true;
-    } else {
-      this.deleteButtonIsActiv = false;
-    }
-  }
 }
