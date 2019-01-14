@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head></head>  
+  <head></head>
+  <!-- Navbar  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand"  routerLink="/item" (click)="boolClick()" id='id' >Sweets</a>
       <button class="navbar-toggler" type="button" 
@@ -19,12 +20,13 @@
       <div class="input-group">
         <input type="search" class="form-control" 
           data-clear-btn="true"
-          [(ngModel)]="name"
+          (keydown.enter)="onNameKeyUp($event)"
           (keydown.enter)="Search()" 
           placeholder="Search">
       </div>
-      <!-- Search End  for getting searching item name ----=> (keydown.enter)="onNameKeyUp($event)" -->
+      <!-- Search End -->
 
+      <!-- logout login register  -->
       <ul class="navbar-nav ml-auto">
         <a class="nav-link" *ngIf="!_authService.loggedIn()" 
         style="cursor:pointer" routerLink="/login" 
@@ -38,12 +40,17 @@
         style="cursor:pointer" (click)="Logout()"
         (click)="boolClick()" routerLinkActive="active">Logout</a> 
       </ul>
+      <!-- End logout login register  -->
     </div>
   </nav>   
+  <!-- Navbar  -->
+
+  <!--///////////////////////////////   Body   /////////////////////////////////////////-->
+
   <!------------------- Searching Item Respons ----------------------->
     <div class="container">
       <div *ngIf="!found">
-        <router-outlet></router-outlet>  
+        <router-outlet></router-outlet>
       </div>
       <div class="searchResult" *ngIf="found">
         <div class="row mt-5">
@@ -55,22 +62,28 @@
                 <div class="modal fade bd-example-modal-sm">
                   <div class="modal-dialog modal-sm">
                     <div class="modal-content">
-                      
+
                       Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
                       Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
                       Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
                       Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
+
                     </div>
                   </div>
                 </div>
               ---------- INFO END ------------>
+
+
               <div class="card-body">
                 <h5 class="card-title">{{item.title}}</h5>
                 <p class="card-text">{{item.type}}</p>
-                <button class="btn btn-primary" id="buyButton" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
-                <!-- Dellete <div class="text-right">
-                  <button class="btn btn-danger" style="cursor:pointer">Delete</button>
-                </div>  -->
+                <!-- buttons -->
+                <div>
+                    <button class="btn btn-primary" id="buyButton" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
+                    <br>
+                    <button *ngIf="_authService.isAdmin()" id="deleteButton" class="btn btn-danger">Delete</button>
+                </div>
+      
               </div>
               <div class="card-footer number-muted">
                 Price {{item.price}}

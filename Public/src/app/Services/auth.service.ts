@@ -27,7 +27,11 @@ export class AuthService {
     this.token = localStorage.getItem('token');
     if (this.token) {
       this.user = JSON.parse(localStorage.getItem('userRole'));
-       return (this.user === 'admin') ? true : false; 
+      if (this.user === 'admin') {
+        return true;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }

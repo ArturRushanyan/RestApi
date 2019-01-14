@@ -2,34 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './Services/auth.service';
 import { SearchService } from './Services/search.service';
 import { Router } from '@angular/router';
-import { SearchComponent } from './Pages/search/search.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [SearchComponent]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'Sweets';
   
-  public name: string;
+  private name:string;
   public found: boolean = false;
+  public itemFromRes = [];
 
   constructor(private _authService: AuthService,
-              private _searchComponent: SearchComponent, 
+              private _searchService: SearchService, 
               private _router: Router) { }
   
-  // onNameKeyUp(event: any):void {
-  //     this.name = event.target.value;
-  //     this.found = false; 
-  // }
+  
+  onNameKeyUp(event: any):void {
+    this.name = event.target.value;
+    this.found = false;
+  }
 
   buy() {
     if (!localStorage.getItem('token')) {
       alert('You are can not buy');
       this._router.navigate[('/login')];
+      // this._router.navigate[('/login')];
     } else {
+      this.found = false;
       alert('Buyyy');
       this._router.navigate[('/item')];
     }
@@ -51,29 +53,28 @@ export class AppComponent {
     )
   }
 
-  Search(): void {
-    if (this.name === '' || this.name.length <= 3) {
+  Search() {
+    if (this.name === '') {
       this._router.navigate[('/item')];
+    } else if (this.name.length <= 3) {
+      alert('Small name for searching');   
     } else {
-      this._router.navigate[('/search')];
-      this._searchComponent.Search(this.name);
-      // this._router.navigateByUrl(`search/${this.name}`);
+      this._searchService.reqSearch(this.name)
+      .subscribe(
+        res => {
+          this.found = true;
+          if (res.length === 0) {
+            this.found = false;
+            alert("Don't found");
+            this._router.navigate[('/item')];
+          } else {
+            this.itemFromRes = res;
+            console.log(res);
+          }
+        },
+        err => console.log(err), 
+      )
     }
-  }
-      // this._searchService.reqSearch(this.name)
-      // .subscribe(
-      //   res => {
-      //     this.found = true;
-      //     if (res.length === 0) {
-      //       this.found = false;
-      //       alert("Don't found");
-      //       this._router.navigate[('/item')];
-      //     } else {
-      //       this.itemFromRes = res;
-      //       console.log(res);
-      //     }
-      //   },
-      //   err => console.log(err), 
-      // )
       // this.http.get(`http://localhost:3000/search/${this.name}`)
+  }
 }

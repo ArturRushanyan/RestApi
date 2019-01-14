@@ -1,11 +1,10 @@
 <html>
-<head>
-</head>
+<head> </head>
   <div class="row mt-5"> 
     <div class="col-md-4 mb-3" *ngFor="let item of itemFromRes">
       <img class="card-img-top" style="cursor:pointer" src="../../assets/images/Mars.jpg" alt="Card image cap">
       <div class="card text-center">
-        <!--------------- INFO -----------------
+        <!--------------- INFO ---------------
         <a class="text-left" id="i1" style="cursor:pointer" data-toggle="modal" data-target=".bd-example-modal-sm">Info</a>
         <div class="modal fade bd-example-modal-sm">
           <div class="modal-dialog modal-sm">
@@ -17,14 +16,20 @@
             </div>
           </div>
         </div>
-        ---------- INFO END ------------>
+        --------- INFO END ------------>
         <div class="card-body">
+          
           <h5 class="card-title">{{item.title}}</h5>
           <p class="card-text">{{item.type}}</p>
-          <button id="buyButton" class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
-          <!-- <div  class="text-right">
-            <button class="btn btn-danger" (click)="dellItem()" style="cursor:pointer">Delete</button>
-          </div>  -->
+          <!-- buttons -->
+          <div id="buyButton">
+            <button class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
+            <br>
+            <div *ngIf="show">
+              <button id="deleteButton" (click)="deleteItem()" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+
         </div>
         <div class="card-footer number-muted">
           Price {{item.price}}
@@ -34,6 +39,7 @@
   </div>
 </html>
   
+
 
 <!-- <div class="row mt-5">
   <div class="col-md-4 mb-3" *ngFor="let item of item">

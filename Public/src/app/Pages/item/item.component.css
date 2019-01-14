@@ -2,7 +2,10 @@
     font-family: Impact;
 }
 
-/* #buyButton {
-    margin-right: 10px; 
+#buyButton {
+    margin-right: auto;     
+}
 
-} */
+#deleteButton {
+    margin-top: 5px;
+}

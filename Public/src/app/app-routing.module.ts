@@ -4,7 +4,6 @@ import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { AddComponent } from './Pages/add/add.component';
 import { ItemComponent } from './Pages/item/item.component';
-import { SearchComponent } from './Pages/search/search.component'
 
 const routes: Routes = [
   {
@@ -27,10 +26,6 @@ const routes: Routes = [
   {
     path: 'item',
     component: ItemComponent,
-  }, 
-  {
-    path: 'search',
-    component: SearchComponent,
   }
 ];
 

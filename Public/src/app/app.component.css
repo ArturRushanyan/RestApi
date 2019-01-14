@@ -3,6 +3,9 @@
 }
 
 #buyButton {
-    margin-right: 10px; 
+    margin-right: auto;     
+}
 
+#deleteButton {
+    margin-top: 5px;
 }
