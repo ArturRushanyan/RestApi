@@ -26,7 +26,7 @@
             <button class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
             <br>
             <div *ngIf="show">
-              <button id="deleteButton" (click)="deleteItem()" class="btn btn-danger">Delete</button>
+              <button id="deleteButton" (click)="deleteItem($deleteItem1, item)" class="btn btn-danger">Delete</button>
             </div>
           </div>
 

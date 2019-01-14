@@ -12,7 +12,7 @@ export class ItemComponent implements OnInit {
 
   public itemFromRes = [];
   public show: boolean;
-  // public deleteButtonIsActiv: boolean;
+
   constructor(private _eventService: EventService,
               private _router: Router,
               private _authService: AuthService) { }
@@ -21,7 +21,10 @@ export class ItemComponent implements OnInit {
     this.show = this._authService.isAdmin();
     this._eventService.getItems()
     .subscribe(
-      res => this.itemFromRes = res,
+      res =>  {
+        this.itemFromRes = res,
+        console.log(this.itemFromRes);
+      },      
       err => console.log(err),  
     );
   }
@@ -36,8 +39,19 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  deleteItem(): void {
+  deleteItem(event, deleteItem): void {
     
+    if (deleteItem !== 'undefined' && deleteItem !== 'null') {
+      this._eventService.deleteItem(deleteItem).
+      subscribe(
+        res => {
+          console.log(res);
+        },
+        err => console.log(err) 
+      )
+    } else {
+      alert('can not delete item');
+    }
   }
   
 }

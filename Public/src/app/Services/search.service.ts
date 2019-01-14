@@ -9,7 +9,7 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   reqSearch(Item) {
-    return this.http.get<any>(`${this.searchUrl}/${Item}`)
+    return this.http.get<any>(`${this.searchUrl}/${Item}`);
   }
 
 }

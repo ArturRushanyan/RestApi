@@ -66,7 +66,7 @@ exports.update = (req, res) => {
 };
 
 exports.remove = (req, res) => {
-  Item.findByIdAndRemove(req.params.id)
+  Item.findByIdAndRemove(req.params._id)
     .then((item) => {
       if (!item) {
         return Error.sendError(res, 404, Constants.MESSAGES.ITEM_NOT_FOUND);
