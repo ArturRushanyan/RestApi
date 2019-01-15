@@ -40,17 +40,18 @@ export class ItemComponent implements OnInit {
   }
 
   deleteItem(event, deleteItem): void {
-    
+    const userEmail = localStorage.getItem('userEmail');
     if (deleteItem !== 'undefined' && deleteItem !== 'null') {
-      this._eventService.deleteItem(deleteItem).
+      this._eventService.deleteItem(deleteItem, userEmail).
       subscribe(
         res => {
           console.log(res);
+          location.reload();
         },
         err => console.log(err) 
       )
     } else {
-      alert('can not delete item');
+      alert('Can not delete item');
     }
   }
   

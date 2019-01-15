@@ -66,13 +66,18 @@ exports.update = (req, res) => {
 };
 
 exports.remove = (req, res) => {
-  Item.findByIdAndRemove(req.params._id)
+  console.log('+_+ imte.constroller remove log1');
+  console.log('+_+ req.params.id = ', req.params.id);
+  Item.findByIdAndRemove(req.params.id)
     .then((item) => {
       if (!item) {
+        console.log('+_+ imte.constroller remove log2');
         return Error.sendError(res, 404, Constants.MESSAGES.ITEM_NOT_FOUND);
       }
+      console.log('+_+ imte.constroller remove log3');
       res.send({ message: Constants.MESSAGES.ITEM_DELETED_SUCCESSFULLY });
     }).catch((err) => {
+      console.log('+_+ imte.constroller remove log4');
       Error.sendError(res, 404, err || Constants.MESSAGES.ITEM_NOT_FOUND);
     });
 };
