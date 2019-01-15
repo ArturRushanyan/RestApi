@@ -17,7 +17,6 @@ export class EventService {
   }
 
   deleteItem(item, userEmail) {
-    return this.http.request('delete', `${this._baseUrl}/${item._id}`, { body: { email: userEmail }})
-    // return this.http.(`${this._baseUrl}/${item._id}`, { } );
+    return this.http.request('delete', `${this._baseUrl}/${item._id}`, { body: { email: userEmail }});
   }
 }

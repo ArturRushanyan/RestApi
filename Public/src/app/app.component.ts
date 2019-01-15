@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './Services/auth.service';
 import { SearchService } from './Services/search.service';
+import { EventService } from './Services/event.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +18,7 @@ export class AppComponent {
 
   constructor(private _authService: AuthService,
               private _searchService: SearchService, 
+              private _eventService: EventService,
               private _router: Router) { }
   
   
@@ -47,10 +49,28 @@ export class AppComponent {
       res => {
         console.log(res),
         localStorage.clear();
+        location.reload();
         this._router.navigate(['/item']);
       },
       err => console.log(err)
     )
+  }
+
+  deleteItem(event, itemForDelete): void {
+    const userEmail = localStorage.getItem('userEmail');
+    if (itemForDelete !== 'undefined' && itemForDelete !== 'null') {
+      this._eventService.deleteItem(itemForDelete, userEmail)
+      .subscribe(
+        res => {
+          console.log(res);
+          location.reload();
+          this._router.navigate[('/item')];
+        },
+        err => console.log(err)
+      )
+    } else {
+      alert('Can not delete item');
+    }
   }
 
   Search() {

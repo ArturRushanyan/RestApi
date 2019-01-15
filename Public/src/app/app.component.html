@@ -80,7 +80,7 @@
                 <div>
                     <button class="btn btn-primary" id="buyButton" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
                     <br>
-                    <button *ngIf="_authService.isAdmin()" id="deleteButton" class="btn btn-danger">Delete</button>
+                    <button *ngIf="_authService.isAdmin()" (click)="deleteItem($event, item)" id="deleteButton" class="btn btn-danger">Delete</button>
                 </div>
       
               </div>
