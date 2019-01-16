@@ -10,22 +10,40 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Sweets';
   
   private name:string;
   public found: boolean = false;
   public itemFromRes = [];
+  public showDropDown:boolean = false; 
 
   constructor(private _authService: AuthService,
               private _searchService: SearchService, 
               private _eventService: EventService,
               private _router: Router) { }
   
+  ngOnInit() {
+    this._eventService.getItems()
+    .subscribe(
+      res =>  {
+        this.itemFromRes = res
+      },      
+      err => console.log(err),  
+    );
+  }
   
+  reloadPage() {
+    window.location.reload();
+  }
+
   onNameKeyUp(event: any): void {
     this.name = event.target.value;
     this.found = false;
+  }
+  
+  toggleDropDown(): void {
+    this.showDropDown = !this.showDropDown;
   }
 
   buy(): void {
@@ -49,7 +67,7 @@ export class AppComponent {
       res => {
         console.log(res),
         localStorage.clear();
-        this._router.navigate(['/item']);
+        window.location.reload();
       },
       err => console.log(err)
     )
