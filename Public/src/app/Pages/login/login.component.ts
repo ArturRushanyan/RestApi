@@ -14,7 +14,7 @@ export class LoginComponent {
   constructor(private _authService: AuthService,
               private _router: Router) { }
 
-  loginUser() {
+  loginUser(): void {
     this.loading = true;
     this._authService.loginUser(this.loginUserData)
     .subscribe(

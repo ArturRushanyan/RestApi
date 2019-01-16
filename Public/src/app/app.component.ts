@@ -22,16 +22,15 @@ export class AppComponent {
               private _router: Router) { }
   
   
-  onNameKeyUp(event: any):void {
+  onNameKeyUp(event: any): void {
     this.name = event.target.value;
     this.found = false;
   }
 
-  buy() {
+  buy(): void {
     if (!localStorage.getItem('token')) {
       alert('You are can not buy');
       this._router.navigate[('/login')];
-      // this._router.navigate[('/login')];
     } else {
       this.found = false;
       alert('Buyyy');
@@ -49,7 +48,6 @@ export class AppComponent {
       res => {
         console.log(res),
         localStorage.clear();
-        location.reload();
         this._router.navigate(['/item']);
       },
       err => console.log(err)
@@ -73,7 +71,7 @@ export class AppComponent {
     }
   }
 
-  Search() {
+  Search(): void {
     if (this.name === '') {
       this._router.navigate[('/item')];
     } else if (this.name.length <= 3) {

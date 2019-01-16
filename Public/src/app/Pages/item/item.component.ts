@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from '../../Services/event.service';
 import { AuthService } from '../../Services/auth.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-item',
@@ -29,7 +30,7 @@ export class ItemComponent implements OnInit {
     );
   }
 
-  buy() {
+  buy(): void {
     if (!localStorage.getItem('token')) {
       this._router.navigate[('/login')];
       alert('You are can not buy');

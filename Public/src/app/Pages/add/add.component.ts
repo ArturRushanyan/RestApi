@@ -14,7 +14,7 @@ export class AddComponent implements OnInit {
   constructor(private _event: EventService,
               private _router: Router) { }
 
-  ngOnInit() :void {
+  ngOnInit(): void {
     const _token = localStorage.getItem('token');
   }
 

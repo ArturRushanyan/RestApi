@@ -13,7 +13,8 @@ import { ItemComponent } from './Pages/item/item.component';
 import { EventService } from './Services/event.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SearchService } from './Services/search.service';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+ 
 
 @NgModule({
   declarations: [
@@ -21,13 +22,14 @@ import { SearchService } from './Services/search.service';
     RegisterComponent,
     LoginComponent,
     AddComponent,
-    ItemComponent,
+    ItemComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [AuthService, EventService, SearchService, CookieService],
   bootstrap: [AppComponent]
