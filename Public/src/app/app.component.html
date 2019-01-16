@@ -24,7 +24,7 @@
           (keydown.enter)="Search()" 
           placeholder="Search">
       </div>
-      <!-- Search End -->
+      <!-- End -->
 
       <!-- logout login register  -->
       <ul class="navbar-nav ml-auto">
@@ -40,10 +40,10 @@
         style="cursor:pointer" (click)="Logout()"
         (click)="boolClick()" routerLinkActive="active">Logout</a> 
       </ul>
-      <!-- End logout login register  -->
+      <!-- End -->
     </div>
   </nav>   
-  <!-- Navbar  -->
+  <!-- Navbar End  -->
 
   <!--///////////////////////////////   Body   /////////////////////////////////////////-->
 
@@ -57,23 +57,16 @@
           <div class="col-md-4 mb-3" *ngFor="let item of itemFromRes">
             <img class="card-img-top" src="../../assets/images/Mars.jpg" alt="Card image cap">
             <div class="card text-center">
-              <!--------------- INFO ----------------
-                <a class="text-left" id="i1" style="cursor:pointer" data-toggle="modal" data-target=".bd-example-modal-sm">Info</a>
-                <div class="modal fade bd-example-modal-sm">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
-                      Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
-                      Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
-                      Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World
-
-                    </div>
-                  </div>
-                </div>
-              ---------- INFO END ------------>
-              
               <div class="card-body">
+                <!-- Info -->
+                <div class="text-left">
+                  <button type="button" class="btn btn-outline-secondary" 
+                    ngbPopover={{item.count}} 
+                    triggers="mouseenter:mouseleave" popoverTitle="Item info">
+                    Info
+                  </button>
+                </div>
+                <!-- End -->
                 <h5 class="card-title">{{item.title}}</h5>
                 <p class="card-text">{{item.type}}</p>
                 <!-- buttons -->

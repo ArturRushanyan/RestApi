@@ -3,6 +3,7 @@ import { AuthService } from './Services/auth.service';
 import { SearchService } from './Services/search.service';
 import { EventService } from './Services/event.service';
 import { Router } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
