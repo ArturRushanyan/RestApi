@@ -11,7 +11,8 @@
 }
 
 .state-container-dropdown {
-    top: 40px;
+    top: 38px;
+    border-radius: 0px 0px 5px 5px;
     position: absolute;
     z-index: 1;
     width: 100%;

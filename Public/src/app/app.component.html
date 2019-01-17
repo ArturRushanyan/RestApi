@@ -24,7 +24,7 @@
           (click)="toggleDropDown()" 
           placeholder="Search">
         <!-- Search Autocomplete -->
-          <div (clickOutside)="closeDropDown()" *ngIf="showDropDown" class="state-container-dropdown">
+          <div *ngIf="showDropDown" class="state-container-dropdown">
             <div>
               <div class="Title" *ngFor="let s of itemFromRes">
                 {{s.title}}

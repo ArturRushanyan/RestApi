@@ -22,7 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RegisterComponent,
     LoginComponent,
     AddComponent,
-    ItemComponent
+    ItemComponent,
   ],
   imports: [
     NgbModule.forRoot(),

@@ -1,7 +1,6 @@
 import User from '../models/user';
 import Error from './errors';
 import Constants from './messages';
-// import generateToken from './generate_token';
 
 const isAuthenticated = (req, res, next) => {
   const userEmail = req.body.email;
