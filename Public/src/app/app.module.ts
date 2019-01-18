@@ -14,6 +14,8 @@ import { EventService } from './Services/event.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SearchService } from './Services/search.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavBarComponent } from './Pages/nav-bar/nav-bar.component';
+import { SearchComponent } from './Pages/search/search.component';
  
 
 @NgModule({
@@ -23,6 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     AddComponent,
     ItemComponent,
+    NavBarComponent,
+    SearchComponent,
   ],
   imports: [
     NgbModule.forRoot(),

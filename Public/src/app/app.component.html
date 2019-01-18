@@ -1,58 +1,7 @@
 <!DOCTYPE html>
 <html>
   <!-- Navbar  -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand"  routerLink="/item" (click)="boolClick()" (click)="reloadPage()" id='id' >Sweets</a>
-      <button class="navbar-toggler" type="button" 
-        data-toggle="collapse" data-target="#navbarSupportedContent" 
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      </button>
-    
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" *ngIf="_authService.isAdmin()" 
-            style="cursor:pointer" (click)="boolClick()" routerLink="/add" routerLinkActive="active">Add</a>
-        </li>
-      </ul>
-      <!---------------  Search ----------------- -->
-      <div class="input-group">
-        <input type="search" class="form-control" 
-          data-clear-btn="true"
-          (keydown.enter)="onNameKeyUp($event)"
-          (keydown.enter)="Search()" 
-          (click)="toggleDropDown()" 
-          placeholder="Search">
-        <!-- Search Autocomplete -->
-          <div *ngIf="showDropDown" class="state-container-dropdown">
-            <div>
-              <div class="Title" *ngFor="let s of itemFromRes">
-                {{s.title}}
-              </div> 
-            </div>
-          </div>
-          <!-- Autocomplete End -->
-      </div>
-      
-      <!-- End -->
-
-      <!-- logout login register  -->
-      <ul class="navbar-nav ml-auto">
-        <a class="nav-link" *ngIf="!_authService.loggedIn()" 
-        style="cursor:pointer" routerLink="/login" 
-        (click)="boolClick()" routerLinkActive="active">Login</a>
-        
-        <a class="nav-link" *ngIf="!_authService.loggedIn()" 
-        style="cursor:pointer" routerLink="/register" 
-        (click)="boolClick()" routerLinkActive="active">Register</a>
-        
-        <a class="nav-link" *ngIf="_authService.loggedIn()"  
-        style="cursor:pointer" (click)="Logout()"
-        (click)="boolClick()" routerLinkActive="active">Logout</a> 
-      </ul>
-      <!-- End -->
-    </div>
-  </nav>   
+  <app-nav-bar></app-nav-bar>   
   <!-- Navbar End  -->
 
   <!--///////////////////////////////   Body   /////////////////////////////////////////-->
