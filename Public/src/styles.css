@@ -1,8 +1,0 @@
-/* You can add global styles to this file, and also import other style files */
-@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
-
-body {
-  background-image: url('./assets/images/Bear.jpg');
-  background-size: 100%;
-  /*background-repeat:  no-repeat; */
-};
