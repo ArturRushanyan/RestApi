@@ -1,0 +1,30 @@
+<div class="row mt-5">
+  <div class="col-md-4 mb-3" *ngFor="let item of itemFromRes">
+    <div class="card text-center">
+      <div class="card-body">
+        <!-- Info -->
+        <div class="text-left">
+            <button type="button" class="btn btn-outline-secondary" 
+              ngbPopover={{item.price}} 
+              triggers="mouseenter:mouseleave" popoverTitle="Item info">
+              Info
+            </button>
+          </div>
+          <!-- End -->
+        <h5 class="card-title">{{item.title}}</h5>
+        <p class="card-text">{{item.type}}</p>
+        <!-- buttons -->
+            <button id="buyButton" class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
+            <br>
+            <div *ngIf="_authService.isAdmin()">
+              <button class="btn btn-danger" (click)="deleteItem($event, item)">Delete</button>
+            </div>
+          <!-- End buttons -->
+      </div>
+      <div class="card-footer number-muted">
+        Price {{item.price}}
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -29,9 +29,6 @@ exports.SignUp = (req, res) => {
   }).then((result) => {
     generateToken.newToken(res, result.email)
       .then(token1 => {
-        res.cookie(Config.token, token1, {
-          httpOnly: true,
-        });
         res.status(200).json({
           message: Constants.MESSAGES.REGISTRATION_SUCCESSFUL,
           userEmail: result.email,
@@ -62,9 +59,6 @@ exports.Login = (req, res) => {
     }
     generateToken.newToken(res, req.body.email)
       .then(token1 => {
-        res.cookie(Config.token, token1, {
-          httpOnly: true,
-        });
         User.findOne({
           email: req.body.email,
         }).then((user1) => {
@@ -81,9 +75,4 @@ exports.Login = (req, res) => {
   });
 };
 
-exports.Logout = (req, res) => {
-  res.clearCookie(Config.token);
-  res.status(200).json({
-    message: Constants.MESSAGES.YOU_ARE_LOGGEDOUT,
-  });
-};
+
