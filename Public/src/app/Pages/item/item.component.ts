@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EventService } from '../../Services/event.service';
 import { AuthService } from '../../Services/auth.service';
 import { Item } from '../../Interfaces/Item';
+import { UpdateItemService } from '../../Services/update-item.service';
 
 @Component({
   selector: 'app-item',
@@ -14,7 +15,8 @@ export class ItemComponent implements OnInit {
   itemFromRes:Item;
   constructor(private _eventService: EventService,
               private _authService: AuthService,
-              private _router: Router) { }
+              private _router: Router,
+              private _updateService: UpdateItemService) { }
 
   ngOnInit() {
     this._eventService.getItems()
@@ -36,7 +38,12 @@ export class ItemComponent implements OnInit {
       }, 
       err => console.log(err),
     );
-    console.log('+_+', deleteingItem);
+  }
+
+  editItem($event, editItem: Item):void {
+    this._updateService.setItem(editItem);
+    this._router.navigateByUrl('/update');
+    console.log('log1 in item.component edit func');
   }
   
 }

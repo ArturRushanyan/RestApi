@@ -4,12 +4,15 @@
       <div class="card-body">
         <!-- Info -->
         <div class="text-left">
-            <button type="button" class="btn btn-outline-secondary" 
-              ngbPopover={{item.price}} 
-              triggers="mouseenter:mouseleave" popoverTitle="Item info">
-              Info
-            </button>
-          </div>
+          <button type="button" class="btn btn-outline-secondary" 
+            ngbPopover={{item.count}} 
+            triggers="mouseenter:mouseleave" popoverTitle="Item info">
+            Info
+          </button>
+          <!-- Edit item -->
+          <img *ngIf='_authService.isAdmin()' id="pencil" (click)="editItem($event, item)"  src="../../../assets/Images/clipart1594534.png">
+          <!-- End Edit -->
+        </div>
           <!-- End -->
         <h5 class="card-title">{{item.title}}</h5>
         <p class="card-text">{{item.type}}</p>
@@ -22,7 +25,7 @@
           <!-- End buttons -->
       </div>
       <div class="card-footer number-muted">
-        Price {{item.price}}
+        Price {{item.price}} ֏
       </div>
     </div>
   </div>

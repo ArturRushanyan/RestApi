@@ -48,18 +48,20 @@ exports.update = (req, res) => {
     return Error.sendError(req, 400, Constants.MESSAGES.ITEM_BODY_CAN_NOT_BE_EMPTY);
   }
   Item.findByIdAndUpdate(req.params.id, {
-    type: req.body.type,
-    title: req.body.title,
-    price: req.body.price,
-    count: req.body.count,
-    barcode: req.body.barcode,
+    type: req.body.item.type,
+    title: req.body.item.title,
+    price: req.body.item.price,
+    count: req.body.item.count,
+    barcode: req.body.item.barcode,
   }, {
     new: true,
   }).then((item) => {
     if (!item) {
       return Error.sendError(res, 404, Constants.MESSAGES.ITEM_NOT_FOUND);
     }
-    res.send(item);
+    res.status(200).json({
+      message: Constants.MESSAGES.SUCCESSFULLY_UPDATED
+    });
   }).catch((err) => {
     Error.sendError(res, 404, err || Constants.MESSAGES.ITEM_NOT_FOUND);
   });

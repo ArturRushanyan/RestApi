@@ -11,6 +11,7 @@ module.exports = {
     USER_BODY_CAN_NOT_BE_EMPTY: 'User body can not be empty',
     SOME_ERROR: 'Some error occurred while creating the Item.',
     ERROR_UPDATING_ITEM: 'Error updating item',
+    SUCCESSFULLY_UPDATED: 'successfully updated',
     ITEM_DELETED_SUCCESSFULLY: 'Item deleted successfully!',
     COULD_NOT_DELETE_ITEM: 'Could not delete Item',
     PLEASE_ENTER_THE_NAME_FOR_SEARCHING_ITEM: 'Please enter the name for searching item',

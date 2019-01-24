@@ -31,4 +31,8 @@ export class EventService {
     return this.http.get<any>(this._searchUrl, searchItem);
   }
 
+  updateItem(updatingItem: Item, userEmail: string): Observable<string> {
+    return this.http.put<string>(`${this._ItemUrl}/${updatingItem._id}`, {item: updatingItem, email: userEmail});
+  }
+
 }

@@ -3,17 +3,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { LoginComponent } from './Pages/login/login.component';
-import { AuthService } from './Services/auth.service';
 import { AddComponent } from './Pages/add/add.component';
 import { ItemComponent } from './Pages/item/item.component';
-import { EventService } from './Services/event.service';
-import { CookieService } from 'ngx-cookie-service';
 import { SearchComponent } from './Pages/search/search.component';
+import { UpdateComponent } from './Pages/update/update.component';
+
+import { AuthService } from './Services/auth.service';
+import { EventService } from './Services/event.service';
+import { UpdateItemService } from './Services/update-item.service';
 
 
 @NgModule({
@@ -23,7 +26,8 @@ import { SearchComponent } from './Pages/search/search.component';
     LoginComponent,
     AddComponent,
     ItemComponent,
-    SearchComponent
+    SearchComponent,
+    UpdateComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -32,7 +36,7 @@ import { SearchComponent } from './Pages/search/search.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, EventService, CookieService],
+  providers: [AuthService, EventService, CookieService, UpdateItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
