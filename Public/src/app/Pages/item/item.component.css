@@ -4,7 +4,7 @@
 
 #pencil {
   cursor: pointer;
-  margin-left: 75% ;
   height: 20px;
   width: 20px;
+  float: right;
 }

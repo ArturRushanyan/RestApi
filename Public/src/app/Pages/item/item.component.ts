@@ -43,7 +43,6 @@ export class ItemComponent implements OnInit {
   editItem($event, editItem: Item):void {
     this._updateService.setItem(editItem);
     this._router.navigateByUrl('/update');
-    console.log('log1 in item.component edit func');
   }
   
 }
