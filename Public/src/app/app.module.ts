@@ -16,7 +16,9 @@ import { UpdateComponent } from './Pages/update/update.component';
 
 import { AuthService } from './Services/auth.service';
 import { EventService } from './Services/event.service';
-import { UpdateItemService } from './Services/update-item.service';
+import { PassingDataService } from './Services/passing_data_service';
+import { HelpService } from './Services/help.service';
+import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { UpdateItemService } from './Services/update-item.service';
     AddComponent,
     ItemComponent,
     SearchComponent,
-    UpdateComponent
+    UpdateComponent,
+    NavBarComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -36,7 +39,7 @@ import { UpdateItemService } from './Services/update-item.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, EventService, CookieService, UpdateItemService],
+  providers: [AuthService, EventService, CookieService, HelpService, PassingDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from '../../Services/event.service';
 import { AuthService } from '../../Services/auth.service';
+import { PassingDataService } from '../../Services/passing_data_service';
+import { HelpService } from '../../Services/help.service'; 
 import { Item } from '../../Interfaces/Item';
-import { UpdateItemService } from '../../Services/update-item.service';
 
 @Component({
   selector: 'app-item',
@@ -14,9 +15,7 @@ export class ItemComponent implements OnInit {
   
   itemFromRes:Item;
   constructor(private _eventService: EventService,
-              private _authService: AuthService,
-              private _router: Router,
-              private _updateService: UpdateItemService) { }
+              private _helService: HelpService) { }
 
   ngOnInit() {
     this._eventService.getItems()
@@ -29,20 +28,17 @@ export class ItemComponent implements OnInit {
     )
   }
 
-  deleteItem($evnet, deleteingItem) {
-    this._eventService.deleteItem(deleteingItem, localStorage.getItem('userEmail')).
-    subscribe(
-      res => {
-        console.log(res);
-        window.location.reload();
-      }, 
-      err => console.log(err),
-    );
+  deleteItem($event, deletingItem: Item): void {
+    this._helService.deleteItem(deletingItem);
+    window.location.reload();
   }
 
-  editItem($event, editItem: Item):void {
-    this._updateService.setItem(editItem);
-    this._router.navigateByUrl('/update');
+  editItem($event, editItem: Item): void {
+    this._helService.editItem(editItem);
+  }
+
+  isAdmin() {
+    return !!this._helService.isAdmin();
   }
   
 }

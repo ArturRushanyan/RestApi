@@ -27,8 +27,8 @@ export class EventService {
     return this.http.request<string>('delete', `${this._ItemUrl}/${deleteingItem._id}`, { body: { email: userEmail } });
   }
 
-  searchItem(searchItem) {
-    return this.http.get<any>(this._searchUrl, searchItem);
+  searchItem(searchItem: string){
+    return this.http.get<any>(`${this._searchUrl}/${searchItem}`);
   }
 
   updateItem(updatingItem: Item, userEmail: string): Observable<string> {

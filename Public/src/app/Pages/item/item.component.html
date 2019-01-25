@@ -10,7 +10,7 @@
             Info
           </button>
           <!-- Edit item -->
-          <img *ngIf='_authService.isAdmin()' id="pencil" (click)="editItem($event, item)"  src="../../../assets/Images/pencil.png">
+          <img *ngIf='isAdmin()' id="pencil" (click)="editItem($event, item)"  src="../../../assets/Images/pencil.png">
           <!-- End Edit -->
         </div>
           <!-- End -->
@@ -19,7 +19,7 @@
         <!-- buttons -->
             <button id="buyButton" class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
             <br>
-            <div *ngIf="_authService.isAdmin()">
+            <div *ngIf="isAdmin()">
               <button class="btn btn-danger" (click)="deleteItem($event, item)">Delete</button>
             </div>
           <!-- End buttons -->

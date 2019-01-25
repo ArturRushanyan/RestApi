@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UpdateItemService } from '../../Services/update-item.service';
+import { PassingDataService } from '../../Services/passing_data_service';
 import { EventService } from '../../Services/event.service';
 import { Item } from 'src/app/Interfaces/Item';
 
@@ -11,19 +11,15 @@ import { Item } from 'src/app/Interfaces/Item';
 })
 export class UpdateComponent implements OnInit {
 
-  constructor(private _updateService: UpdateItemService,
+  constructor(private _updateService: PassingDataService,
               private _eventService: EventService,
               private _router: Router) { }
 
   public itemForUpdate: Item;
   private userRole: string;
   private userEmail: string;
-  ngOnInit() {
-    this.currentItem();
-  }
-
-  currentItem(): void {
-    this.itemForUpdate = this._updateService.getItem();
+  ngOnInit(): void {
+    this.itemForUpdate = this._updateService.getUpdatingItem();
   }
 
   updateItem(): void {
@@ -41,9 +37,7 @@ export class UpdateComponent implements OnInit {
       );
     } else {
       this._router.navigateByUrl('/item');
-    }
-    
+    } 
   }
-
-
+  
 }

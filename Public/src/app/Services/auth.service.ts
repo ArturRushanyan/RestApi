@@ -19,21 +19,4 @@ export class AuthService {
     return this.http.post<User>(this._baseUrl + 'login', user);
   }
 
-  isAdmin(): boolean {
-    const userRole = localStorage.getItem('userRole');
-    if (userRole === undefined && userRole === null) {
-      return false;
-    } else if (userRole === 'admin') {
-      return true;
-    }
-  }
-
-  loggedIn(): boolean {
-    if(localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
 }

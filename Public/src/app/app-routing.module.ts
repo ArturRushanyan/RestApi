@@ -30,7 +30,7 @@ const routes: Routes = [
     component: ItemComponent,
   },
   {
-    path: 'seatch',
+    path: 'search',
     component: SearchComponent,
   }, 
   {

@@ -1,40 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" id="i1" routerLink="/item" >Sweets</a>
-  <button class="navbar-toggler" type="button" 
-    data-toggle="collapse" data-target="#navbarSupportedContent" 
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="_authService.isAdmin()" 
-          routerLink="/add" style="cursor:pointer" routerLinkActive="active">Add</a>
-      </li>
-    </ul>
-
-    <!-- Search -->
-    <div class="input-group">
-        <input type="search" class="form-control" (keydown.enter)="searchingItem()" 
-          [(ngModel)]="searchingItemName" placeholder="Search" 
-          aria-label="Example text with button addon" aria-describedby="button-addon1">
-        <div class="input-group-prepend">
-          <button class="btn btn-success" (click)="searchingItem()" type="button">Search</button>
-        </div>
-    </div>
-    <!-- Search End -->
-    
-
-    <ul class="navbar-nav ml-auto">
-      <a class="nav-link" *ngIf="!_authService.loggedIn()" 
-        style="cursor:pointer" routerLink="/login" routerLinkActive="active">Login</a>
-      <a class="nav-link" *ngIf="!_authService.loggedIn()" 
-        style="cursor:pointer" routerLink="/register" routerLinkActive="active">Register</a>
-      <a class="nav-link" *ngIf="_authService.loggedIn()"  
-        style="cursor:pointer" (click)=logoutUser()  routerLinkActive="active">Logout</a>
-    </ul>
-  </div>
-</nav>    
+<app-nav-bar></app-nav-bar>
 <div class="container">
   <router-outlet></router-outlet>            
 </div>
