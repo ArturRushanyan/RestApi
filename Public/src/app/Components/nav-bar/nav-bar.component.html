@@ -30,7 +30,29 @@
       <a class="nav-link" *ngIf="!loggedIn()" 
         style="cursor:pointer" routerLink="/register" routerLinkActive="active">Register</a>
       <a class="nav-link" *ngIf="loggedIn()"  
-        style="cursor:pointer" (click)=logoutUser()  routerLinkActive="active">Logout</a>
+        style="cursor:pointer" data-toggle="modal" data-target="#LogoutModal" routerLinkActive="active">Logout</a>
     </ul>
   </div>
 </nav>
+
+<!-- PopUp Modal -->
+<div>
+    <div class="modal fade" id="LogoutModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" class="text-left">Delete</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p><b>Are you sure want to logged out?</b></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" (click)="logoutUser()" data-dismiss="modal">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
