@@ -54,11 +54,11 @@ export class SearchComponent implements OnInit {
     // this.http.get(`http://localhost:3000/search/${this.name}`)
   }
 
-  editItem($event, editItem: Item) {
+  editItem(editItem: Item) {
     this._HelpService.editItem(editItem);
   }
 
-  deleteItem($event, deletingItem: Item) {
+  deleteItem(deletingItem: Item) {
     console.log('log in deleteItem seachComponent func');
     this._HelpService.deleteItem(deletingItem);
   }

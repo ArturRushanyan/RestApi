@@ -28,12 +28,12 @@ export class ItemComponent implements OnInit {
     )
   }
 
-  deleteItem($event, deletingItem: Item): void {
+  deleteItem(deletingItem: Item): void {
     this._helService.deleteItem(deletingItem);
     window.location.reload();
   }
 
-  editItem($event, editItem: Item): void {
+  editItem(editItem: Item): void {
     this._helService.editItem(editItem);
   }
 

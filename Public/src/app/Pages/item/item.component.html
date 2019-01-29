@@ -10,7 +10,7 @@
             Info
           </button>
           <!-- Edit item -->
-          <img *ngIf='isAdmin()' id="pencil" (click)="editItem($event, item)"  src="../../../assets/Images/pencil.png">
+          <img *ngIf='isAdmin()' id="pencil" (click)="editItem(item)" title="Edit" src="../../../assets/Images/edit.png">
           <!-- End Edit -->
         </div>
           <!-- End -->
@@ -20,7 +20,7 @@
             <button id="buyButton" class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
             <br>
             <div *ngIf="isAdmin()">
-              <button class="btn btn-danger" (click)="deleteItem($event, item)">Delete</button>
+              <img title="Delete" id="pencil" (click)="deleteItem(item)" src="../../../assets/Images/rubbish-bin.png">
             </div>
           <!-- End buttons -->
       </div>
