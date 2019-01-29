@@ -38,7 +38,8 @@ export class HelpService {
   }
 
   loggedIn(): boolean {
-    if(localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null) {
+    const token = localStorage.getItem('token');
+    if(token !== undefined && token !== null) {
       return true;
     } else {
       return false;

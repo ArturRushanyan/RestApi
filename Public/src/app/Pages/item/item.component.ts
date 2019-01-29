@@ -14,6 +14,7 @@ import { Item } from '../../Interfaces/Item';
 export class ItemComponent implements OnInit {
   
   itemFromRes:Item;
+  private itemForDeleting;
   constructor(private _eventService: EventService,
               private _helService: HelpService) { }
 
@@ -28,8 +29,12 @@ export class ItemComponent implements OnInit {
     )
   }
 
-  deleteItem(deletingItem: Item): void {
-    this._helService.deleteItem(deletingItem);
+  getDeletingItem(item) {
+    this.itemForDeleting = item;
+  }
+
+  deleteItem(): void {
+    this._helService.deleteItem(this.itemForDeleting);
     window.location.reload();
   }
 

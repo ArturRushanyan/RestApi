@@ -20,7 +20,7 @@
             <button id="buyButton" class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
             <br>
             <div *ngIf="isAdmin()">
-              <img title="Delete" id="pencil" (click)="deleteItem(item)" src="../../../assets/Images/rubbish-bin.png">
+              <img title="Delete" id="pencil" (click)="getDeletingItem(item)" data-toggle="modal" data-target="#DeleteModal" src="../../../assets/Images/rubbish-bin.png">
             </div>
           <!-- End buttons -->
       </div>
@@ -29,5 +29,27 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- PopUp Modal (click)="deleteItem(item)" -->
+<div>
+    <div class="modal fade" id="DeleteModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" class="text-left">Delete</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p><b>Are you sure want to delete this item?</b></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" (click)="deleteItem()" data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 

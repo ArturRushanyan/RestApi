@@ -18,6 +18,7 @@ import { Item } from '../../Interfaces/Item';
 export class SearchComponent implements OnInit {
 
   private searchItemName;
+  private itemfordelete;
   public itemFromRes = [];
 
   constructor(private _event: EventService,
@@ -33,6 +34,11 @@ export class SearchComponent implements OnInit {
     } else {
       this._router.navigateByUrl('/item');
     }
+  }
+
+  getDeletingItem(item) {
+    this.itemfordelete = item;
+    console.log('+_+_+ this.itemfordelete =', this.itemfordelete);
   }
 
   searchingItem() {
@@ -58,9 +64,8 @@ export class SearchComponent implements OnInit {
     this._HelpService.editItem(editItem);
   }
 
-  deleteItem(deletingItem: Item) {
-    console.log('log in deleteItem seachComponent func');
-    this._HelpService.deleteItem(deletingItem);
+  deleteItem() {
+    this._HelpService.deleteItem(this.itemfordelete);
   }
 
   isAdmin() {

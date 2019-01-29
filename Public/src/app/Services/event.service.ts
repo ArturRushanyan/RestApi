@@ -24,6 +24,7 @@ export class EventService {
   }
 
   deleteItem(deleteingItem: Item, userEmail: string): Observable<string> {
+    console.log('+_+_+ deletingItem._id =', deleteingItem._id);
     return this.http.request<string>('delete', `${this._ItemUrl}/${deleteingItem._id}`, { body: { email: userEmail } });
   }
 
