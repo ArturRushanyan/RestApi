@@ -28,14 +28,24 @@ export class SearchComponent implements OnInit {
       if (!val) {
         this._router.navigateByUrl('/item');
       } else {
-        this.searchItemName = val;
-        this.searchingItem();
+          this.searchItemName = val;
+          this.searchingItem();
       }
     });
   }
 
   getDeletingItem(item): void {
     this.itemfordelete = item;
+  }
+
+  buy() {
+    if (!this._HelpService.loggedIn()) {
+      console.log('false case');
+      this._router.navigateByUrl('/login');
+    } else {
+      console.log('buy!!!!!!!!!!!!!');
+    }
+
   }
 
   searchingItem(): void {

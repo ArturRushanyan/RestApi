@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EventService } from '../../Services/event.service';
 import { HelpService } from '../../Services/help.service'; 
 import { Item } from '../../Interfaces/Item';
@@ -13,7 +14,8 @@ export class ItemComponent implements OnInit {
   itemFromRes:Item;
   private itemForDeleting;
   constructor(private _eventService: EventService,
-              private _helService: HelpService) { }
+              private _helpService: HelpService,
+              private _router: Router) { }
 
   ngOnInit() {
     this._eventService.getItems()
@@ -30,17 +32,27 @@ export class ItemComponent implements OnInit {
     this.itemForDeleting = item;
   }
 
+  buy() {
+    if (!this._helpService.loggedIn()) {
+      console.log('false case');
+      this._router.navigateByUrl('/login');
+    } else {
+      console.log('buy!!!!!!!!!!!!!');
+    }
+
+  }
+
   deleteItem(): void {
-    this._helService.deleteItem(this.itemForDeleting);
+    this._helpService.deleteItem(this.itemForDeleting);
     window.location.reload();
   }
 
   editItem(editItem: Item): void {
-    this._helService.editItem(editItem);
+    this._helpService.editItem(editItem);
   }
 
   isAdmin(): boolean {
-    return !!this._helService.isAdmin();
+    return !!this._helpService.isAdmin();
   }
   
 }

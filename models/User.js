@@ -10,6 +10,7 @@ const UserSchema = mongoose.Schema({
   },
   password: { type: String, required: true },
   role: { type: String, default: 'user' },
+  mustPay: { type: Number },
 });
 
 module.exports = mongoose.model('Users', UserSchema);

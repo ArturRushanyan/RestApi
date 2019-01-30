@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as Rx from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { Item } from '../Interfaces/Item';
-import { Router } from '@angular/router';
 @Injectable()
 export class PassingDataService {
 
@@ -16,10 +15,10 @@ export class PassingDataService {
 
   public emptyString: string;
 
-  constructor(private _router: Router) { }
+  constructor() { }
 
-  private updateItemSubject = new Rx.BehaviorSubject<Item>(this.emptyItem);
-  private searchingItemSubject = new Rx.BehaviorSubject<string>(this.emptyString);
+  private updateItemSubject = new BehaviorSubject<Item>(this.emptyItem);
+  private searchingItemSubject = new BehaviorSubject<string>(this.emptyString);
 
   setUpdateingItem(item: Item): void {
     this.updateItemSubject.next(item);
@@ -33,7 +32,7 @@ export class PassingDataService {
     this.searchingItemSubject.next(searchingName);
   } 
 
-  getSearchingItemName() {
+  getSearchingItemName(): BehaviorSubject<string> {
     return this.searchingItemSubject;
   }
 
