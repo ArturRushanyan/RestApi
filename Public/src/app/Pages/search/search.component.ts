@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HelpService } from '../../Services/help.service'
 
-
 import { Router } from '@angular/router';
 import { EventService } from '../../Services/event.service';
 import { PassingDataService } from '../../Services/passing_data_service';
-import { AuthService } from '../../Services/auth.service';
 import { Item } from '../../Interfaces/Item';
-
 
 @Component({
   selector: 'app-search',
@@ -24,24 +21,24 @@ export class SearchComponent implements OnInit {
   constructor(private _event: EventService,
               private _router: Router,
               private _PassingDataService: PassingDataService,
-              private _authService: AuthService,
               private _HelpService: HelpService) { }
 
   ngOnInit() { 
-    if ( this._PassingDataService.getSearchingItemName() !== undefined && this._PassingDataService.getSearchingItemName() !== null)  {
-      this.searchItemName = this._PassingDataService.getSearchingItemName().toString();
-      this.searchingItem();
-    } else {
-      this._router.navigateByUrl('/item');
-    }
+    this._PassingDataService.getSearchingItemName().subscribe(val => {
+      if (!val) {
+        this._router.navigateByUrl('/item');
+      } else {
+        this.searchItemName = val;
+        this.searchingItem();
+      }
+    });
   }
 
-  getDeletingItem(item) {
+  getDeletingItem(item): void {
     this.itemfordelete = item;
-    console.log('+_+_+ this.itemfordelete =', this.itemfordelete);
   }
 
-  searchingItem() {
+  searchingItem(): void {
     if ( this.searchItemName.length <= 3) {
       alert('Small name for searching');
     } else {
@@ -52,6 +49,7 @@ export class SearchComponent implements OnInit {
             alert("Don't found");
           } else {
             this.itemFromRes = res;
+            console.log('log ', this.itemFromRes);
           }
         },
         err => console.log(err),
@@ -60,15 +58,15 @@ export class SearchComponent implements OnInit {
     // this.http.get(`http://localhost:3000/search/${this.name}`)
   }
 
-  editItem(editItem: Item) {
+  editItem(editItem: Item): void {
     this._HelpService.editItem(editItem);
   }
 
-  deleteItem() {
+  deleteItem(): void {
     this._HelpService.deleteItem(this.itemfordelete);
   }
 
-  isAdmin() {
+  isAdmin(): boolean {
     return !!this._HelpService.isAdmin();
   }
 

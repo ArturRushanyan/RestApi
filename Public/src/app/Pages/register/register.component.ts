@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  registerUser() {
+  registerUser(): void {
     this._auth.registerUser(this.registerUserData)
     .subscribe(
       res => {

@@ -33,8 +33,8 @@ export class PassingDataService {
     this.searchingItemSubject.next(searchingName);
   } 
 
-  getSearchingItemName(): string {
-    return this.searchingItemSubject.value;
+  getSearchingItemName() {
+    return this.searchingItemSubject;
   }
 
 }

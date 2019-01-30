@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { EventService } from '../../Services/event.service';
-import { AuthService } from '../../Services/auth.service';
-import { PassingDataService } from '../../Services/passing_data_service';
 import { HelpService } from '../../Services/help.service'; 
 import { Item } from '../../Interfaces/Item';
 
@@ -29,7 +26,7 @@ export class ItemComponent implements OnInit {
     )
   }
 
-  getDeletingItem(item) {
+  getDeletingItem(item): void {
     this.itemForDeleting = item;
   }
 
@@ -42,7 +39,7 @@ export class ItemComponent implements OnInit {
     this._helService.editItem(editItem);
   }
 
-  isAdmin() {
+  isAdmin(): boolean {
     return !!this._helService.isAdmin();
   }
   
