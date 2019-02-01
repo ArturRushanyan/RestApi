@@ -6,6 +6,7 @@ import { Item } from '../Interfaces/Item';
 @Injectable()
 export class EventService {
 
+  private _BuyUrl = 'http://localhost:3000/api/v1/buy';
   private _ItemUrl = 'http://localhost:3000/api/v1/item';
   private _searchUrl = 'http://localhost:3000/search/';
 
@@ -34,6 +35,16 @@ export class EventService {
 
   updateItem(updatingItem: Item, userEmail: string): Observable<string> {
     return this.http.put<string>(`${this._ItemUrl}/${updatingItem._id}`, {item: updatingItem, email: userEmail});
+  }
+
+  buyItem(userEmail: string, _id: string, itemCount: number, itemPrice: number): Observable<string> {
+    console.log('+_+ log in event.service buyItem Func');
+    return this.http.post<string>(`${this._BuyUrl}`, {
+      email: userEmail,
+      id: _id,
+      ItemCount: itemCount,
+      ItemPrice: itemPrice,
+    });
   }
 
 }

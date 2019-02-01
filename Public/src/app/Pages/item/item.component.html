@@ -17,7 +17,7 @@
         <h5 class="card-title">{{item.title}}</h5>
         <p class="card-text">{{item.type}}</p>
         <!-- buttons -->
-            <button id="buyButton" class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
+            <button id="buyButton" class="btn btn-primary" (click)='buy(item)' style="cursor:pointer" type="button">Buy</button>
             <br>
             <div *ngIf="isAdmin()">
               <img title="Delete" id="pencil" (click)="getDeletingItem(item)" data-toggle="modal" data-target="#DeleteModal" src="../../../assets/Images/rubbish-bin.png">

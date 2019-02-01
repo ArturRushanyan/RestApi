@@ -60,7 +60,7 @@ exports.update = (req, res) => {
       return Error.sendError(res, 404, Constants.MESSAGES.ITEM_NOT_FOUND);
     }
     res.status(200).json({
-      message: Constants.MESSAGES.SUCCESSFULLY_UPDATED
+      message: Constants.MESSAGES.SUCCESSFULLY_UPDATED,
     });
   }).catch((err) => {
     Error.sendError(res, 404, err || Constants.MESSAGES.ITEM_NOT_FOUND);

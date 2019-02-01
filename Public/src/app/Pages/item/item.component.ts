@@ -32,12 +32,22 @@ export class ItemComponent implements OnInit {
     this.itemForDeleting = item;
   }
 
-  buy() {
+  buy(item) {
     if (!this._helpService.loggedIn()) {
       console.log('false case');
       this._router.navigateByUrl('/login');
     } else {
-      console.log('buy!!!!!!!!!!!!!');
+      console.log('+_+_+ log in buy func in item.component');
+      this._eventService.buyItem(localStorage.getItem('userEmail'), item._id, 2, item.price).
+        subscribe(
+          res => {
+            console.log('+_+ log in buy res case');
+            console.log('+_+ res =',res)
+          },
+          err => {
+            console.log('+_+ log in buy err case');
+            console.log(err);
+          });
     }
 
   }

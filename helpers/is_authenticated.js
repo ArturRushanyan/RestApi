@@ -4,6 +4,7 @@ import Constants from './messages';
 
 const isAuthenticated = (req, res, next) => {
   const userEmail = req.body.email;
+  console.log('+_+ log in Is_authenticated userEmail =', userEmail);
   if (userEmail !== 'undefined' && userEmail !== 'null') {
     User.findOne({
       email: userEmail,
