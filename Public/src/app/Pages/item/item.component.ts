@@ -37,8 +37,8 @@ export class ItemComponent implements OnInit {
       console.log('false case');
       this._router.navigateByUrl('/login');
     } else {
-      console.log('+_+_+ log in buy func in item.component');
-      this._eventService.buyItem(localStorage.getItem('userEmail'), item._id, 2, item.price).
+      console.log('+_+_+ log in buy func in item.component');        
+      this._eventService.buyItem(localStorage.getItem('userEmail'), item._id, item.count, item.price, /*buyqunatity*/ 2).
         subscribe(
           res => {
             console.log('+_+ log in buy res case');
