@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" id="i1" routerLink="/item" >Sweets</a>
+  <a class="navbar-brand" routerLink="/item" >Sweets</a>
   <button class="navbar-toggler" type="button"
     data-toggle="collapse" data-target="#navbarSupportedContent" 
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,15 +15,16 @@
 
     <!-- Search -->
     <div class="input-group">
-        <input type="search" class="form-control" (keydown.enter)="searchingItem()" 
-          [(ngModel)]="searchingItemName" placeholder="Search" 
-          aria-label="Example text with button addon" aria-describedby="button-addon1">
-        <div class="input-group-prepend">
-          <button class="btn btn-success" (click)="searchingItem()" type="button">Search</button>
-        </div>
+      <form class="navbar-form navbar-left">
+        <input id="search" type="search" class="form-control" (keydown.enter)="searchingItem()" 
+        [(ngModel)]="searchingItemName" name="name" placeholder="Search" 
+        aria-label="Example text with button addon" aria-describedby="button-addon1">
+      </form>
+      <img src="../../../assets/Images/search.png" style="cursor: pointer;" (click)="searchingItem()" id="searchIcon">
     </div>
     <!-- Search End -->
-    
+      
+    <img src="../../../assets/Images/shopping-cart.png" id="shopping-cart" *ngIf="loggedIn()" style="cursor:pointer" >
     <ul class="navbar-nav ml-auto">
       <a class="nav-link" *ngIf="!loggedIn()" 
         style="cursor:pointer" routerLink="/login" routerLinkActive="active">Login</a>

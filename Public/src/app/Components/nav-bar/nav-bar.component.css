@@ -1,0 +1,17 @@
+#search {
+    margin-left: 8px;
+    border-radius: 20px;
+}
+
+#searchIcon {
+    margin-top: 6px;
+    margin-left: 15px;
+    width: 30px;
+    height: 30px;
+}
+
+#shopping-cart {
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+}

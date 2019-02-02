@@ -55,8 +55,8 @@ export class SearchComponent implements OnInit {
       this._event.searchItem(this.searchItemName).subscribe(
         res => {
           if (res.length <= 0) {
-            this._router.navigateByUrl('/item');
             alert("Don't found");
+            this._router.navigateByUrl('/item');
           } else {
             this.itemFromRes = res;
             console.log('log ', this.itemFromRes);

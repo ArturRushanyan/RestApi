@@ -23,6 +23,7 @@ export class NavBarComponent implements OnInit {
   }
 
   searchingItem(): void {
+    console.log('+_+ this.searchingItemName', this.searchingItemName),
     this._passingDataService.setSearchingItemName(this.searchingItemName);
     this._router.navigateByUrl('/search');
   }
