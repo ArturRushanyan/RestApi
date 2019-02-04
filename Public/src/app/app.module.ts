@@ -19,6 +19,7 @@ import { EventService } from './Services/event.service';
 import { PassingDataService } from './Services/passing_data_service';
 import { HelpService } from './Services/help.service';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
+import { ShoppingCartComponent } from './Pages/shopping-cart/shopping-cart.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
     ItemComponent,
     SearchComponent,
     UpdateComponent,
-    NavBarComponent
+    NavBarComponent,
+    ShoppingCartComponent
   ],
   imports: [
     NgbModule.forRoot(),

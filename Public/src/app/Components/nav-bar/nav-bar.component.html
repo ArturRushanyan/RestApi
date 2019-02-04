@@ -24,7 +24,7 @@
     </div>
     <!-- Search End -->
       
-    <img src="../../../assets/Images/shopping-cart.png" id="shopping-cart" *ngIf="loggedIn()" style="cursor:pointer" >
+    <img src="../../../assets/Images/shopping-cart.png" id="shopping-cart" routerLink="/shoppingcart" *ngIf="loggedIn()" style="cursor:pointer" >
     <ul class="navbar-nav ml-auto">
       <a class="nav-link" *ngIf="!loggedIn()" 
         style="cursor:pointer" routerLink="/login" routerLinkActive="active">Login</a>

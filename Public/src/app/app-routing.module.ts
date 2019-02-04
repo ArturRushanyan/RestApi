@@ -6,6 +6,7 @@ import { AddComponent } from './Pages/add/add.component';
 import { ItemComponent } from './Pages/item/item.component';
 import { SearchComponent } from './Pages/search/search.component';
 import { UpdateComponent } from './Pages/update/update.component';
+import { ShoppingCartComponent } from './Pages/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'update',
     component: UpdateComponent,
+  }, 
+  {
+    path: 'shoppingcart',
+    component: ShoppingCartComponent,
   }
 ];
 

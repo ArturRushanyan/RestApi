@@ -1,0 +1,21 @@
+<div class="row mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let item of shoppingItemsArray">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">{{item.type}}</p>
+          <!-- buttons -->
+            <input type="number" class="form-control"  id="inputID" min="1" value="1" max={{item.count}} [(ngModel)]="BuyingItemQuantity">
+            <button id="buyButton" class="btn btn-success" (click)="getItemData(item)" data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button">Buy</button>
+            <br>
+            <div>
+              <img title="Delete" id="pencil"  src="../../../assets/Images/rubbish-bin.png">
+            </div>
+            <!-- End buttons -->
+        </div>
+        <div class="card-footer number-muted">
+          Price {{item.price}} ֏
+        </div>
+      </div>
+    </div>
+  </div>

@@ -17,11 +17,14 @@
         <h5 class="card-title">{{item.title}}</h5>
         <p class="card-text">{{item.type}}</p>
         <!-- buttons -->
-            <button id="buyButton" class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
-            <br>
-            <div *ngIf="isAdmin()">
-              <img id="pencil" title="Delete" (click)="getDeletingItem(item)" data-toggle="modal" data-target="#DeleteModal" src="../../../assets/Images/rubbish-bin.png">
-            </div>
+          <div>
+            <input style="width: 40px" type="number" min="1" value="1" max={{item.count}}>
+          </div>
+          <button id="buyButton" class="btn btn-primary" (click)='buy()' style="cursor:pointer" type="button">Buy</button>
+          <br>
+          <div *ngIf="isAdmin()">
+            <img id="pencil" title="Delete" (click)="getDeletingItem(item)" data-toggle="modal" data-target="#DeleteModal" src="../../../assets/Images/rubbish-bin.png">
+          </div>
         <!-- End buttons -->
       </div>
       <div class="card-footer number-muted">
