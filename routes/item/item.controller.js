@@ -5,7 +5,7 @@ import Constants from '../../helpers/messages';
 
 exports.getAll = (req, res) => {
   Item.find().then((Items) => {
-    res.status(200).send(Items);
+    res.status(200).json(Items);
   }).catch((err) => {
     Error.sendError(res, 400, err);
   });

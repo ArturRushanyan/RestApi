@@ -20,6 +20,7 @@ import { PassingDataService } from './Services/passing_data_service';
 import { HelpService } from './Services/help.service';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { ShoppingCartComponent } from './Pages/shopping-cart/shopping-cart.component';
+import { ItemTemplateComponent } from './Components/item-template/item-template.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ShoppingCartComponent } from './Pages/shopping-cart/shopping-cart.compo
     SearchComponent,
     UpdateComponent,
     NavBarComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ItemTemplateComponent
   ],
   imports: [
     NgbModule.forRoot(),

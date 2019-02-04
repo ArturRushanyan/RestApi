@@ -3,7 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { PassingDataService } from '../../Services/passing_data_service';
 import { HelpService } from '../../Services/help.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-nav-bar',
@@ -23,7 +23,6 @@ export class NavBarComponent implements OnInit {
   }
 
   searchingItem(): void {
-    console.log('+_+ this.searchingItemName', this.searchingItemName),
     this._passingDataService.setSearchingItemName(this.searchingItemName);
     this._router.navigateByUrl('/search');
   }
