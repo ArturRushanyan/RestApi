@@ -13,13 +13,14 @@ import { HelpService } from '../../Services/help.service';
 export class NavBarComponent implements OnInit {
 
   public searchingItemName: string;
-
+  public userMustPayData: string;
   constructor(private _cookieService: CookieService,
               private _passingDataService: PassingDataService,
               private _helpService: HelpService,
               private _router: Router) { }
 
   ngOnInit() {
+    this.userMustPayData = localStorage.getItem('mustPay');
   }
 
   searchingItem(): void {

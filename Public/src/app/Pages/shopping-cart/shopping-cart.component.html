@@ -5,11 +5,13 @@
           <h5 class="card-title">{{item.title}}</h5>
           <p class="card-text">{{item.type}}</p>
           <!-- buttons -->
-            <input type="number" class="form-control"  id="inputID" min="1" value="1" max={{item.count}} [(ngModel)]="BuyingItemQuantity">
-            <button id="buyButton" class="btn btn-success" (click)="getItemData(item)" data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button">Buy</button>
+            <input type="number" class="form-control"  id="inputID" min="1" max={{item.count}} 
+              value={{item.quantity}} (click)="inputNewQuantity(item.id, $event)">
+            <button id="buyButton" class="btn btn-success" (click)="getItemData(item)" 
+              data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button">Buy</button>
             <br>
             <div>
-              <img title="Delete" id="pencil"  src="../../../assets/Images/rubbish-bin.png">
+              <img title="Delete" id="pencil" (click)="delete(item)" src="../../../assets/Images/rubbish-bin.png">
             </div>
             <!-- End buttons -->
         </div>

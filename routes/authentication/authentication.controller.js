@@ -34,6 +34,7 @@ exports.SignUp = (req, res) => {
           userEmail: result.email,
           userRole: result.role,
           token: token1,
+          mustPay: result.mustPay,
         });
       });
   })
@@ -67,6 +68,7 @@ exports.Login = (req, res) => {
             userEmail: user1.email,
             userRole: user1.role,
             token: token1,
+            mustPay: user1.mustPay,
           });
         });
       });

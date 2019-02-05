@@ -14,7 +14,7 @@ import { PassingDataService } from '../../Services/passing_data_service';
 export class ItemTemplateComponent implements OnInit {
 
   private itemFromRes: Item;
-  private itemForShoppingCart: ShoppingCart = {
+  public itemForShoppingCart: ShoppingCart = {
     type: '',
     title: '',
     quantity: 0,
@@ -23,9 +23,9 @@ export class ItemTemplateComponent implements OnInit {
     id: '',
   };
 
-  public BuyingItemQuantity: number = 1;
-  private itemData: Item;
+  public itemData: Item;
   private searchItemName: string;
+  public buyingItemQuantity: number = 1;
 
   constructor(private _eventService: EventService,
               private _router: Router,
@@ -59,38 +59,46 @@ export class ItemTemplateComponent implements OnInit {
     this.itemData = item;
   }
 
-  buy(item): void {
+  buy(): void {
     if (!this._HelpService.loggedIn()) {
       this._router.navigateByUrl('/login');
     } else {
-      this._eventService.buyItem(localStorage.getItem('userEmail'), item._id, item.count, item.price, this.BuyingItemQuantity).
+      this._eventService.buyItem(localStorage.getItem('userEmail'), this.itemData._id, this.itemData.count, 
+                                 this.itemData.price, this.buyingItemQuantity, localStorage.getItem('mustPay')).
         subscribe(
           res => {
             console.log('+_+ =', res);
+            window.location.reload();
           },
           err => {
-            console.log('+_+ log in buy err case');
             console.log(err);
           });
     }
   }
 
+  input(quantity) {
+    this.buyingItemQuantity = quantity.target.value;
+  }
+
   addToCart(): void {
-    this.itemForShoppingCart.id = this.itemData._id;
-    this.itemForShoppingCart.type = this.itemData.type;
-    this.itemForShoppingCart.title = this.itemData.title;
-    this.itemForShoppingCart.count = this.itemData.count;
-    this.itemForShoppingCart.quantity = this.BuyingItemQuantity;
-    this.itemForShoppingCart.price = this.itemData.price;
+    this.itemForShoppingCart ={
+      id: this.itemData._id,
+      type: this.itemData.type,
+      title: this.itemData.title,
+      quantity: this.buyingItemQuantity,
+      price: this.itemData.price,
+      count: this.itemData.count,
+    }
     this._PassingDataService.setBuyingItem(this.itemForShoppingCart);
     this.itemForShoppingCart = {
+      id: '',
       type: '',
       title: '',
       quantity: 0,
       price: 0,
       count: 0,
-      id: '',
     };
+    this.buyingItemQuantity = 0;
   }
 
   deleteItem(): void {

@@ -1,5 +1,6 @@
 #buyButton {
   margin-bottom: 5px;
+  margin-left: 15px;
 }
 
 #pencil {
@@ -11,4 +12,9 @@
 
 #inputID {
   width: 60px;
+}
+
+#input {
+  width: 60px;
+  border-radius: 5px; 
 }

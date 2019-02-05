@@ -3,4 +3,5 @@ export interface User {
   userEmail: string;
   userRole: string;
   token: string;
+  mustPay: number;
 }

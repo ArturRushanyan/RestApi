@@ -12,7 +12,7 @@ export class AddComponent implements OnInit {
 
   private userEmail: string;
   addUserData:Item = {
-    _id: 0,
+    _id: '',
     type: '',
     title: '',
     price: 0,
