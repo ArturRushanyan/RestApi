@@ -28,6 +28,7 @@ export class ShoppingCartComponent implements OnInit {
         }
       }
     )
+    this.isSameItems();
   }
 
   inputNewQuantity(itemid, newQuantity) {
@@ -43,6 +44,20 @@ export class ShoppingCartComponent implements OnInit {
     for(let i = 0; i <= this.shoppingItemsArray.length; i++) {
       if (this.shoppingItemsArray[i].title === item.title && this.shoppingItemsArray[i].type === item.type) {
         this.shoppingItemsArray.splice(i,1);
+      }
+    }
+  }
+
+  isSameItems() {
+    for(let i = 0; i < this.shoppingItemsArray.length; i++) {
+      for(let j = i + 1; j < this.shoppingItemsArray.length; j++) {
+        if (this.shoppingItemsArray[i].title === this.shoppingItemsArray[j].title && this.shoppingItemsArray[i].type === this.shoppingItemsArray[j].type) {
+          console.log('+_+_+ log');
+          console.log('+_+_+_+ this.shoppingItemsArray[i].quantity =', this.shoppingItemsArray[i].quantity);
+          this.shoppingItemsArray[i].quantity = parseInt(this.shoppingItemsArray[i].quantity) + parseInt(this.shoppingItemsArray[j].quantity);
+          this.shoppingItemsArray.splice(j,1);
+          console.log('+_+_+_+_+ after this.shoppingItemsArray[i].quantity =', this.shoppingItemsArray[i].quantity);
+        }
       }
     }
   }

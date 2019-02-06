@@ -16,7 +16,7 @@
             <!-- info End -->
           <h5 class="card-title">{{item.title}}</h5>
           <p class="card-text">{{item.type}}</p>
-            <input id="input" type="number" min="1" max="{{item.count}}" value="1" (click)="input($event)">
+            <input id="input" type="number" min="1" max="{{item.count}}" value="1" (click)="input($event.target.value)">
           <!-- buttons -->
             <button  id="buyButton" class="btn btn-success" (click)="getItemData(item)" 
               data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button">Buy</button>
@@ -48,7 +48,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger" (click)="buy()" data-dismiss="modal">Delete</button>
+              <button type="button" class="btn btn-danger" (click)="deleteItem()" data-dismiss="modal">Delete</button>
             </div>
           </div>
         </div>

@@ -84,7 +84,7 @@ export class ItemTemplateComponent implements OnInit {
   }
 
   input(quantity) {
-    this.buyingItemQuantity = quantity.target.value;
+    this.buyingItemQuantity = quantity;
   }
 
   addToCart(): void {
@@ -108,9 +108,10 @@ export class ItemTemplateComponent implements OnInit {
         price: 0,
         count: 0,
       };
-      this.buyingItemQuantity = 0;
+      this.buyingItemQuantity = 1;
     }
   }
+  
 
   deleteItem(): void {
     this._HelpService.deleteItem(this.itemData);
