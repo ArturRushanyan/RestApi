@@ -4,52 +4,53 @@ import Error from '../../helpers/Errors';
 import Constants from '../../helpers/Messages'
 
 exports.buy = (req, res) => {
-  console.log('+_+ log1 in buy.controller');
+  console.log('+_+_+_+ log1');
   const userEmail = req.body.email;
   const itemId = req.body.id;
   const itemCount  = req.body.ItemCount;
-  const itemPrice = req.body.ItemPrice;
   const buyQuantity = req.body.buyQuantity;
-  let userMustPay = req.body.mustPay;
-  // Item.findOne({ _id: itemId })
-  //   .then(item => {
-  //     item.count -= buyQuantity;
-  //     return Item.upadate({ itemId }, { $set: item }); 
-  //   }).then(() => {
-  //     return User.findOne({ userEmail });
-  //   })
-  //   .then(user => {
-  //     if (!buyQuantity) {
-  //       return Error.sendError(res, 400, Constants.MESSAGES.SOME_ERROR);
-  //     } else {
-  //       user.mustPay += (itemPrice * buyQuantity);
-  //       userMustPay = user.mustPay;
-  //       return User.upadate({ userEmail }, { $set: user });
-  //     }
-  //   })
-  //   .then(() => {
-  //     return res.status(200).send({userMustPay}) 
-  //   })
-  //   .catch(err => {
-  //     Error.sendError(res, 400, err);
-  //   })
-
+  let userMustPay = parseInt(req.body.mustPay);
+  console.log('+_+_+_+ log2');
   Item.findOneAndUpdate({ _id: itemId }, { $set: { 
     count: (itemCount - buyQuantity),
   }}, { new: true})
   .then((item) => {
+    setTimeout(() => {
+      console.log();
+    }, 8000);
+    console.log('+_+_+_+ log3');
     if (!item) {
+      console.log('+_+_+_+ log4');
       return Error.sendError(res, 404, Constants.MESSAGES.ITEM_NOT_FOUND);
     }
+    setTimeout(() => {
+      console.log();
+    }, 2000);
     return User.findOneAndUpdate({ email: userEmail }, { $set: {
-      mustPay:  userMustPay + (itemPrice * buyQuantity),
+      mustPay:  userMustPay,
     }}, { new: true })
     .then((user) => {
+      setTimeout(() => {
+        console.log();
+      }, 8000);
+      console.log('+_+_+_+ log5');
       if (!user) {
+        console.log('+_+_+_+ log6');
         return Error.sendError(res, 400, Constants.MESSAGES.BAD_REQUEST);
       } else {
-        res.status(200).send({userMustPay});
+        setTimeout(() => {
+          console.log();
+        }, 2000);
+        setTimeout(() => {
+          console.log();
+        }, 2000);
+        console.log('+_+ log buy.controller sending status');
+        console.log('+_+_+_+ userMustPay =', userMustPay);
+        res.status(200).json(userMustPay);
       }
-    })
+    }).catch((err) => {
+      console.log('+_+_+_+ log8');
+      return Error.sendError(res, 400, err);
+    });
   })
 };

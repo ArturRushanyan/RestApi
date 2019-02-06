@@ -20,13 +20,10 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit() {
     this._passigData.getBuyingItem().subscribe(
       res => {
-        // console.log('+_+ res =', res);
         if (res[0].title === '') {
           console.log('have no item');
           this._router.navigateByUrl('/item');
-          console.log('+_+ this.shoppingItemArray =', res[0].quantity);
         } else {
-          console.log('+_+ res in shopping.component =', res);
           this.shoppingItemsArray = res;
         }
       }
@@ -43,13 +40,10 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   delete(item) {
-    for(let i = 0; i <=this.shoppingItemsArray.length; i++) {
+    for(let i = 0; i <= this.shoppingItemsArray.length; i++) {
       if (this.shoppingItemsArray[i].title === item.title && this.shoppingItemsArray[i].type === item.type) {
         this.shoppingItemsArray.splice(i,1);
       }
     }
   }
-
-
-
 }

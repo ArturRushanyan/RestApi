@@ -10,6 +10,7 @@ const isAuthenticated = (req, res, next) => {
       email: userEmail,
     }).then(user => {
       if (user) {
+        console.log('+_+_+_+ log for next case');
         next();
       }
     }).catch(err => {

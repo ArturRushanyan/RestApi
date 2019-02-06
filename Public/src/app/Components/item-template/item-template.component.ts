@@ -26,6 +26,7 @@ export class ItemTemplateComponent implements OnInit {
   public itemData: Item;
   private searchItemName: string;
   public buyingItemQuantity: number = 1;
+  public userMustPay: number;
 
   constructor(private _eventService: EventService,
               private _router: Router,
@@ -33,6 +34,7 @@ export class ItemTemplateComponent implements OnInit {
               private _PassingDataService: PassingDataService) { }
 
   ngOnInit() {
+    this.userMustPay = parseInt(localStorage.getItem('mustPay'));
     if (this._router.url !=='/search') {
       this._eventService.getItems()
       .subscribe(
@@ -63,11 +65,16 @@ export class ItemTemplateComponent implements OnInit {
     if (!this._HelpService.loggedIn()) {
       this._router.navigateByUrl('/login');
     } else {
-      this._eventService.buyItem(localStorage.getItem('userEmail'), this.itemData._id, this.itemData.count, 
-                                 this.itemData.price, this.buyingItemQuantity, localStorage.getItem('mustPay')).
+      this.userMustPay += (this.itemData.price * this.buyingItemQuantity);
+      localStorage.setItem('mustPay', this.userMustPay.toString());
+      this._eventService.buyItem(localStorage.getItem('userEmail'), this.itemData._id, 
+                                  this.itemData.count, this.buyingItemQuantity, this.userMustPay.toString()).
         subscribe(
           res => {
             console.log('+_+ =', res);
+            console.log('+_+ local storage =', localStorage.getItem('mustPay'));
+            localStorage.setItem('mustPay', res);
+            console.log('+_+ local stroage after seting =', localStorage.getItem('mustPay'));
             window.location.reload();
           },
           err => {
@@ -81,24 +88,28 @@ export class ItemTemplateComponent implements OnInit {
   }
 
   addToCart(): void {
-    this.itemForShoppingCart ={
-      id: this.itemData._id,
-      type: this.itemData.type,
-      title: this.itemData.title,
-      quantity: this.buyingItemQuantity,
-      price: this.itemData.price,
-      count: this.itemData.count,
+    if (!localStorage.getItem('token')) {
+      this._router.navigate(['/login'])
+    } else {
+      this.itemForShoppingCart ={
+        id: this.itemData._id,
+        type: this.itemData.type,
+        title: this.itemData.title,
+        quantity: this.buyingItemQuantity,
+        price: this.itemData.price,
+        count: this.itemData.count,
+      }
+      this._PassingDataService.setBuyingItem(this.itemForShoppingCart);
+      this.itemForShoppingCart = {
+        id: '',
+        type: '',
+        title: '',
+        quantity: 0,
+        price: 0,
+        count: 0,
+      };
+      this.buyingItemQuantity = 0;
     }
-    this._PassingDataService.setBuyingItem(this.itemForShoppingCart);
-    this.itemForShoppingCart = {
-      id: '',
-      type: '',
-      title: '',
-      quantity: 0,
-      price: 0,
-      count: 0,
-    };
-    this.buyingItemQuantity = 0;
   }
 
   deleteItem(): void {

@@ -31,6 +31,7 @@ export class NavBarComponent implements OnInit {
   logoutUser(): void {
     this._cookieService.deleteAll();
     localStorage.clear();
+    window.location.reload();
   }
 
   isAdmin(): boolean {
