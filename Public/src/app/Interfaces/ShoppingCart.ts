@@ -1,8 +1,8 @@
 export interface ShoppingCart {
+  id: string
   type: string,
   title: string,
-  quantity: number,
   price: number,
   count: number,
-  id: string
+  quantity: number,
 }

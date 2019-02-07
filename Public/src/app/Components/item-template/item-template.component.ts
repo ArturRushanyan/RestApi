@@ -25,7 +25,7 @@ export class ItemTemplateComponent implements OnInit {
 
   public itemData: Item;
   private searchItemName: string;
-  public buyingItemQuantity: number = 1;
+  public buyingItemQuantity = 1;
   public userMustPay: number;
 
   constructor(private _eventService: EventService,
@@ -84,6 +84,8 @@ export class ItemTemplateComponent implements OnInit {
   }
 
   input(quantity) {
+    
+    console.log('+_+ quantity =', quantity);
     this.buyingItemQuantity = quantity;
   }
 
@@ -100,6 +102,7 @@ export class ItemTemplateComponent implements OnInit {
         count: this.itemData.count,
       }
       this._PassingDataService.setBuyingItem(this.itemForShoppingCart);
+
       this.itemForShoppingCart = {
         id: '',
         type: '',

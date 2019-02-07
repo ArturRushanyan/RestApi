@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ShoppingCartComponent implements OnInit {
 
   public shoppingItemsArray: ShoppingCart[];
+  public noItem = false;
 
   constructor(private _passigData: PassingDataService,
               private _router: Router) { }
@@ -22,13 +23,13 @@ export class ShoppingCartComponent implements OnInit {
       res => {
         if (res[0].title === '') {
           console.log('have no item');
-          this._router.navigateByUrl('/item');
         } else {
           this.shoppingItemsArray = res;
+          this.noItem = true;
         }
       }
     )
-    this.isSameItems();
+    // this.isSameItems();
   }
 
   inputNewQuantity(itemid, newQuantity) {
@@ -52,11 +53,8 @@ export class ShoppingCartComponent implements OnInit {
     for(let i = 0; i < this.shoppingItemsArray.length; i++) {
       for(let j = i + 1; j < this.shoppingItemsArray.length; j++) {
         if (this.shoppingItemsArray[i].title === this.shoppingItemsArray[j].title && this.shoppingItemsArray[i].type === this.shoppingItemsArray[j].type) {
-          console.log('+_+_+ log');
-          console.log('+_+_+_+ this.shoppingItemsArray[i].quantity =', this.shoppingItemsArray[i].quantity);
-          this.shoppingItemsArray[i].quantity = parseInt(this.shoppingItemsArray[i].quantity) + parseInt(this.shoppingItemsArray[j].quantity);
+          // this.shoppingItemsArray[i].quantity = parseInt(this.shoppingItemsArray[i].quantity) + parseInt(this.shoppingItemsArray[j].quantity);
           this.shoppingItemsArray.splice(j,1);
-          console.log('+_+_+_+_+ after this.shoppingItemsArray[i].quantity =', this.shoppingItemsArray[i].quantity);
         }
       }
     }

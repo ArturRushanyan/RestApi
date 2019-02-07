@@ -16,9 +16,9 @@
             <!-- info End -->
           <h5 class="card-title">{{item.title}}</h5>
           <p class="card-text">{{item.type}}</p>
-            <input id="input" type="number" min="1" max="{{item.count}}" value="1" (click)="input($event.target.value)">
+            <input id="input"  type="number" min="1" max="{{item.count}}" value="1" (change)="input($event.target.value)">
           <!-- buttons -->
-            <button  id="buyButton" class="btn btn-success" (click)="getItemData(item)" 
+            <button  id="buyButton" class="btn btn-success" (click)="getItemData(item)"   
               data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button">Buy</button>
             <br>
             <div *ngIf="isAdmin()">
@@ -70,7 +70,7 @@
             <p><b>Are you sure want to buy this item?</b></p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success" (click)="addToCart()" data-dismiss="modal">Add to Cart</button>
+            <button type="button" class="btn btn-success" (click)="addToCart(); input()" data-dismiss="modal">Add to Cart</button>
             <button type="button" class="btn btn-success" (click)="buy()" data-dismiss="modal">Buy</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>

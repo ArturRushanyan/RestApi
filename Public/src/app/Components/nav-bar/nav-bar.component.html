@@ -23,6 +23,8 @@
       <img src="../../../assets/Images/search.png" style="cursor: pointer;" (click)="searchingItem()" id="searchIcon">
     </div>
     <!-- Search End -->
+
+    
     <div *ngIf ="loggedIn()">
       <span style="color: red;" >You have to pay {{userMustPayData}}</span>  
     </div>
