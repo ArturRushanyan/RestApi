@@ -16,7 +16,7 @@ export class EventService {
     return localStorage.getItem('token');
   }
 
-  getItems(){
+  getAllItems(){
     return this.http.get<Item>(this._ItemUrl);
   }
 

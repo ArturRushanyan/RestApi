@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from '../../Services/event.service';
 import { HelpService } from '../../Services/help.service'; 
@@ -13,7 +13,7 @@ import { PassingDataService } from '../../Services/passing_data_service';
 })
 export class ItemTemplateComponent implements OnInit {
 
-  private itemFromRes: Item;
+  @Input() ComingItems: Item;
   public itemForShoppingCart: ShoppingCart = {
     type: '',
     title: '',
@@ -25,7 +25,7 @@ export class ItemTemplateComponent implements OnInit {
 
   public itemData: Item;
   private searchItemName: string;
-  public buyingItemQuantity = 1;
+  public buyingItemQuantity: number = 1;
   public userMustPay: number;
 
   constructor(private _eventService: EventService,
@@ -34,27 +34,27 @@ export class ItemTemplateComponent implements OnInit {
               private _PassingDataService: PassingDataService) { }
 
   ngOnInit() {
-    this.userMustPay = parseInt(localStorage.getItem('mustPay'));
-    if (this._router.url !=='/search') {
-      this._eventService.getItems()
-      .subscribe(
-        res => {
-          this.itemFromRes = res;
-          console.log(this.itemFromRes)
-        },
-        err => console.log(err),  
-      )
-    } else {
-      this._PassingDataService.getSearchingItemName()
-      .subscribe(val => {
-        if (!val && this._router.url ==='/search') {
-          this._router.navigateByUrl('/item');
-        } else if (val && this._router.url ==='/search') {
-          this.searchItemName = val;
-          this.searchingItem();
-        }
-      });
-    }
+    // this.userMustPay = parseInt(localStorage.getItem('mustPay'));
+    // if (this._router.url !=='/search') {
+    //   this._eventService.getAllItems()
+    //   .subscribe(
+    //     res => {
+    //       this.ComingItems = res;
+    //       console.log(this.ComingItems)
+    //     },
+    //     err => console.log(err),  
+    //   )
+    // } else {
+    //   this._PassingDataService.getSearchingItemName()
+    //   .subscribe(val => {
+    //     if (!val && this._router.url ==='/search') {
+    //       this._router.navigateByUrl('/item');
+    //     } else if (val && this._router.url ==='/search') {
+    //       this.searchItemName = val;
+    //       this.searchingItem();
+    //     }
+    //   });
+    // }
   }
 
   getItemData(item): void {
@@ -139,8 +139,8 @@ export class ItemTemplateComponent implements OnInit {
             alert("Don't found");
             this._router.navigateByUrl('/item');
           } else {
-            this.itemFromRes = res;
-            console.log('log ', this.itemFromRes);
+            this.ComingItems = res;
+            console.log('log ', this.ComingItems);
           }
         },
         err => console.log(err),
