@@ -24,8 +24,8 @@
     </div>
     <!-- Search End -->
 
-    
-    <div *ngIf ="loggedIn()">
+
+    <div id='mustPay' *ngIf ="loggedIn()">
       <span style="color: red;" >You have to pay {{userMustPayData}}</span>  
     </div>
     <img src="../../../assets/Images/shopping-cart.png" id="shopping-cart" routerLink="/shoppingcart" *ngIf="loggedIn()" style="cursor:pointer" >

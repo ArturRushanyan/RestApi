@@ -13,7 +13,7 @@ const UserSchema = new Schema({
   },
   password: { type: String, required: true },
   role: { type: String, required: true, default: 'user' },
-  mustPay: { type: Number },
+  mustPay: { type: Number, default: 0 },
 });
 
 let User = null;

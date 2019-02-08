@@ -51,6 +51,7 @@ export class PassingDataService {
   }
 
   setBuyingItem(item: ShoppingCart): void {
+    console.log('+_+ log in setBuyingItem = ', item);
     this.productsForShoppingCart.push(item);
     this.SubjectForShoppingCart.next(this.productsForShoppingCart);
   }

@@ -14,13 +14,14 @@
       <!-- info End -->
     <h5 class="card-title">{{ComingItems.title}}</h5>
     <p class="card-text">{{ComingItems.type}}</p>
-      <input id="input"  type="number" min="1" max="{{ComingItems.count}}" value="1" (change)="input($event.target.value)">
+      <input id="input"  type="number" min="1" max="{{ComingItems.count}}" value="1" [(ngModel)]="buyingItemQuantity">
     <!-- buttons -->
-      <button  id="buyButton" class="btn btn-success" (click)="getItemData(ComingItems)"   
-        data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button">Buy</button>
+      <button id="buyButton" class="btn btn-success"
+        data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button" (click)="showModal=true">Buy</button>
       <br>
       <div *ngIf="isAdmin()">
-        <img title="Delete" id="pencil" (click)="getItemData(ComingItems)" data-toggle="modal" data-target="#DeleteModal" src="../../../assets/Images/rubbish-bin.png">
+        <img title="Delete" id="pencil" (click)="howModal=true" data-toggle="modal" 
+          data-target="#DeleteModal" src="../../../assets/Images/rubbish-bin.png">
       </div>
       <!-- End buttons -->
   </div>
@@ -30,7 +31,7 @@
 </div>
   
 <!-- PopUp Modal Delete-->
-<div>
+<div *ngIf="howModal">
     <div class="modal fade" id="DeleteModal" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
@@ -44,7 +45,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger" (click)="deleteItem()" data-dismiss="modal">Delete</button>
+            <button type="button" class="btn btn-danger" (click)="deleteItem(ComingItems)" data-dismiss="modal">Delete</button>
           </div>
         </div>
       </div>
@@ -53,7 +54,7 @@
 <!-- Delete End -->
   
 <!-- PopUp Modal Buy-->
-<div>
+<div *ngIf="showModal">
   <div class="modal fade" id="buyModal" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -66,8 +67,8 @@
           <p><b>Are you sure want to buy this item?</b></p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" (click)="addToCart(); input()" data-dismiss="modal">Add to Cart</button>
-          <button type="button" class="btn btn-success" (click)="buy()" data-dismiss="modal">Buy</button>
+          <button type="button" class="btn btn-success" (click)="addToCart(ComingItems)" data-dismiss="modal">Add to Cart</button>
+          <button type="button" class="btn btn-success" (click)="buy(ComingItems)" data-dismiss="modal">Buy</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>

@@ -21,12 +21,11 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit() {
     this._passigData.getBuyingItem().subscribe(
       res => {
-        if (res[0].title === '') {
-          console.log('have no item');
-        } else {
-          this.shoppingItemsArray = res;
-          this.noItem = true;
-        }
+          if(res[0].title !== '') {
+            this.noItem = !this.noItem;
+            console.log('+_+ res in shopping cart =', res);
+            this.shoppingItemsArray = res;
+          }
       }
     )
     // this.isSameItems();
