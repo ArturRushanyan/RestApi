@@ -17,7 +17,7 @@ export class UpdateComponent implements OnInit {
 
   public itemForUpdate: Item;
   private userRole: string;
-  private userEmail: string;
+  private token: string;
   ngOnInit(): void {
     this.itemForUpdate = this._updateService.getUpdatingItem();
   }
@@ -25,8 +25,8 @@ export class UpdateComponent implements OnInit {
   updateItem(): void {
     this.userRole = localStorage.getItem('userRole');
     if (this.userRole === 'admin') {
-      this.userEmail = localStorage.getItem('userEmail');
-      this._eventService.updateItem(this.itemForUpdate, this.userEmail).subscribe(
+      this.token = localStorage.getItem('token');
+      this._eventService.updateItem(this.itemForUpdate, this.token).subscribe(
         res => {
           this._router.navigateByUrl('/item');
           console.log(res);

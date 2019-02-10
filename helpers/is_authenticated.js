@@ -1,24 +1,19 @@
 import User from '../models/user';
 import Error from './errors';
 import Constants from './messages';
+import isLoggedIn from './Generate_token';
 
 const isAuthenticated = (req, res, next) => {
-  const userEmail = req.body.email;
-  console.log('+_+ log in Is_authenticated userEmail =', userEmail);
-  if (userEmail !== 'undefined' && userEmail !== 'null') {
-    User.findOne({
-      email: userEmail,
-    }).then(user => {
-      if (user) {
-        console.log('+_+_+_+ log for next case');
-        next();
-      }
-    }).catch(err => {
-      return Error.sendError(res, 400, err || Constants.MESSAGES.CAN_NOT_FIND_USER);
-    });
-  } else {
-    return Error.sendError(res, 401, Constants.MESSAGES.YOU_ARE_NOT_LOGGED_IN);
-  }
+  const token = req.body.token;
+  isLoggedIn.tokenVerify(res, token)
+  .then((user) => User.findOne({ email: user.email }))
+  .than((existUser) => {
+    if (existUser) {
+      next();
+    }
+  }).catch( err => {
+    return Error.sendError(res, 400, err || Constants.MESSAGES.CAN_NOT_FIND_USER);
+  })
 };
 
 export default isAuthenticated;

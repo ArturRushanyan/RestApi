@@ -34,6 +34,7 @@ export class ItemTemplateComponent implements OnInit {
               private _PassingDataService: PassingDataService) { }
 
   ngOnInit() {
+    console.log('+_+_+ token =', localStorage.getItem('token'));
   }
 
   addToCart(item: Item) {
@@ -59,7 +60,7 @@ export class ItemTemplateComponent implements OnInit {
     } else {
       this.showModal = false;
       this.buyingItem = {
-        id: item._id,
+        id: item._id.toString(),
         type: item.type,
         title: item.title,
         price: item.price,
@@ -70,6 +71,15 @@ export class ItemTemplateComponent implements OnInit {
       this.userMustPay += (this.buyingItem.price * this.buyingItem.quantity);
       localStorage.setItem('mustPay', this.userMustPay.toString());
       console.log('+_+_+ mustpay in buy func =', this.userMustPay);
+      this._eventService.buyItem(localStorage.getItem('token'), this.buyingItem.id, this.buyingItem.count, this.userMustPay.toString(), this.buyingItem.quantity)
+      .subscribe( 
+        res => {
+          console.log('+_+ res =>', res);
+        },
+        err => {
+          console.log('+_+ err =>', err);
+        }
+      );
       
     }
   }
