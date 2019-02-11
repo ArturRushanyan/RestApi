@@ -7,6 +7,7 @@ import { ItemComponent } from './Pages/item/item.component';
 import { SearchComponent } from './Pages/search/search.component';
 import { UpdateComponent } from './Pages/update/update.component';
 import { ShoppingCartComponent } from './Pages/shopping-cart/shopping-cart.component';
+import { AllUsersTotalComponent } from './Pages/all-users-total/all-users-total.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'shoppingcart',
     component: ShoppingCartComponent,
+  }, 
+  {
+    path: 'allusers',
+    component: AllUsersTotalComponent
   }
 ];
 

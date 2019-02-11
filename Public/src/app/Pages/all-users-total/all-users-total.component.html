@@ -1,0 +1,18 @@
+<button style="margin-top: 30px;" type="button" class="btn btn-danger">Reset All</button>
+<div id="table" class="text-left">
+  <table class="table table-light table-hover">
+    <thead>
+      <tr>
+        <th scope="col">E-mail</th>
+        <th scope="col">Debt</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of allUsers">
+        <td>{{user.email}}</td>
+        <td>{{user.mustPay}}</td>
+        <td><button type="button" class="btn btn-danger">Reset</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

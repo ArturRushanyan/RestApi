@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PassingDataService } from '../../Services/passing_data_service';
 import { ShoppingCart } from '../../Interfaces/ShoppingCart';
-import { HelpService } from '../../Services/help.service';
 import { EventService } from '../../Services/event.service';
 import { Router } from '@angular/router'; 
 
@@ -18,7 +17,6 @@ export class ShoppingCartComponent implements OnInit {
   public userPay: number = parseInt(localStorage.getItem('mustPay'));
 
   constructor(private _passigData: PassingDataService,
-              private _router: Router,
               private _eventService: EventService) { }
   
   ngOnInit() {

@@ -21,6 +21,7 @@ import { HelpService } from './Services/help.service';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { ShoppingCartComponent } from './Pages/shopping-cart/shopping-cart.component';
 import { ItemTemplateComponent } from './Components/item-template/item-template.component';
+import { AllUsersTotalComponent } from './Pages/all-users-total/all-users-total.component';
 
 
 
@@ -36,7 +37,8 @@ import { ItemTemplateComponent } from './Components/item-template/item-template.
     UpdateComponent,
     NavBarComponent,
     ShoppingCartComponent,
-    ItemTemplateComponent
+    ItemTemplateComponent,
+    AllUsersTotalComponent
   ],
   imports: [
     NgbModule.forRoot(),

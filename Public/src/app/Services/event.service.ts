@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵConsole } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Item } from '../Interfaces/Item';
 import { ShoppingCart } from '../Interfaces/ShoppingCart';
+import { User } from '../Interfaces/User';
 
 @Injectable()
 export class EventService {
@@ -11,6 +12,7 @@ export class EventService {
   private _BuyUrlAll = 'http://localhost:3000/api/v1/buy/buyAll';
   private _ItemUrl = 'http://localhost:3000/api/v1/item';
   private _searchUrl = 'http://localhost:3000/search/';
+  private _getAllUsers = 'http://localhost:3000/api/v1/user';
 
   constructor(private http: HttpClient) { }
 
@@ -56,4 +58,7 @@ export class EventService {
     return this.http.post<string>(`${this._BuyUrlAll}`, { itemsArray: itemsArray, mustPay: mustPay, email: userEmail, token: token });
   };
 
-}
+  getAllUsers(): Observable<User> {
+    return this.http.get<User>(`${this._getAllUsers}`);
+  }
+};
