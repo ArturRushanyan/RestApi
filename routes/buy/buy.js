@@ -4,5 +4,6 @@ import BuyController from './buy.controller';
 const router = express.Router(); 
 
 router.post('/', isAuthenticated, BuyController.buy);
+router.post('/buyAll', isAuthenticated, BuyController.buyAll);
 
 export default router;

@@ -57,7 +57,6 @@ export class ItemTemplateComponent implements OnInit {
     if (!this._HelpService.loggedIn()) {
       this._router.navigateByUrl('/login');
     } else {
-      console.log('+_+_+ log1 in in buy func in itemTemplate-component');
       this.showModal = false;
       this.buyingItem = {
         id: item._id.toString(),
@@ -67,19 +66,18 @@ export class ItemTemplateComponent implements OnInit {
         count: item.count,
         quantity: this.buyingItemQuantity,
       };
-      console.log('+_+_+ log2 in in buy func in itemTemplate-component');
       this.userMustPay = parseInt(localStorage.getItem('mustPay'));
       this.userMustPay += (this.buyingItem.price * this.buyingItem.quantity);
       localStorage.setItem('mustPay', this.userMustPay.toString());
       console.log('+_+_+ mustpay in buy func =', this.userMustPay);
-      this._eventService.buyItem(localStorage.getItem('token'), localStorage.getItem('userEmail'), this.buyingItem.id, this.buyingItem.count, this.userMustPay.toString(), this.buyingItem.quantity)
+      this._eventService.buyItem(localStorage.getItem('token'), localStorage.getItem('userEmail'), 
+        this.buyingItem.id, this.buyingItem.count, this.userMustPay.toString(), this.buyingItem.quantity)
       .subscribe( 
         res => {
           window.location.reload();
           console.log('+_+ res =>', res);
         },
         err => {
-          console.log('+_+_+ log3 in in buy func in itemTemplate-component');
           console.log('+_+ err =>', err);
         }
       );
@@ -100,25 +98,5 @@ export class ItemTemplateComponent implements OnInit {
   isAdmin(): boolean {
     return !!this._HelpService.isAdmin();
   }
-
-  // searchingItem(): void {
-  //   if ( this.searchItemName.length <= 3) {
-  //     alert('Small name for searching');
-  //   } else {
-  //     this._eventService.searchItem(this.searchItemName).subscribe(
-  //       res => {
-  //         if (res.length <= 0) {
-  //           alert("Don't found");
-  //           this._router.navigateByUrl('/item');
-  //         } else {
-  //           this.ComingItems = res;
-  //           console.log('log ', this.ComingItems);
-  //         }
-  //       },
-  //       err => console.log(err),
-  //     );
-  //   }
-  //   // this.http.get(`http://localhost:3000/search/${this.name}`)
-  // }
 
 }

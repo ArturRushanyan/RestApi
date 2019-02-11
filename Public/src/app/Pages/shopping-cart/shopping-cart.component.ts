@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PassingDataService } from '../../Services/passing_data_service';
 import { ShoppingCart } from '../../Interfaces/ShoppingCart';
 import { HelpService } from '../../Services/help.service';
+import { EventService } from '../../Services/event.service';
 import { Router } from '@angular/router'; 
 
 @Component({
@@ -12,12 +13,14 @@ import { Router } from '@angular/router';
 export class ShoppingCartComponent implements OnInit {
 
   public shoppingItemsArray: ShoppingCart[];
+  private buyAllItem: ShoppingCart[] = [];
   public noItem = false;
+  public userPay: number = parseInt(localStorage.getItem('mustPay'));
 
   constructor(private _passigData: PassingDataService,
-              private _router: Router) { }
+              private _router: Router,
+              private _eventService: EventService) { }
   
-
   ngOnInit() {
     this._passigData.getBuyingItem().subscribe(
       res => {
@@ -48,10 +51,6 @@ export class ShoppingCartComponent implements OnInit {
     }
   };
 
-  buy(item) {
-    console.log('+_+_+ log in buy func item = ', item);
-  }
-
   isSameItems() {
     for(let i = 0; i < this.shoppingItemsArray.length; i++) {
       for(let j = i + 1; j < this.shoppingItemsArray.length; j++) {
@@ -64,7 +63,21 @@ export class ShoppingCartComponent implements OnInit {
   };
 
   buyAll() {
-
+    for(let i = 0; i < this.shoppingItemsArray.length; i++) {
+      this.userPay += (this.shoppingItemsArray[i].price * this.shoppingItemsArray[i].quantity);
+    }
+    localStorage.setItem('mustPay', this.userPay.toString());
+    this.buyAllItem = this.shoppingItemsArray;
+    this._eventService.buyAllItems(this.buyAllItem, this.userPay, localStorage.getItem('userEmail'), localStorage.getItem('token'))
+    .subscribe(
+      res => {
+        console.log(res);
+        window.location.reload();
+      }, 
+      err => {
+        console.log('+_+_+_+ log in buyAll err =>', err);
+      }
+    );
   };
 
 }

@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Item } from '../Interfaces/Item';
+import { ShoppingCart } from '../Interfaces/ShoppingCart';
 
 @Injectable()
 export class EventService {
 
   private _BuyUrl = 'http://localhost:3000/api/v1/buy';
+  private _BuyUrlAll = 'http://localhost:3000/api/v1/buy/buyAll';
   private _ItemUrl = 'http://localhost:3000/api/v1/item';
   private _searchUrl = 'http://localhost:3000/search/';
 
@@ -47,6 +49,11 @@ export class EventService {
       buyQuantity: buyQuantity,
       mustPay: mustPay,
     });
-  }
+  };
+
+  buyAllItems(itemsArray: Array<ShoppingCart>, mustPay: number, userEmail: string, token: string): Observable<string> {
+    console.log('+_+_+_+ log in buyAllItems func in event.service');
+    return this.http.post<string>(`${this._BuyUrlAll}`, { itemsArray: itemsArray, mustPay: mustPay, email: userEmail, token: token });
+  };
 
 }
