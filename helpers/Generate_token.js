@@ -14,12 +14,9 @@ exports.newToken = (res, email) => {
 
 exports.tokenVerify = (res, token) => {
   return new Promise((resolve, reject) => {
-    console.log('+_+ token in tokenverify func =', token);
     if (!token) {
-      console.log('+_+_+_+_+ in if case err in tokenverify func');
       reject(Error.sendError(res, 400, Constants.MESSAGES.YOU_ARE_NOT_LOGGED_IN));
     }
-    console.log('+_+_+_+_++ in resolve case tokenverify func');
     resolve(JWT.verify(token, Config.JWT_KEY));
   });
 };

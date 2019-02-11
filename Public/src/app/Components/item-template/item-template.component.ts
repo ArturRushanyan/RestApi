@@ -34,7 +34,6 @@ export class ItemTemplateComponent implements OnInit {
               private _PassingDataService: PassingDataService) { }
 
   ngOnInit() {
-    console.log('+_+_+ token =', localStorage.getItem('token'));
   }
 
   addToCart(item: Item) {
@@ -58,6 +57,7 @@ export class ItemTemplateComponent implements OnInit {
     if (!this._HelpService.loggedIn()) {
       this._router.navigateByUrl('/login');
     } else {
+      console.log('+_+_+ log1 in in buy func in itemTemplate-component');
       this.showModal = false;
       this.buyingItem = {
         id: item._id.toString(),
@@ -67,50 +67,30 @@ export class ItemTemplateComponent implements OnInit {
         count: item.count,
         quantity: this.buyingItemQuantity,
       };
+      console.log('+_+_+ log2 in in buy func in itemTemplate-component');
       this.userMustPay = parseInt(localStorage.getItem('mustPay'));
       this.userMustPay += (this.buyingItem.price * this.buyingItem.quantity);
       localStorage.setItem('mustPay', this.userMustPay.toString());
       console.log('+_+_+ mustpay in buy func =', this.userMustPay);
-      this._eventService.buyItem(localStorage.getItem('token'), this.buyingItem.id, this.buyingItem.count, this.userMustPay.toString(), this.buyingItem.quantity)
+      this._eventService.buyItem(localStorage.getItem('token'), localStorage.getItem('userEmail'), this.buyingItem.id, this.buyingItem.count, this.userMustPay.toString(), this.buyingItem.quantity)
       .subscribe( 
         res => {
+          window.location.reload();
           console.log('+_+ res =>', res);
         },
         err => {
+          console.log('+_+_+ log3 in in buy func in itemTemplate-component');
           console.log('+_+ err =>', err);
         }
       );
-      
     }
   }
-
-  // buy(): void {
-  //   if (!this._HelpService.loggedIn()) {
-  //     this._router.navigateByUrl('/login');
-  //   } else {
-  //     this.userMustPay += (this.itemData.price * this.buyingItemQuantity);
-  //     localStorage.setItem('mustPay', this.userMustPay.toString());
-  //     this._eventService.buyItem(localStorage.getItem('userEmail'), this.itemData._id,
-  //                                 this.itemData.count, this.buyingItemQuantity, this.userMustPay.toString()).
-  //       subscribe(
-  //         res => {
-  //           console.log('+_+ =', res);
-  //           console.log('+_+ local storage =', localStorage.getItem('mustPay'));
-  //           localStorage.setItem('mustPay', res);
-  //           console.log('+_+ local stroage after seting =', localStorage.getItem('mustPay'));
-  //           window.location.reload();
-  //         },
-  //         err => {
-  //           console.log(err);
-  //         });
-  //   }
-  // }
 
   deleteItem(item): void {
     this.showModal = false;
     console.log('+_+ log in deleteItem func item =', item);
     this._HelpService.deleteItem(item);
-    // window.location.reload();
+    window.location.reload();
   }
 
   editItem(editItem: Item): void {

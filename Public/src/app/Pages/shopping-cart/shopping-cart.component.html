@@ -1,27 +1,29 @@
 <div *ngIf="!noItem">
     <h1 style="color: white">Cart is empty.</h1>
 </div>
+<div id="buyAllbutton" *ngIf='noItem'>
+  <button class="btn btn-danger" type="button" (click)="buyAll()">Buy All</button>
+</div>
 <div class="row mt-5" *ngIf="noItem">
-    <div class="col-md-4 mb-3" *ngFor="let item of shoppingItemsArray">
-      <div class="card text-center">
-        <div class="card-body">
-          <h5 class="card-title">{{item.title}}</h5>
-          <p class="card-text">{{item.type}}</p>
-          <!-- buttons -->
-            <h2>Quantity: {{item.quantity}}</h2>
-            <!-- <input type="number" class="form-control"  id="inputID" min="1" max={{item.count}} 
-              value={{item.quantity}} (click)="inputNewQuantity(item.id, $event)"> -->
-            <button id="buyButton" class="btn btn-success" (click)="getItemData(item)" 
-              data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button">Buy</button>
-            <br>
-            <div>
-              <img title="Delete" id="pencil" (click)="delete(item)" src="../../../assets/Images/rubbish-bin.png">
-            </div>
-            <!-- End buttons -->
-        </div>
-        <div class="card-footer number-muted">
-          Price {{item.price}} ֏
-        </div>
+  <div class="col-md-4 mb-3" *ngFor="let item of shoppingItemsArray">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">{{item.title}}</h5>
+        <p class="card-text">{{item.type}}</p>
+        <!-- buttons -->
+          <input type="number" class="form-control"  id="inputID" min="1" max={{item.count}} 
+            value={{item.quantity}}  (click)="inputNewQuantity(item.id, $event)">
+          <button id="buyButton" class="btn btn-success" (click)="buy(item)" 
+            data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button">Buy</button>
+          <br>
+          <div>
+            <img title="Delete" id="pencil" (click)="delete(item)" src="../../../assets/Images/rubbish-bin.png">
+          </div>
+          <!-- End buttons -->
+      </div>
+      <div class="card-footer number-muted">
+        Price {{item.price}} ֏
       </div>
     </div>
   </div>
+</div>

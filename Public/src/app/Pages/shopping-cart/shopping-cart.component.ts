@@ -38,7 +38,7 @@ export class ShoppingCartComponent implements OnInit {
         console.log('+_+ log =', this.shoppingItemsArray[i]);
       }
     };
-  }
+  };
 
   delete(item) {
     for(let i = 0; i <= this.shoppingItemsArray.length; i++) {
@@ -46,6 +46,10 @@ export class ShoppingCartComponent implements OnInit {
         this.shoppingItemsArray.splice(i,1);
       }
     }
+  };
+
+  buy(item) {
+    console.log('+_+_+ log in buy func item = ', item);
   }
 
   isSameItems() {
@@ -57,5 +61,10 @@ export class ShoppingCartComponent implements OnInit {
         }
       }
     }
-  }
+  };
+
+  buyAll() {
+
+  };
+
 }

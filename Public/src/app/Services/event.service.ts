@@ -37,10 +37,11 @@ export class EventService {
     return this.http.put<string>(`${this._ItemUrl}/${updatingItem._id}`, { item: updatingItem, token: token });
   }
 
-  buyItem(token: string, _id: string, itemCount: number, mustPay: string, buyQuantity: number): Observable<string> {
+  buyItem(token: string, userEmail: string, _id: string, itemCount: number, mustPay: string, buyQuantity: number): Observable<string> {
     console.log('+_+ log in event.service buyItem Func');
     return this.http.post<string>(`${this._BuyUrl}`, {
       token: token,
+      email: userEmail,
       id: _id,
       ItemCount: itemCount,
       buyQuantity: buyQuantity,
