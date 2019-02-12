@@ -24,7 +24,11 @@ export class AllUsersTotalComponent implements OnInit {
         console.log('+_+_+_+ err =>', err);
       }
     )
+  };
 
+  resetUser(user) {
+    this._eventService.resetUserDebt(user).subscribe();
+    console.log('+_+_+ user => ', user);
   }
 
 }

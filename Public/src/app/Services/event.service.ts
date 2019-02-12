@@ -1,6 +1,6 @@
 import { Injectable, ɵConsole } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { Item } from '../Interfaces/Item';
 import { ShoppingCart } from '../Interfaces/ShoppingCart';
 import { User } from '../Interfaces/User';
@@ -13,6 +13,7 @@ export class EventService {
   private _ItemUrl = 'http://localhost:3000/api/v1/item';
   private _searchUrl = 'http://localhost:3000/search/';
   private _getAllUsers = 'http://localhost:3000/api/v1/user';
+  private _resetDebt = 'http://localhost:3000/api/v1/reset';
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +22,7 @@ export class EventService {
   }
 
   getAllItems(){
-    return this.http.get<Item>(this._ItemUrl);
+    return this.http.get<Item[]>(this._ItemUrl);
   }
 
   addItem(item: Item, userEmail: string): Observable<Item>  {
@@ -33,7 +34,7 @@ export class EventService {
     return this.http.request<string>('delete', `${this._ItemUrl}/${deleteingItem._id}`, { body: { email: userEmail } });
   }
 
-  searchItem(searchItem: string){
+  searchItem(searchItem: string) {
     return this.http.get<any>(`${this._searchUrl}/${searchItem}`);
   }
 
@@ -60,5 +61,9 @@ export class EventService {
 
   getAllUsers(): Observable<User> {
     return this.http.get<User>(`${this._getAllUsers}`);
+  }
+
+  resetUserDebt(User: User): Observable<string> {
+    return this.http.post<string>(`${this._resetDebt}`, { user: User });
   }
 };

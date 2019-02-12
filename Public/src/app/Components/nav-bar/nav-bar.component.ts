@@ -3,7 +3,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { PassingDataService } from '../../Services/passing_data_service';
 import { HelpService } from '../../Services/help.service';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,6 +16,9 @@ export class NavBarComponent implements OnInit {
 
   public searchingItemName: string;
   public userMustPayData: string;
+  public states = [];
+
+
   constructor(private _cookieService: CookieService,
               private _passingDataService: PassingDataService,
               private _helpService: HelpService,
@@ -21,6 +26,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.userMustPayData = localStorage.getItem('mustPay');
+    this._passingDataService.getAutocimpleteNames().subscribe(res => this.states = res)
   }
 
   searchingItem(): void {
@@ -41,5 +47,18 @@ export class NavBarComponent implements OnInit {
   loggedIn(): boolean {
     return !!this._helpService.loggedIn();
   }
+
+  public model: any;
+
+  formatter = (result: string) => result.toUpperCase();
+
+  search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term === '' ? []
+        : this.states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    )
+
 
 }

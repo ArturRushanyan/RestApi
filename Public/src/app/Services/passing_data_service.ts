@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Item } from '../Interfaces/Item';
 import { ShoppingCart } from '../Interfaces/ShoppingCart';
 
@@ -17,7 +17,9 @@ export class PassingDataService {
 
   public emptyStringForSearch: string;
 
-  productsForShoppingCart: ShoppingCart[] = [];
+  public autocompleteArray: string[] = [];
+
+  public productsForShoppingCart: ShoppingCart[] = [];
 
   emptyItem: ShoppingCart[] = [{
     type: '',
@@ -32,7 +34,8 @@ export class PassingDataService {
 
   private updateItemSubject = new BehaviorSubject<Item>(this.emptyEditItem);
   private searchingItemSubject = new BehaviorSubject<string>(this.emptyStringForSearch);
-  private SubjectForShoppingCart = new BehaviorSubject<ShoppingCart[]>(this.emptyItem)
+  private SubjectForShoppingCart = new BehaviorSubject<ShoppingCart[]>(this.emptyItem);
+  private SubjectForAutocomplete = new BehaviorSubject<string[]>(this.autocompleteArray);
 
   setUpdateingItem(item: Item): void {
     this.updateItemSubject.next(item);
@@ -58,6 +61,15 @@ export class PassingDataService {
 
   getBuyingItem(): BehaviorSubject<ShoppingCart[]> {
     return this.SubjectForShoppingCart;
+  }
+
+  setAutocompleteNames(title): void {
+    this.autocompleteArray.push(title);
+    this.SubjectForAutocomplete.next(this.autocompleteArray);
+  };
+
+  getAutocimpleteNames(): BehaviorSubject<string[]> {
+    return this.SubjectForAutocomplete;
   }
 
 }

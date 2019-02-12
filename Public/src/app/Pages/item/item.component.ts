@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../Services/event.service';
+import { PassingDataService } from '../../Services/passing_data_service';
 import { Item } from '../../Interfaces/Item';
 
 @Component({
@@ -9,14 +10,18 @@ import { Item } from '../../Interfaces/Item';
 })
 export class ItemComponent implements OnInit {
   
-  private itemsFromRes: Item;
-  constructor(private _eventService: EventService) { }
+  private itemsFromRes: Item[];
+  constructor(private _eventService: EventService, 
+              private _passingDataService: PassingDataService) { }
 
   ngOnInit() {
     this._eventService.getAllItems()
       .subscribe(
         res => {
           this.itemsFromRes = res;
+          this.itemsFromRes.forEach(element => {
+            this._passingDataService.setAutocompleteNames(this.itemsFromRes);
+          });
           console.log('+_+ itemsFromRes =', this.itemsFromRes);
         }, 
         err => {
