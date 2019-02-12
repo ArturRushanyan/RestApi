@@ -16,7 +16,7 @@ export class NavBarComponent implements OnInit {
 
   public searchingItemName: string;
   public userMustPayData: string;
-  public states = [];
+  public autocompleteName:string[] = [];
 
 
   constructor(private _cookieService: CookieService,
@@ -26,7 +26,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.userMustPayData = localStorage.getItem('mustPay');
-    this._passingDataService.getAutocimpleteNames().subscribe(res => this.states = res)
+    this._passingDataService.getAutocimpleteNames().subscribe(res => this.autocompleteName = res)
   }
 
   searchingItem(): void {
@@ -48,17 +48,16 @@ export class NavBarComponent implements OnInit {
     return !!this._helpService.loggedIn();
   }
 
-  public model: any;
-
   formatter = (result: string) => result.toUpperCase();
 
-  search = (text$: Observable<string>) =>
+  search = (text$: Observable<string>) => {
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       map(term => term === '' ? []
-        : this.states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+        : this.autocompleteName.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
-
+    
+    }
 
 }

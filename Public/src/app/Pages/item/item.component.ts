@@ -20,7 +20,8 @@ export class ItemComponent implements OnInit {
         res => {
           this.itemsFromRes = res;
           this.itemsFromRes.forEach(element => {
-            this._passingDataService.setAutocompleteNames(this.itemsFromRes);
+            this._passingDataService.setAutocompleteNames(element.title);
+            console.log('+_+_+_+ element.title =', element.title);
           });
           console.log('+_+ itemsFromRes =', this.itemsFromRes);
         }, 
