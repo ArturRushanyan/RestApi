@@ -4,7 +4,7 @@ import { UserLogin } from '../../Interfaces/userLogin'
 import { AuthService } from '../../Services/auth.service'
 
 @Component({
-  selector: 'app-login',
+  selector: 'sweetbox-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

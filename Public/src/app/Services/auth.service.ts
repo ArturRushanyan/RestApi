@@ -13,11 +13,11 @@ export class AuthService {
   private _baseUrl = 'http://localhost:3000/authentication/'
 
   public registerUser(user: UserRegister): Observable<User> {
-    return this.http.post<User>(this._baseUrl + 'signup', user)
+    return this.http.post<User>(`${this._baseUrl}` + `${'signup'}`, user)
   }
 
   public loginUser(user: UserLogin): Observable<User> {
-    return this.http.post<User>(this._baseUrl + 'login', user)
+    return this.http.post<User>(`${this._baseUrl}` + `${'login'}`, user)
   }
 
 }

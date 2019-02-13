@@ -3,7 +3,7 @@ import { User } from 'src/app/Interfaces/User'
 import { EventService } from '../../Services/event.service'
 
 @Component({
-  selector: 'app-all-users-total',
+  selector: 'sweetbox-all-users-total',
   templateUrl: './all-users-total.component.html',
   styleUrls: ['./all-users-total.component.css']
 })
@@ -13,6 +13,7 @@ export class AllUsersTotalComponent implements OnInit {
 
   constructor(private _eventService: EventService) { }
 
+  private token: string = localStorage.getItem('token')
 
   public ngOnInit(): void {
     this._eventService.getAllUsers()
@@ -27,12 +28,14 @@ export class AllUsersTotalComponent implements OnInit {
   }
 
   public resetUser(user: User): void {
-    this._eventService.resetUserDebt(user, localStorage.getItem('token')).subscribe(
-      res => {
-        user.mustPay = parseInt(res, 10)
-        console.log('+_+_+ user after reset')
-      }
+    this._eventService.resetUserDebt(user, this.token).subscribe(
+      res => { console.log('+_+ res =>', res) }
     )
+  }
+
+  public resetAllUsers(): void {
+    console.log('+_+ log in reset AllUsers')
+    this._eventService.resetAllUsersDebt(this.allUsers, this.token).subscribe()
   }
 
 }

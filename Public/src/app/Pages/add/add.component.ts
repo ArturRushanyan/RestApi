@@ -4,7 +4,7 @@ import { Item } from 'src/app/Interfaces/Item'
 import { EventService } from '../../Services/event.service'
 
 @Component({
-  selector: 'app-add',
+  selector: 'sweetbox-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })

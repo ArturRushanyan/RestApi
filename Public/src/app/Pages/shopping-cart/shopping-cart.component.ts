@@ -5,7 +5,7 @@ import { EventService } from '../../Services/event.service'
 import { PassingDataService } from '../../Services/passing_data_service'
 
 @Component({
-  selector: 'app-shopping-cart',
+  selector: 'sweetbox-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })

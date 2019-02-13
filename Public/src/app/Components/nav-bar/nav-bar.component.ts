@@ -8,7 +8,7 @@ import { HelpService } from '../../Services/help.service'
 import { PassingDataService } from '../../Services/passing_data_service'
 
 @Component({
-  selector: 'app-nav-bar',
+  selector: 'sweetbox-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })

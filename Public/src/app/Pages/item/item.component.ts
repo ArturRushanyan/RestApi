@@ -4,7 +4,7 @@ import { EventService } from '../../Services/event.service'
 import { PassingDataService } from '../../Services/passing_data_service'
 
 @Component({
-  selector: 'app-item',
+  selector: 'sweetbox-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })

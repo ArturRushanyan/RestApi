@@ -7,7 +7,7 @@ import { HelpService } from '../../Services/help.service'
 import { PassingDataService } from '../../Services/passing_data_service'
 
 @Component({
-  selector: 'app-item-template',
+  selector: 'sweetbox-item-template',
   templateUrl: './item-template.component.html',
   styleUrls: ['./item-template.component.css']
 })

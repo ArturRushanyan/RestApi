@@ -5,7 +5,7 @@ import { PassingDataService } from '../../Services/passing_data_service'
 
 
 @Component({
-  selector: 'app-search',
+  selector: 'sweetbox-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })

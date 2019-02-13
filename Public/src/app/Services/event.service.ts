@@ -16,6 +16,7 @@ export class EventService {
   private _searchUrl = 'http://localhost:3000/search/'
   private _getAllUsers = 'http://localhost:3000/api/v1/user'
   private _resetDebt = 'http://localhost:3000/api/v1/reset'
+  private _resetAllDebt = 'http://localhost:3000/api/v1/reset/allusers'
 
 
   public getToken(): string {
@@ -69,5 +70,10 @@ export class EventService {
 
   public resetUserDebt(user: User, token: string): Observable<string> {
     return this.http.post<string>(`${this._resetDebt}`, { user: user, token: token })
+  }
+
+  public resetAllUsersDebt(users: User, token: string): Observable<number[]> {
+    console.log('+_+_+ log in resetAllUserDebt')
+    return this.http.post<number[]>(`${this._resetAllDebt}`, { token: token, users: users })
   }
 }

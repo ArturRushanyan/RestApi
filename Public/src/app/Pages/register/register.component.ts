@@ -4,7 +4,7 @@ import { UserRegister } from '../../Interfaces/userRegister'
 import { AuthService } from '../../Services/auth.service'
 
 @Component({
-  selector: 'app-register',
+  selector: 'sweetbox-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
