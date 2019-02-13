@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
-import { PassingDataService } from '../../Services/passing_data_service';
-import { HelpService } from '../../Services/help.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {Observable} from 'rxjs';
-import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { CookieService } from 'ngx-cookie-service'
+import { Observable } from 'rxjs'
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
+import { HelpService } from '../../Services/help.service'
+import { PassingDataService } from '../../Services/passing_data_service'
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,9 +14,9 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 })
 export class NavBarComponent implements OnInit {
 
-  public searchingItemName: string;
-  public userMustPayData: string;
-  public autocompleteName:string[] = [];
+  public searchingItemName: string
+  public userMustPayData: string
+  public autocompleteName: string[] = []
 
 
   constructor(private _cookieService: CookieService,
@@ -24,40 +24,37 @@ export class NavBarComponent implements OnInit {
               private _helpService: HelpService,
               private _router: Router) { }
 
-  ngOnInit() {
-    this.userMustPayData = localStorage.getItem('mustPay');
+  public ngOnInit(): void {
+    this.userMustPayData = localStorage.getItem('mustPay')
     this._passingDataService.getAutocimpleteNames().subscribe(res => this.autocompleteName = res)
   }
 
-  searchingItem(): void {
-    this._passingDataService.setSearchingItemName(this.searchingItemName);
-    this._router.navigateByUrl('/search');
+  public searchingItem(): void {
+    this._passingDataService.setSearchingItemName(this.searchingItemName)
+    this._router.navigateByUrl('/search')
   }
 
-  logoutUser(): void {
-    this._cookieService.deleteAll();
-    localStorage.clear();
-    window.location.reload();
+  public logoutUser(): void {
+    this._cookieService.deleteAll()
+    localStorage.clear()
+    window.location.reload()
   }
 
-  isAdmin(): boolean {
-    return !!this._helpService.isAdmin();
+  public isAdmin(): boolean {
+    return !!this._helpService.isAdmin()
   }
 
-  loggedIn(): boolean {
-    return !!this._helpService.loggedIn();
+  public loggedIn(): boolean {
+    return !!this._helpService.loggedIn()
   }
 
-  formatter = (result: string) => result.toUpperCase();
+  public formatter = (result: string) => result.toUpperCase()
 
-  search = (text$: Observable<string>) => {
+  public search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       map(term => term === '' ? []
         : this.autocompleteName.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
-    
-    }
-
 }

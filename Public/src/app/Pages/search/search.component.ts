@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { PassingDataService } from '../../Services/passing_data_service';
-import { EventService } from '../../Services/event.service';
-import { Item } from 'src/app/Interfaces/Item';
+import { Component, OnInit } from '@angular/core'
+import { Item } from 'src/app/Interfaces/Item'
+import { EventService } from '../../Services/event.service'
+import { PassingDataService } from '../../Services/passing_data_service'
 
 
 @Component({
@@ -12,24 +12,24 @@ import { Item } from 'src/app/Interfaces/Item';
 
 export class SearchComponent implements OnInit {
 
-  private SearchingItemName: string;
-  private itemFromRes: Item;
   constructor(private _passingDataService: PassingDataService,
               private _eventService: EventService) { }
+  private _SearchingItemName: string
+  private _itemFromRes: Item[]
 
 
-  ngOnInit() {
-   this.SearchingItemName = this._passingDataService.getSearchingItemName().value;
-   this._eventService.searchItem(this.SearchingItemName).subscribe(
+  public ngOnInit(): void {
+   this._SearchingItemName = this._passingDataService.getSearchingItemName().value
+   this._eventService.searchItem(this._SearchingItemName).subscribe(
      res => {
-      console.log(res);
-      this.itemFromRes = res;
+      console.log(res)
+      this._itemFromRes = res
      },
      err => {
-       console.log('log in err case');
-       console.log(err);
+       console.log('log in err case')
+       console.log(err)
      }
-   );
+   )
   }
 
 }

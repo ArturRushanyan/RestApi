@@ -12,7 +12,7 @@
         <p class="card-text">{{item.type}}</p>
         <!-- buttons -->
           <input class="text-center" type="number" id="inputID" min="1" max={{item.count}} 
-          value={{item.quantity}}  (click)="inputNewQuantity(item.id, $event)">
+          value={{item.quantity}}  (click)="inputNewQuantity($event.target.value, item.id)">
         <!-- <button id="buyButton" class="btn btn-success" (click)="buy(item)" 
           data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button">Buy</button> -->
         <br>

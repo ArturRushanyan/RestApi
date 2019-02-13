@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { EventService } from '../../Services/event.service';
-import { Item } from 'src/app/Interfaces/Item';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { Item } from 'src/app/Interfaces/Item'
+import { EventService } from '../../Services/event.service'
 
 @Component({
   selector: 'app-add',
@@ -10,27 +10,29 @@ import { Item } from 'src/app/Interfaces/Item';
 })
 export class AddComponent implements OnInit {
 
-  private userEmail: string;
-  addUserData:Item = {
+  public addUserData: Item = {
     _id: '',
     type: '',
     title: '',
     price: 0,
     count: 1,
     barcode: ''
-  };
+  }
   constructor(private _event: EventService,
-              private _router: Router) { }
+    private _router: Router) { }
 
-  ngOnInit(): void {
-    this.userEmail = localStorage.getItem('userEmail');
+  private _token: string
+
+  public ngOnInit(): void {
+    this._token = localStorage.getItem('token')
   }
 
-  addData(): void {
-    this._event.addItem(this.addUserData, this.userEmail)
+  public addData(): void {
+    this._event.addItem(this.addUserData, this._token)
       .subscribe(
         res => {
-          this._router.navigate(['/item']);
+          console.log('+_+_+ res=>', res)
+          this._router.navigate(['/item'])
         },
         err => console.log(err)
       )

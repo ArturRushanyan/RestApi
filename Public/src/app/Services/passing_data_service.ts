@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Item } from '../Interfaces/Item';
-import { ShoppingCart } from '../Interfaces/ShoppingCart';
+import { Injectable } from '@angular/core'
+import { BehaviorSubject } from 'rxjs'
+import { Item } from '../Interfaces/Item'
+import { ShoppingCart } from '../Interfaces/ShoppingCart'
 
 @Injectable()
 export class PassingDataService {
@@ -13,63 +13,64 @@ export class PassingDataService {
     price: 0,
     barcode: '',
     count: 1,
-  };
+  }
 
-  public emptyStringForSearch: string;
+  public emptyStringForSearch: string
 
-  public autocompleteArray: string[] = [];
+  public autocompleteArray: string[] = []
 
-  public productsForShoppingCart: ShoppingCart[] = [];
+  public productsForShoppingCart: ShoppingCart[] = []
 
-  emptyItem: ShoppingCart[] = [{
+  constructor() { }
+
+  private _emptyItem: ShoppingCart[] = [{
     type: '',
     title: '',
     quantity: 0,
     price: 0,
     count: 0,
     id: '',
-  }];
+  }]
 
-  constructor() { }
+  private _updateItemSubject = new BehaviorSubject<Item>(this.emptyEditItem)
+  private _searchingItemSubject = new BehaviorSubject<string>(this.emptyStringForSearch)
+  private _SubjectForShoppingCart = new BehaviorSubject<ShoppingCart[]>(this._emptyItem)
+  private _SubjectForAutocomplete = new BehaviorSubject<string[]>(this.autocompleteArray)
 
-  private updateItemSubject = new BehaviorSubject<Item>(this.emptyEditItem);
-  private searchingItemSubject = new BehaviorSubject<string>(this.emptyStringForSearch);
-  private SubjectForShoppingCart = new BehaviorSubject<ShoppingCart[]>(this.emptyItem);
-  private SubjectForAutocomplete = new BehaviorSubject<string[]>(this.autocompleteArray);
 
-  setUpdateingItem(item: Item): void {
-    this.updateItemSubject.next(item);
+  public setUpdateingItem(item: Item): void {
+    this._updateItemSubject.next(item)
   }
 
-  getUpdatingItem(): Item {
-    return this.updateItemSubject.value;
+  public getUpdatingItem(): Item {
+    return this._updateItemSubject.value
   }
 
-  setSearchingItemName(searchingName: string): void {
-    this.searchingItemSubject.next(searchingName);
-  } 
-
-  getSearchingItemName(): BehaviorSubject<string> {
-    return this.searchingItemSubject;
+  public setSearchingItemName(searchingName: string): void {
+    this._searchingItemSubject.next(searchingName)
   }
 
-  setBuyingItem(item: ShoppingCart): void {
-    console.log('+_+ log in setBuyingItem = ', item);
-    this.productsForShoppingCart.push(item);
-    this.SubjectForShoppingCart.next(this.productsForShoppingCart);
+  public getSearchingItemName(): BehaviorSubject<string> {
+    return this._searchingItemSubject
   }
 
-  getBuyingItem(): BehaviorSubject<ShoppingCart[]> {
-    return this.SubjectForShoppingCart;
+  public setBuyingItem(item: ShoppingCart): void {
+    console.log('+_+ log in setBuyingItem = ', item)
+    this.productsForShoppingCart.push(item)
+    this._SubjectForShoppingCart.next(this.productsForShoppingCart)
   }
 
-  setAutocompleteNames(title): void {
-    this.autocompleteArray.push(title);
-    this.SubjectForAutocomplete.next(this.autocompleteArray);
-  };
+  public getBuyingItem(): BehaviorSubject<ShoppingCart[]> {
+    return this._SubjectForShoppingCart
+  }
 
-  getAutocimpleteNames(): BehaviorSubject<string[]> {
-    return this.SubjectForAutocomplete;
+  public setAutocompleteNames(title: string): void {
+    this.autocompleteArray.push(title)
+    this._SubjectForAutocomplete.next(this.autocompleteArray)
+  }
+
+  public getAutocimpleteNames(): BehaviorSubject<string[]> {
+    return this._SubjectForAutocomplete
   }
 
 }

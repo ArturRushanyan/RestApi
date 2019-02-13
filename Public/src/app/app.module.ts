@@ -1,29 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule } from '@angular/common/http'
+import { NgModule } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { BrowserModule } from '@angular/platform-browser'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { CookieService } from 'ngx-cookie-service'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RegisterComponent } from './Pages/register/register.component';
-import { LoginComponent } from './Pages/login/login.component';
-import { AddComponent } from './Pages/add/add.component';
-import { ItemComponent } from './Pages/item/item.component';
-import { SearchComponent } from './Pages/search/search.component';
-import { UpdateComponent } from './Pages/update/update.component';
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { AddComponent } from './Pages/add/add.component'
+import { ItemComponent } from './Pages/item/item.component'
+import { LoginComponent } from './Pages/login/login.component'
+import { RegisterComponent } from './Pages/register/register.component'
+import { SearchComponent } from './Pages/search/search.component'
+import { UpdateComponent } from './Pages/update/update.component'
 
-import { AuthService } from './Services/auth.service';
-import { EventService } from './Services/event.service';
-import { PassingDataService } from './Services/passing_data_service';
-import { HelpService } from './Services/help.service';
-import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
-import { ShoppingCartComponent } from './Pages/shopping-cart/shopping-cart.component';
-import { ItemTemplateComponent } from './Components/item-template/item-template.component';
-import { AllUsersTotalComponent } from './Pages/all-users-total/all-users-total.component';
-
-
+import { ItemTemplateComponent } from './Components/item-template/item-template.component'
+import { NavBarComponent } from './Components/nav-bar/nav-bar.component'
+import { AllUsersTotalComponent } from './Pages/all-users-total/all-users-total.component'
+import { ShoppingCartComponent } from './Pages/shopping-cart/shopping-cart.component'
+import { AuthService } from './Services/auth.service'
+import { EventService } from './Services/event.service'
+import { HelpService } from './Services/help.service'
+import { PassingDataService } from './Services/passing_data_service'
 
 
 @NgModule({

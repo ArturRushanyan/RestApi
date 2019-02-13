@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../Services/auth.service';
-import { UserRegister } from '../../Interfaces/userRegister';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { UserRegister } from '../../Interfaces/userRegister'
+import { AuthService } from '../../Services/auth.service'
 
 @Component({
   selector: 'app-register',
@@ -10,7 +10,7 @@ import { UserRegister } from '../../Interfaces/userRegister';
 })
 export class RegisterComponent implements OnInit {
 
-  registerUserData: UserRegister = {
+  public registerUserData: UserRegister = {
     email: '',
     password: '',
     confirmPassword: '',
@@ -18,18 +18,18 @@ export class RegisterComponent implements OnInit {
   constructor(private _auth: AuthService,
               private _router: Router) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
-  registerUser(): void {
+  public registerUser(): void {
     this._auth.registerUser(this.registerUserData)
     .subscribe(
       res => {
         console.log(res),
-        localStorage.setItem('token', res.token);
-        this._router.navigate(['/item']);
+        localStorage.setItem('token', res.token)
+        this._router.navigate(['/item'])
       },
-      err => console.log(err), 
+      err => console.log(err),
     )
   }
 }
