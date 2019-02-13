@@ -14,7 +14,7 @@ export class AddComponent implements OnInit {
     _id: '',
     type: '',
     title: '',
-    price: 0,
+    price: 1,
     count: 1,
     barcode: ''
   }

@@ -4,7 +4,7 @@ import isAuthenticated from '../../helpers/is_authenticated';
 
 const router = express.Router();
 
-// router.put('/', isAuthenticated, resetController.resetAll);
-// router.put('/id', isAuthenticated, resetController.resetUserDebt);
+// router.put('/allusers', isAuthenticated, resetController.resetAll);
+router.post('/', isAuthenticated, resetController.resetUserDebt);
 
 export default router;

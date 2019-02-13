@@ -67,7 +67,7 @@ export class EventService {
     return this.http.get<User>(`${this._getAllUsers}`)
   }
 
-  public resetUserDebt(user: User): Observable<string> {
-    return this.http.post<string>(`${this._resetDebt}`, { user: user })
+  public resetUserDebt(user: User, token: string): Observable<string> {
+    return this.http.post<string>(`${this._resetDebt}`, { user: user, token: token })
   }
 }

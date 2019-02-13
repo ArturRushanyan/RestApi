@@ -19,7 +19,6 @@ export class AllUsersTotalComponent implements OnInit {
     .subscribe(
       res => {
         this.allUsers = res
-        console.log('+_+_+ all users =', this.allUsers)
       },
       err => {
         console.log('+_+_+_+ err =>', err)
@@ -28,8 +27,12 @@ export class AllUsersTotalComponent implements OnInit {
   }
 
   public resetUser(user: User): void {
-    this._eventService.resetUserDebt(user).subscribe()
-    console.log('+_+_+ user => ', user)
+    this._eventService.resetUserDebt(user, localStorage.getItem('token')).subscribe(
+      res => {
+        user.mustPay = parseInt(res, 10)
+        console.log('+_+_+ user after reset')
+      }
+    )
   }
 
 }

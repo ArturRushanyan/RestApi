@@ -11,7 +11,7 @@
       <tr *ngFor="let user of allUsers">
         <td>{{user.email}}</td>
         <td>{{user.mustPay}}</td>
-        <td><button type="button" class="btn btn-danger" (click)="resetUser(user)" >Reset</button></td>
+        <td><button type="button" class="btn btn-danger" (click)="resetUser(user, user._id)" >Reset</button></td>
       </tr>
     </tbody>
   </table>

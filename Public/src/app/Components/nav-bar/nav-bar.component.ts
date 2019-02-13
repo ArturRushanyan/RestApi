@@ -37,7 +37,7 @@ export class NavBarComponent implements OnInit {
   public logoutUser(): void {
     this._cookieService.deleteAll()
     localStorage.clear()
-    window.location.reload()
+    this._router.navigateByUrl('/item')
   }
 
   public isAdmin(): boolean {

@@ -13,7 +13,7 @@ export class ShoppingCartComponent implements OnInit {
 
   public shoppingItemsArray: ShoppingCart[]
   public noItem = false
-  public userPay: number = parseInt(localStorage.getItem('mustPay'))
+  public userPay: number = parseInt(localStorage.getItem('mustPay'), 10)
 
   constructor(private _passigData: PassingDataService,
     private _eventService: EventService) { }

@@ -12,10 +12,10 @@ import { PassingDataService } from '../../Services/passing_data_service'
 
 export class SearchComponent implements OnInit {
 
+  public itemFromRes: Item[]
   constructor(private _passingDataService: PassingDataService,
               private _eventService: EventService) { }
   private _SearchingItemName: string
-  private _itemFromRes: Item[]
 
 
   public ngOnInit(): void {
@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
    this._eventService.searchItem(this._SearchingItemName).subscribe(
      res => {
       console.log(res)
-      this._itemFromRes = res
+      this.itemFromRes = res
      },
      err => {
        console.log('log in err case')

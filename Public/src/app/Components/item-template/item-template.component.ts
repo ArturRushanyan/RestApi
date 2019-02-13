@@ -68,7 +68,7 @@ export class ItemTemplateComponent implements OnInit {
         quantity: this.buyingItemQuantity,
       }
 
-      this.userMustPay = parseInt(localStorage.getItem('mustPay'))
+      this.userMustPay = parseInt(localStorage.getItem('mustPay'), 10)
       this.userMustPay += (this.buyingItem.price * this.buyingItem.quantity)
       localStorage.setItem('mustPay', this.userMustPay.toString())
       console.log('+_+_+ mustpay in buy func =', this.userMustPay)
