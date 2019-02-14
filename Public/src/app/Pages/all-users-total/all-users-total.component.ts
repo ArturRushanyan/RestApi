@@ -10,32 +10,44 @@ import { EventService } from '../../Services/event.service'
 export class AllUsersTotalComponent implements OnInit {
 
   public allUsers: User
+  public showModal = false
 
   constructor(private _eventService: EventService) { }
 
-  private token: string = localStorage.getItem('token')
+  private _token: string = localStorage.getItem('token')
+  private _resetingUserDebt: User
 
   public ngOnInit(): void {
     this._eventService.getAllUsers()
     .subscribe(
-      res => {
-        this.allUsers = res
-      },
-      err => {
-        console.log('+_+_+_+ err =>', err)
-      }
+      res => this.allUsers = res,
+      err => console.log('+_+_+_+ err =>', err)
     )
   }
 
-  public resetUser(user: User): void {
-    this._eventService.resetUserDebt(user, this.token).subscribe(
-      res => { console.log('+_+ res =>', res) }
+  public getUserData(user: User, Role: string): void {
+    this._resetingUserDebt = user
+    if (Role === 'admin') {
+      localStorage.setItem('mustPay', '0')
+    }
+  }
+
+  public resetUser(): void {
+    this._eventService.resetUserDebt(this._resetingUserDebt, this._token)
+    .subscribe(
+      res => window.location.reload(),
+      err => console.log('+_+ err =>', err)
     )
   }
 
   public resetAllUsers(): void {
-    console.log('+_+ log in reset AllUsers')
-    this._eventService.resetAllUsersDebt(this.allUsers, this.token).subscribe()
+    this._eventService.resetAllUsersDebt(this.allUsers, this._token)
+    .subscribe(
+      res => {
+        localStorage.setItem('mustPay', '0')
+        window.location.reload()
+      },
+      err => console.log('+_+_+ err=> ', err)
+    )
   }
-
 }

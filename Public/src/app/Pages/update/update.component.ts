@@ -27,14 +27,10 @@ export class UpdateComponent implements OnInit {
     this.userRole = localStorage.getItem('userRole')
     if (this.userRole === 'admin') {
       this.token = localStorage.getItem('token')
-      this._eventService.updateItem(this.itemForUpdate, this.token).subscribe(
-        res => {
-          this._router.navigateByUrl('/item')
-          console.log(res)
-        },
-        err => {
-          console.log(err)
-        }
+      this._eventService.updateItem(this.itemForUpdate, this.token)
+      .subscribe(
+        res => this._router.navigateByUrl('/item'),
+        err => console.log(err)
       )
     } else {
       this._router.navigateByUrl('/item')

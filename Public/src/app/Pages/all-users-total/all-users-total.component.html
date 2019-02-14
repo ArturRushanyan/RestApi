@@ -1,4 +1,6 @@
-<button style="margin-top: 30px;" type="button" (click)="resetAllUsers()" class="btn btn-danger">Reset All</button>
+<button style="margin-top: 30px;" type="button" 
+  (click)="showModal = true" data-toggle="modal" 
+  data-target="#DeleteAllUserModal" class="btn btn-danger">Reset All</button>
 <div id="table" class="text-left">
   <table class="table table-light table-hover">
     <thead>
@@ -11,8 +13,52 @@
       <tr *ngFor="let user of allUsers">
         <td>{{user.email}}</td>
         <td>{{user.mustPay}}</td>
-        <td><button type="button" class="btn btn-danger" (click)="resetUser(user, user._id)" >Reset</button></td>
+        <td><button type="button" class="btn btn-danger" data-toggle="modal" 
+          data-target="#DeleteModal" (click)="getUserData(user, user.role); showModal = true" >Reset</button></td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- Modal -->
+<div *ngIf="showModal">
+  <div class="modal fade" id="DeleteModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" class="text-left">Reset</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p><b>Are you sure want to Reset this user debt?</b></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" (click)="resetUser()" data-dismiss="modal">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Reset All users -->
+<div *ngIf="showModal">
+  <div class="modal fade" id="DeleteAllUserModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" class="text-left">Reset</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p><b>Are you sure want to Reset all users debt?</b></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" (click)="resetAllUsers()" data-dismiss="modal">Reset All</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

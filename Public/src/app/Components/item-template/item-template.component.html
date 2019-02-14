@@ -20,7 +20,7 @@
         data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button" (click)="showModal=true">Buy</button>
       <br>
       <div *ngIf="isAdmin()">
-        <img title="Delete" id="pencil" (click)="howModal=true" data-toggle="modal" 
+        <img title="Delete" id="pencil" (click)="showModal=true" data-toggle="modal" 
           data-target="#DeleteModal" src="../../../assets/Images/rubbish-bin.png">
       </div>
       <!-- End buttons -->
@@ -31,7 +31,7 @@
 </div>
   
 <!-- PopUp Modal Delete-->
-<div *ngIf="howModal">
+<div *ngIf="showModal">
     <div class="modal fade" id="DeleteModal" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->

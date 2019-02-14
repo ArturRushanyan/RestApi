@@ -67,22 +67,13 @@ export class ItemTemplateComponent implements OnInit {
         count: item.count,
         quantity: this.buyingItemQuantity,
       }
-
       this.userMustPay = parseInt(localStorage.getItem('mustPay'), 10)
       this.userMustPay += (this.buyingItem.price * this.buyingItem.quantity)
       localStorage.setItem('mustPay', this.userMustPay.toString())
-      console.log('+_+_+ mustpay in buy func =', this.userMustPay)
       this._eventService.buyItem(localStorage.getItem('token'), localStorage.getItem('userEmail'),
         this.buyingItem.id, this.buyingItem.count, this.userMustPay.toString(), this.buyingItem.quantity)
-      .subscribe(
-        res => {
-          window.location.reload()
-          console.log('+_+ res =>', res)
-        },
-        err => {
-          console.log('+_+ err =>', err)
-        }
-      )
+      .subscribe( res => { window.location.reload() },
+                  err => { console.log('+_+ err =>', err) })
     }
   }
 

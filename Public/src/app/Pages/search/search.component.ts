@@ -13,22 +13,18 @@ import { PassingDataService } from '../../Services/passing_data_service'
 export class SearchComponent implements OnInit {
 
   public itemFromRes: Item[]
+
   constructor(private _passingDataService: PassingDataService,
               private _eventService: EventService) { }
-  private _SearchingItemName: string
 
+  private _SearchingItemName: string
 
   public ngOnInit(): void {
    this._SearchingItemName = this._passingDataService.getSearchingItemName().value
-   this._eventService.searchItem(this._SearchingItemName).subscribe(
-     res => {
-      console.log(res)
-      this.itemFromRes = res
-     },
-     err => {
-       console.log('log in err case')
-       console.log(err)
-     }
+   this._eventService.searchItem(this._SearchingItemName)
+   .subscribe(
+     res => this.itemFromRes = res,
+     err => console.log(err)
    )
   }
 

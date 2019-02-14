@@ -28,12 +28,10 @@ export class EventService {
   }
 
   public addItem(item: Item, token: string): Observable<Item>  {
-    console.log('+_+_+ log in event.service')
     return this.http.post<Item>(this._ItemUrl, {item: item, token: token})
   }
 
   public deleteItem(deleteingItem: Item, token: string): Observable<string> {
-    console.log('+_+_+ deletingItem._id =', deleteingItem._id)
     return this.http.request<string>('delete', `${this._ItemUrl}/${deleteingItem._id}`, { body: { token: token } })
   }
 
@@ -47,7 +45,6 @@ export class EventService {
 
   public buyItem(token: string, userEmail: string,
     _id: string, itemCount: number, mustPay: string, buyQuantity: number): Observable<string> {
-    console.log('+_+ log in event.service buyItem Func')
     return this.http.post<string>(`${this._BuyUrl}`, {
       token: token,
       email: userEmail,
@@ -73,7 +70,6 @@ export class EventService {
   }
 
   public resetAllUsersDebt(users: User, token: string): Observable<number[]> {
-    console.log('+_+_+ log in resetAllUserDebt')
     return this.http.post<number[]>(`${this._resetAllDebt}`, { token: token, users: users })
   }
 }

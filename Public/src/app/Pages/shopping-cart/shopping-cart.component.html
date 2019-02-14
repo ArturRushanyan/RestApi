@@ -3,6 +3,7 @@
 </div>
 <div id="buyAllbutton" *ngIf='noItem'>
   <button class="btn btn-danger" type="button" (click)="buyAll()">Buy All</button>
+  <div></div>
 </div>
 <div class="row mt-5" *ngIf="noItem">
   <div class="col-md-4 mb-3" *ngFor="let item of shoppingItemsArray">
@@ -17,12 +18,37 @@
           data-target="#buyModal" data-toggle="modal" style="cursor:pointer" type="button">Buy</button> -->
         <br>
         <div>
-          <img title="Delete" id="pencil" (click)="delete(item)" src="../../../assets/Images/rubbish-bin.png">
+          <img title="Delete" id="pencil" (click)="showModal=true; getDeletingItem(item)" data-toggle="modal" 
+            data-target="#DeleteModal" src="../../../assets/Images/rubbish-bin.png">
         </div>
-        <!-- End buttons -->
+        <!-- End button -->
       </div>
       <div class="card-footer number-muted">
         Price {{item.price}} ֏
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- PopUp Modal -->
+<div *ngIf="showModal">
+  <div class="modal fade" id="DeleteModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" class="text-left">Remove</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p><b>Are you sure want to remove this item from cart?</b></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" (click)="delete()" data-dismiss="modal">Remove</button>
+        </div>
       </div>
     </div>
   </div>

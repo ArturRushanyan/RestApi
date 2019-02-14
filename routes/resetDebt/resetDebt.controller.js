@@ -23,7 +23,7 @@ exports.resetUserDebt = (req, res) => {
     if (!user) {
       Error.sendError(res, 404, Constants.MESSAGES.CAN_NOT_FIND_USER);
     }
-    return res.status(200).json( 'successfully reset' );
+    return res.status(200).send({ user });
   })
   .catch(err => Error.sendError(res, 500, err))
 };

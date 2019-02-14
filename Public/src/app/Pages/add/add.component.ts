@@ -19,7 +19,7 @@ export class AddComponent implements OnInit {
     barcode: ''
   }
   constructor(private _event: EventService,
-    private _router: Router) { }
+              private _router: Router) { }
 
   private _token: string
 
@@ -30,10 +30,7 @@ export class AddComponent implements OnInit {
   public addData(): void {
     this._event.addItem(this.addUserData, this._token)
       .subscribe(
-        res => {
-          console.log('+_+_+ res=>', res)
-          this._router.navigate(['/item'])
-        },
+        res => this._router.navigate(['/item']),
         err => console.log(err)
       )
   }

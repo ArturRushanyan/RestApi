@@ -14,11 +14,14 @@ export class ShoppingCartComponent implements OnInit {
   public shoppingItemsArray: ShoppingCart[]
   public noItem = false
   public userPay: number = parseInt(localStorage.getItem('mustPay'), 10)
+  public showModal = false
 
   constructor(private _passigData: PassingDataService,
-    private _eventService: EventService) { }
+              private _eventService: EventService) { }
 
-  private buyAllItem: ShoppingCart[] = []
+  private _buyAllItem: ShoppingCart[] = []
+  private _item: Item
+
   public ngOnInit(): void {
     this._passigData.getBuyingItem().subscribe(
       res => {
@@ -32,6 +35,11 @@ export class ShoppingCartComponent implements OnInit {
     // this.isSameItems()
   }
 
+  public getDeletingItem(deletingItem: Item): void {
+    console.log('+_+_+_+ getDeleteingItem =', deletingItem)
+    this._item = deletingItem
+  }
+
   public inputNewQuantity(newQuantity: number, itemid: string): void {
     for (let i = 0; i < this.shoppingItemsArray.length; i++) {
       if (itemid === this.shoppingItemsArray[i].id) {
@@ -41,9 +49,11 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  public delete(item: Item): void {
+  public delete(): void {
+    this.showModal = false
     for (let i = 0 ; i <= this.shoppingItemsArray.length; i++) {
-      if (this.shoppingItemsArray[i].title === item.title && this.shoppingItemsArray[i].type === item.type) {
+      if (this.shoppingItemsArray[i].title === this._item.title
+            && this.shoppingItemsArray[i].type === this._item.type) {
         this.shoppingItemsArray.splice(i, 1)
       }
     }
@@ -67,17 +77,11 @@ export class ShoppingCartComponent implements OnInit {
       this.userPay += (this.shoppingItemsArray[i].price * this.shoppingItemsArray[i].quantity)
     }
     localStorage.setItem('mustPay', this.userPay.toString())
-    this.buyAllItem = this.shoppingItemsArray
-    this._eventService.buyAllItems(this.buyAllItem, this.userPay,
+    this._buyAllItem = this.shoppingItemsArray
+    this._eventService.buyAllItems(this._buyAllItem, this.userPay,
       localStorage.getItem('userEmail'), localStorage.getItem('token'))
     .subscribe(
-      res => {
-        console.log(res)
-        window.location.reload()
-      },
-      err => {
-        console.log('+_+_+_+ log in buyAll err =>', err)
-      }
-    )
+      res => { window.location.reload() },
+      err => { console.log('+_+_+_+ log in buyAll err =>', err) })
   }
 }
