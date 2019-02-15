@@ -4,14 +4,13 @@ import Constants from '../../helpers/Messages';
 
 exports.resetAll = (req, res) => {
   const allUsers = req.body.users;
-  console.log('+_+_+_+_+ allUsers =', allUsers);
   allUsers.forEach(element => {
     User.findOneAndUpdate({ email: element.email}, { $set: {
       mustPay: 0
     }}, { new: true })
     .catch(err => { return Error.sendError(res, 404, err); })
   });
-  res.status(200).json({ message: 'successfully reset' })
+  res.status(200).json({ message: Constants.MESSAGES.SUCCESSFULLY_RESET })
 };
 
 exports.resetUserDebt = (req, res) => {

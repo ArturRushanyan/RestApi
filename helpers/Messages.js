@@ -22,5 +22,6 @@ module.exports = {
     YOU_ARE_LOGGEDOUT: 'You are logged out',
     MISSING_MAIL: 'Missing mail',
     CAN_NOT_FIND_USER: 'Cannot find user',
+    SUCCESSFULLY_RESET: 'successfully reset'
   },
 };

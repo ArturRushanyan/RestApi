@@ -21,6 +21,7 @@ export class ShoppingCartComponent implements OnInit {
 
   private _buyAllItem: ShoppingCart[] = []
   private _item: Item
+  private _isHave = false
 
   public ngOnInit(): void {
     this._passigData.getBuyingItem().subscribe(
@@ -28,10 +29,13 @@ export class ShoppingCartComponent implements OnInit {
           if (res[0].title !== '') {
             this.noItem = !this.noItem
             this.shoppingItemsArray = res
+            this._isHave = true
           }
       }
     )
-    // this.isSameItems()
+    if (!!this._isHave) {
+      this.isSameItems()
+    }
   }
 
   public getDeletingItem(deletingItem: Item): void {
@@ -63,8 +67,8 @@ export class ShoppingCartComponent implements OnInit {
       for (let j = i + 1; j < this.shoppingItemsArray.length; j++) {
         if (this.shoppingItemsArray[i].title === this.shoppingItemsArray[j].title
             && this.shoppingItemsArray[i].type === this.shoppingItemsArray[j].type) {
-          // this.shoppingItemsArray[i].quantity =
-            // parseInt(this.shoppingItemsArray[i].quantity) + parseInt(this.shoppingItemsArray[j].quantity)
+          this.shoppingItemsArray[i].quantity =
+            (this.shoppingItemsArray[i].quantity) + (this.shoppingItemsArray[j].quantity)
           this.shoppingItemsArray.splice(j, 1)
         }
       }
