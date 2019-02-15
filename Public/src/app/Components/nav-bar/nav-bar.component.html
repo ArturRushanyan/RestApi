@@ -20,11 +20,9 @@
     <!-- Search -->
     <div class="input-group">
       <form class="navbar-form navbar-left">
-        <!-- <input id="search" type="search" class="form-control" (keydown.enter)="searchingItem()" 
+        <input id="search" type="search" class="form-control" (keyup.enter)="searchingItem()" 
         [(ngModel)]="searchingItemName" name="name" placeholder="Search" 
-        aria-label="Example text with button addon" aria-describedby="button-addon1"> -->
-        <input id="typeahead-format" type="text" class="form-control" name="search" 
-          [ngbTypeahead]="search" [resultFormatter]="formatter" [(ngModel)]="searchingItemName" (keyup.enter)="searchingItem()"/>
+         aria-describedby="button-addon1">
       </form>
       <img src="../../../assets/Images/search.png" style="cursor: pointer;" (click)="searchingItem()" id="searchIcon">
     </div>

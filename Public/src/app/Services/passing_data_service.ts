@@ -17,8 +17,6 @@ export class PassingDataService {
 
   public emptyStringForSearch: string
 
-  public autocompleteArray: string[] = []
-
   public productsForShoppingCart: ShoppingCart[] = []
 
   constructor() { }
@@ -35,8 +33,6 @@ export class PassingDataService {
   private _updateItemSubject = new BehaviorSubject<Item>(this.emptyEditItem)
   private _searchingItemSubject = new BehaviorSubject<string>(this.emptyStringForSearch)
   private _SubjectForShoppingCart = new BehaviorSubject<ShoppingCart[]>(this._emptyItem)
-  private _SubjectForAutocomplete = new BehaviorSubject<string[]>(this.autocompleteArray)
-
 
   public setUpdateingItem(item: Item): void {
     this._updateItemSubject.next(item)
@@ -46,31 +42,21 @@ export class PassingDataService {
     return this._updateItemSubject.value
   }
 
-  public setSearchingItemName(searchingName: string): void {
-    this._searchingItemSubject.next(searchingName)
+  public setSearchIngItem(itemName: string): void {
+    this._searchingItemSubject.next(itemName)
   }
 
-  public getSearchingItemName(): BehaviorSubject<string> {
+  public getSearchingItem(): BehaviorSubject<string> {
     return this._searchingItemSubject
   }
 
   public setBuyingItem(item: ShoppingCart): void {
-    console.log('+_+ log in setBuyingItem = ', item)
     this.productsForShoppingCart.push(item)
     this._SubjectForShoppingCart.next(this.productsForShoppingCart)
   }
 
   public getBuyingItem(): BehaviorSubject<ShoppingCart[]> {
     return this._SubjectForShoppingCart
-  }
-
-  public setAutocompleteNames(title: string): void {
-    this.autocompleteArray.push(title)
-    this._SubjectForAutocomplete.next(this.autocompleteArray)
-  }
-
-  public getAutocimpleteNames(): BehaviorSubject<string[]> {
-    return this._SubjectForAutocomplete
   }
 
 }

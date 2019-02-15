@@ -18,12 +18,7 @@ export class ItemComponent implements OnInit {
   public ngOnInit(): void {
     this._eventService.getAllItems()
       .subscribe(
-        res => {
-          this._itemsFromRes = res
-          this._itemsFromRes.forEach(element => {
-            this._passingDataService.setAutocompleteNames(element.title)
-          })
-        },
+        res => this._itemsFromRes = res,
         err => console.log(err)
         )
   }

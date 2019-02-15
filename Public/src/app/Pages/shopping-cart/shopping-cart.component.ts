@@ -27,7 +27,6 @@ export class ShoppingCartComponent implements OnInit {
       res => {
           if (res[0].title !== '') {
             this.noItem = !this.noItem
-            console.log('+_+ res in shopping cart =', res)
             this.shoppingItemsArray = res
           }
       }
