@@ -10,16 +10,32 @@ import { PassingDataService } from '../../Services/passing_data_service'
 })
 export class ItemComponent implements OnInit {
 
+  public itemsFromRes: Item[]
+
   constructor(private _eventService: EventService,
               private _passingDataService: PassingDataService) { }
-
-  private _itemsFromRes: Item[]
 
   public ngOnInit(): void {
     this._eventService.getAllItems()
       .subscribe(
-        res => this._itemsFromRes = res,
+        res => {
+          this.itemsFromRes = res,
+          this.filter(this.itemsFromRes)
+        },
         err => console.log(err)
         )
   }
+
+  private filter(unFiltered: Item[]): void {
+    const titles = []
+    unFiltered.forEach((item) => {
+      if (titles.indexOf(item.title) < 0) {
+        titles.push(item.title)
+      }
+    })
+    this._passingDataService.setAutocomplete(titles)
+  }
+
 }
+
+

@@ -79,7 +79,6 @@ export class ItemTemplateComponent implements OnInit {
 
   public deleteItem(item: Item): void {
     this.showModal = false
-    console.log('+_+ log in deleteItem func item =', item)
     this._HelpService.deleteItem(item)
     window.location.reload()
   }
