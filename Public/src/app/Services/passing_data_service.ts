@@ -21,6 +21,8 @@ export class PassingDataService {
 
   public productsForShoppingCart: ShoppingCart[] = []
 
+  public detailView: Item
+
   constructor() { }
 
   private _emptyItem: ShoppingCart[] = [{
@@ -36,7 +38,7 @@ export class PassingDataService {
   private _searchingItemSubject = new BehaviorSubject<string>(this.emptyStringForSearch)
   private _SubjectForShoppingCart = new BehaviorSubject<ShoppingCart[]>(this._emptyItem)
   private _SubjectForAutocomplete = new BehaviorSubject<string[]>(this.Autocomplete)
-
+  private _SubjectForDetailView = new BehaviorSubject<Item>(this.detailView)
   public setUpdateingItem(item: Item): void {
     this._updateItemSubject.next(item)
   }
@@ -71,6 +73,14 @@ export class PassingDataService {
 
   public getAutocomplete(): BehaviorSubject<string[]> {
     return this._SubjectForAutocomplete
+  }
+
+  public setItemForDetailView(item: Item): void {
+    this._SubjectForDetailView.next(item)
+  }
+
+  public getItemForDetailView(): BehaviorSubject<Item> {
+    return this._SubjectForDetailView
   }
 
 }

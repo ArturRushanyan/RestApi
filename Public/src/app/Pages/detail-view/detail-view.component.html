@@ -1,0 +1,12 @@
+<!-- <button >blabla</button> -->
+<div  id="container">
+  <div id="img">
+    <h1>IMG</h1>
+  </div>
+  <div id="info">
+    <H1>INFO</H1>
+    <input id="input"  type="number" min="1" max="{{itemFromPassingData.count}}" value="1" [(ngModel)]="buyingItemQuantity">
+  </div>
+  <button type="button" id="button" class="btn btn-success" (click)="addToCart()">Add to cart</button>
+  <button type="button" id="button" class="btn btn-success" (click)="buy()">Buy</button>
+</div>

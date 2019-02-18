@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userRole', res.userRole)
         localStorage.setItem('token', res.token)
         localStorage.setItem('mustPay', res.mustPay.toString())
-        // window.location.reload()
         this._router.navigateByUrl('/item')
+        window.location.reload()
       },
       err => console.log(err),
     )

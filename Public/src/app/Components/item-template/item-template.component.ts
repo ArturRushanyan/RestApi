@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Item } from '../../Interfaces/Item'
 import { ShoppingCart } from '../../Interfaces/ShoppingCart'
+import { SWEventTarget } from '../../Interfaces/SWEventTarget'
 import { EventService } from '../../Services/event.service'
 import { HelpService } from '../../Services/help.service'
 import { PassingDataService } from '../../Services/passing_data_service'
@@ -13,7 +14,7 @@ import { PassingDataService } from '../../Services/passing_data_service'
 })
 export class ItemTemplateComponent implements OnInit {
 
-  @Input() public  ComingItems: Item
+  @Input() public ComingItems: Item
 
   public buyingItemQuantity = 1
   public showModal = false
@@ -27,12 +28,14 @@ export class ItemTemplateComponent implements OnInit {
     quantity: 0,
   }
 
-  constructor(private _eventService: EventService,
+  constructor(
+    private _eventService: EventService,
     private _router: Router,
     private _HelpService: HelpService,
-    private _PassingDataService: PassingDataService) { }
+    private _PassingDataService: PassingDataService
+  ) { }
 
-  private searchItemName: string
+  private dissalowItems: String[] = ['garbage', 'buyButton', 'pencil', 'info', 'input']
 
   public ngOnInit(): void {
   }
@@ -89,6 +92,15 @@ export class ItemTemplateComponent implements OnInit {
 
   public isAdmin(): boolean {
     return !!this._HelpService.isAdmin()
+  }
+
+  public getInfo(event: Event, item: Item): void {
+    if (this.dissalowItems.indexOf((event.target as SWEventTarget).id, 0) > -1) {
+      return
+    } else {
+      this._PassingDataService.setItemForDetailView(item)
+      this._router.navigateByUrl('/detailview')
+    }
   }
 
 }

@@ -1,0 +1,28 @@
+#container {
+  margin-top: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 20px;
+  width: 1000px;
+  height: 400px;
+  background-color: white;
+}
+
+#button {
+  float: right;
+  margin: 10px;
+}
+
+#img {
+  float: left;
+  width: 500px;
+  height: 400px;
+  background-color: red
+}
+
+#info {
+  float: right;
+  width: 500px;
+  height: 330px;
+  background-color: blue;
+}

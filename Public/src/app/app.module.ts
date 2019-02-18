@@ -17,6 +17,7 @@ import { UpdateComponent } from './Pages/update/update.component'
 import { ItemTemplateComponent } from './Components/item-template/item-template.component'
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component'
 import { AllUsersTotalComponent } from './Pages/all-users-total/all-users-total.component'
+import { DetailViewComponent } from './Pages/detail-view/detail-view.component'
 import { ShoppingCartComponent } from './Pages/shopping-cart/shopping-cart.component'
 import { AuthService } from './Services/auth.service'
 import { EventService } from './Services/event.service'
@@ -36,7 +37,8 @@ import { PassingDataService } from './Services/passing_data_service'
     NavBarComponent,
     ShoppingCartComponent,
     ItemTemplateComponent,
-    AllUsersTotalComponent
+    AllUsersTotalComponent,
+    DetailViewComponent
   ],
   imports: [
     NgbModule.forRoot(),

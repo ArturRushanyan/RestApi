@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { AddComponent } from './Pages/add/add.component'
 import { AllUsersTotalComponent } from './Pages/all-users-total/all-users-total.component'
+import { DetailViewComponent } from './Pages/detail-view/detail-view.component'
 import { ItemComponent } from './Pages/item/item.component'
 import { LoginComponent } from './Pages/login/login.component'
 import { RegisterComponent } from './Pages/register/register.component'
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'allusers',
     component: AllUsersTotalComponent
+  },
+  {
+    path: 'detailview',
+    component: DetailViewComponent
   }
 ]
 
