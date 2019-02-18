@@ -50,7 +50,7 @@ export class NavBarComponent implements OnInit {
     return !!this._helpService.loggedIn()
   }
 
-   public formatter = (result: string) => result.toUpperCase()
+  public formatter = (result: string) => result.toUpperCase()
 
   public search = (text$: Observable<string>) =>
     text$.pipe(

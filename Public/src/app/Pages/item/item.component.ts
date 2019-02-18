@@ -33,6 +33,7 @@ export class ItemComponent implements OnInit {
         titles.push(item.title)
       }
     })
+      console.log('+__+_+_+ title =', titles)
     this._passingDataService.setAutocomplete(titles)
   }
 

@@ -29,17 +29,16 @@ export class HelpService {
 
   public isAdmin(): boolean {
     const userRole = localStorage.getItem('userRole')
-    return (userRole === undefined && userRole === null) ? false : true
-    // if (userRole === undefined && userRole === null) {
-    //   return false
-    // } else if (userRole === 'admin') {
-    //   return true
-    // }
+    if (userRole === undefined && userRole === null) {
+      return false
+    } else if (userRole === 'admin') {
+      return true
+    }
   }
 
   public loggedIn(): boolean {
     const token = localStorage.getItem('token')
-    return (token !== undefined && token !== null) ? true : false
+      return (token !== undefined && token !== null) ? true : false
     // if (token !== undefined && token !== null) {
     //   return true
     // } else {
