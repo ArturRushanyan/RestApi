@@ -14,7 +14,7 @@ export class DetailViewComponent implements OnInit {
 
   public itemFromPassingData: Item
   public isGetted = false
-  public buyingItemQuantity = 0
+  public buyingItemQuantity = 1
   public buyingItem: ShoppingCart = {
     id: '',
     type: '',
@@ -54,9 +54,8 @@ export class DetailViewComponent implements OnInit {
         count: this.itemFromPassingData.count,
         quantity: this.buyingItemQuantity,
       }
-
-      // console.log('+_+_+_+_+ =', this.buyingItem)
       this._passingDataService.setBuyingItem(this.buyingItem)
+      this._router.navigateByUrl('item')
     }
   }
 }

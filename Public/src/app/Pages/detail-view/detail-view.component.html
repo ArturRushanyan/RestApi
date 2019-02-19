@@ -1,12 +1,16 @@
-<!-- <button >blabla</button> -->
-<div  id="container">
-  <div id="img">
-    <h1>IMG</h1>
+<div class="card" id="container" style="width: 18rem;">
+    <img class="card-img-top" src="../../../assets//Images/SugarDrop.png">
+    <div class="card-body">
+      <h5 class="card-title">{{itemFromPassingData.title}}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <p class="list-group-item"><span id="style">Type</span> {{itemFromPassingData.type}}</p>
+      <p class="list-group-item"><span id="style">Count</span> {{itemFromPassingData.count}}</p>
+      <p class="list-group-item"><span id="style">Price</span> {{itemFromPassingData.price}}</p>
+      <p class="list-group-item"><span id="style">Quantity</span><input id="input" type="number" max={{itemFromPassingData.count}} [(ngModel)]="buyingItemQuantity"></p>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
   </div>
-  <div id="info">
-    <H1>INFO</H1>
-    <input id="input"  type="number" min="1" max="{{itemFromPassingData.count}}" value="1" [(ngModel)]="buyingItemQuantity">
-  </div>
-  <button type="button" id="button" class="btn btn-success" (click)="addToCart()">Add to cart</button>
-  <button type="button" id="button" class="btn btn-success" (click)="buy()">Buy</button>
-</div>
