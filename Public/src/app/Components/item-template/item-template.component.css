@@ -1,6 +1,7 @@
 #buyButton {
   margin-bottom: 5px;
   margin-left: 15px;
+  cursor: pointer;
 }
 
 #pencil {
@@ -24,4 +25,9 @@
 #input {
   width: 60px;
   border-radius: 5px; 
+}
+
+#detailView:hover {
+  text-decoration: underline;
+  cursor:pointer;
 }
