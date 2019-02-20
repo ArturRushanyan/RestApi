@@ -13,9 +13,11 @@ export class UpdateComponent implements OnInit {
 
   public itemForUpdate: Item
 
-  constructor(private _updateService: PassingDataService,
-              private _eventService: EventService,
-              private _router: Router) { }
+  constructor(
+    private _updateService: PassingDataService,
+    private _eventService: EventService,
+    private _router: Router
+    ) { }
 
   private userRole: string
   private token: string

@@ -51,7 +51,6 @@ export class DetailViewComponent implements OnInit {
   }
 
   public buy(): void {
-    console.log('_+_+_+_+', this.itemFromPassingData)
     if (!this._HelpService.loggedIn()) {
       this._router.navigateByUrl('/login')
     } else {

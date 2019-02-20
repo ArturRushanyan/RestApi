@@ -15,8 +15,10 @@ export class RegisterComponent implements OnInit {
     password: '',
     confirmPassword: '',
   }
-  constructor(private _auth: AuthService,
-              private _router: Router) { }
+  constructor(
+    private _auth: AuthService,
+    private _router: Router
+    ) { }
 
   public ngOnInit(): void {
   }

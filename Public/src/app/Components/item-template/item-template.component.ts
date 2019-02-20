@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Item } from '../../Interfaces/Item'
 import { ShoppingCart } from '../../Interfaces/ShoppingCart'
-import { EventService } from '../../Services/event.service'
 import { HelpService } from '../../Services/help.service'
 import { PassingDataService } from '../../Services/passing_data_service'
 
@@ -27,11 +26,10 @@ export class ItemTemplateComponent implements OnInit {
   }
 
   constructor(
-    private _eventService: EventService,
     private _router: Router,
     private _HelpService: HelpService,
     private _PassingDataService: PassingDataService
-  ) { }
+    ) { }
 
   public ngOnInit(): void {
   }

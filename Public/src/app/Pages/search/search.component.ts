@@ -15,9 +15,11 @@ export class SearchComponent implements OnInit {
 
   public itemFromRes: Item[]
 
-  constructor(private _passingDataService: PassingDataService,
-              private _eventService: EventService,
-              private _router: Router) { }
+  constructor(
+    private _passingDataService: PassingDataService,
+    private _eventService: EventService,
+    private _router: Router
+    ) { }
 
   private _SearchingItemName: string
 

@@ -19,10 +19,12 @@ export class NavBarComponent implements OnInit {
   public Autocomplete: string[]
 
 
-  constructor(private _cookieService: CookieService,
-              private _passingDataService: PassingDataService,
-              private _helpService: HelpService,
-              private _router: Router) { }
+  constructor(
+    private _cookieService: CookieService,
+    private _passingDataService: PassingDataService,
+    private _helpService: HelpService,
+    private _router: Router
+    ) { }
 
   public ngOnInit(): void {
     this.userMustPayData = localStorage.getItem('mustPay')

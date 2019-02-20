@@ -16,8 +16,10 @@ export class ShoppingCartComponent implements OnInit {
   public userPay: number = parseInt(localStorage.getItem('mustPay'), 10)
   public showModal = false
 
-  constructor(private _passigData: PassingDataService,
-              private _eventService: EventService) { }
+  constructor(
+    private _passigData: PassingDataService,
+    private _eventService: EventService
+    ) { }
 
   private _buyAllItem: ShoppingCart[] = []
   private _item: Item

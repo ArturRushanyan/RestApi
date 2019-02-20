@@ -17,9 +17,11 @@ export class HelpService {
     count: 0,
     quantity: 0,
   }
-  constructor(private _PassingDataService: PassingDataService,
-              private _router: Router,
-              private _eventService: EventService) { }
+  constructor(
+    private _PassingDataService: PassingDataService,
+    private _router: Router,
+    private _eventService: EventService
+    ) { }
 
   public editItem(editItem: Item): void {
     this._PassingDataService.setUpdateingItem(editItem)
@@ -80,6 +82,5 @@ export class HelpService {
       .subscribe( res => { window.location.reload() },
                   err => { console.log('+_+ err =>', err) })
   }
-
 
 }

@@ -12,8 +12,10 @@ export class ItemComponent implements OnInit {
 
   public itemsFromRes: Item[]
 
-  constructor(private _eventService: EventService,
-              private _passingDataService: PassingDataService) { }
+  constructor(
+    private _eventService: EventService,
+    private _passingDataService: PassingDataService
+    ) { }
 
   public ngOnInit(): void {
     this._eventService.getAllItems()
@@ -33,7 +35,6 @@ export class ItemComponent implements OnInit {
         titles.push(item.title)
       }
     })
-      console.log('+__+_+_+ title =', titles)
     this._passingDataService.setAutocomplete(titles)
   }
 

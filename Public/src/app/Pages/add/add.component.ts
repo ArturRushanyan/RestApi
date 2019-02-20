@@ -18,8 +18,10 @@ export class AddComponent implements OnInit {
     count: 1,
     barcode: ''
   }
-  constructor(private _event: EventService,
-              private _router: Router) { }
+  constructor(
+    private _event: EventService,
+    private _router: Router
+    ) { }
 
   private _token: string
 

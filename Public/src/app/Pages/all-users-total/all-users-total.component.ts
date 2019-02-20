@@ -12,7 +12,9 @@ export class AllUsersTotalComponent implements OnInit {
   public allUsers: User
   public showModal = false
 
-  constructor(private _eventService: EventService) { }
+  constructor(
+    private _eventService: EventService
+    ) { }
 
   private _token: string = localStorage.getItem('token')
   private _resetingUserDebt: User

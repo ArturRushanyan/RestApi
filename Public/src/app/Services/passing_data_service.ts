@@ -39,7 +39,7 @@ export class PassingDataService {
   private _SubjectForShoppingCart = new BehaviorSubject<ShoppingCart[]>(this._emptyItem)
   private _SubjectForAutocomplete = new BehaviorSubject<string[]>(this.Autocomplete)
   private _SubjectForDetailView = new BehaviorSubject<Item>(this.detailView)
-  
+
   public setUpdateingItem(item: Item): void {
     this._updateItemSubject.next(item)
   }
@@ -70,11 +70,10 @@ export class PassingDataService {
       this.Autocomplete.push(element)
       this._SubjectForAutocomplete.next(this.Autocomplete)
     })
-      
+
   }
 
   public getAutocomplete(): BehaviorSubject<string[]> {
-    console.log('+_+_+_+_+ ing get Autocomplete =', this._SubjectForAutocomplete.value)
     return this._SubjectForAutocomplete
   }
 
