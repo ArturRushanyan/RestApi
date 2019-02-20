@@ -1,5 +1,8 @@
 #input {
-  width: 50px;
+  float: right;
+  margin-right: 55px;
+  width: 60px;
+  text-align: center;
 }
 
 #style {
@@ -7,9 +10,18 @@
 }
 
 #container {
-  width: 400px; 
-  margin-top: 20px; 
+  width: 700px; 
+  margin-top: 50px; 
   margin-left: auto; 
   margin-right: auto;
-  height: 40vw;
+  height: 450px;
+}
+
+#Buybutton {
+  margin-bottom: auto;
+}
+
+#IMG {
+  max-width: 400px;
+  max-height: 400px;
 }

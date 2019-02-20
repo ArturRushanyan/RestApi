@@ -33,10 +33,10 @@ export class DetailViewComponent implements OnInit {
   public ngOnInit(): void {
     this._passingDataService.getItemForDetailView().subscribe(val => {
       if (!val) {
-        // this._router.navigateByUrl('/item')
-        // this.isGetted = false
+        this._router.navigateByUrl('/item')
+        this.isGetted = false
       } else {
-        // this.isGetted = true
+        this.isGetted = true
         this.itemFromPassingData = val
       }
     })
@@ -46,16 +46,16 @@ export class DetailViewComponent implements OnInit {
     if (!this._HelpService.loggedIn()) {
       this._router.navigateByUrl('/login')
     } else {
-      this.buyingItem = {
-        id: this.itemFromPassingData._id,
-        type: this.itemFromPassingData.type,
-        title: this.itemFromPassingData.title,
-        price: this.itemFromPassingData.price,
-        count: this.itemFromPassingData.count,
-        quantity: this.buyingItemQuantity,
-      }
-      this._passingDataService.setBuyingItem(this.buyingItem)
-      this._router.navigateByUrl('item')
+      this._HelpService.addToCart(this.itemFromPassingData, this.buyingItemQuantity)
+    }
+  }
+
+  public buy(): void {
+    console.log('_+_+_+_+', this.itemFromPassingData)
+    if (!this._HelpService.loggedIn()) {
+      this._router.navigateByUrl('/login')
+    } else {
+      this._HelpService.buy(this.itemFromPassingData, this.buyingItemQuantity)
     }
   }
 }

@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Item } from '../../Interfaces/Item'
 import { ShoppingCart } from '../../Interfaces/ShoppingCart'
-import { SWEventTarget } from '../../Interfaces/SWEventTarget'
 import { EventService } from '../../Services/event.service'
 import { HelpService } from '../../Services/help.service'
 import { PassingDataService } from '../../Services/passing_data_service'
@@ -18,7 +17,6 @@ export class ItemTemplateComponent implements OnInit {
 
   public buyingItemQuantity = 1
   public showModal = false
-  public userMustPay: number
   public buyingItem: ShoppingCart = {
     id: '',
     type: '',
@@ -35,8 +33,6 @@ export class ItemTemplateComponent implements OnInit {
     private _PassingDataService: PassingDataService
   ) { }
 
-  private dissalowItems: String[] = ['garbage', 'buyButton', 'pencil', 'info', 'input']
-
   public ngOnInit(): void {
   }
 
@@ -45,15 +41,7 @@ export class ItemTemplateComponent implements OnInit {
       this._router.navigateByUrl('/login')
     } else {
       this.showModal = false
-      this.buyingItem = {
-        id: item._id,
-        type: item.type,
-        title: item.title,
-        price: item.price,
-        count: item.count,
-        quantity: this.buyingItemQuantity,
-      }
-      this._PassingDataService.setBuyingItem(this.buyingItem)
+      this._HelpService.addToCart(item, this.buyingItemQuantity)
     }
   }
 
@@ -62,21 +50,7 @@ export class ItemTemplateComponent implements OnInit {
       this._router.navigateByUrl('/login')
     } else {
       this.showModal = false
-      this.buyingItem = {
-        id: item._id.toString(),
-        type: item.type,
-        title: item.title,
-        price: item.price,
-        count: item.count,
-        quantity: this.buyingItemQuantity,
-      }
-      this.userMustPay = parseInt(localStorage.getItem('mustPay'), 10)
-      this.userMustPay += (this.buyingItem.price * this.buyingItem.quantity)
-      localStorage.setItem('mustPay', this.userMustPay.toString())
-      this._eventService.buyItem(localStorage.getItem('token'), localStorage.getItem('userEmail'),
-        this.buyingItem.id, this.buyingItem.count, this.userMustPay.toString(), this.buyingItem.quantity)
-      .subscribe( res => { window.location.reload() },
-                  err => { console.log('+_+ err =>', err) })
+      this._HelpService.buy(item, this.buyingItemQuantity)
     }
   }
 
@@ -95,12 +69,8 @@ export class ItemTemplateComponent implements OnInit {
   }
 
   public getInfo(event: Event, item: Item): void {
-    if (this.dissalowItems.indexOf((event.target as SWEventTarget).id, 0) > -1) {
-      return
-    } else {
       this._PassingDataService.setItemForDetailView(item)
       this._router.navigateByUrl('/detailview')
-    }
   }
 
 }
