@@ -49,7 +49,7 @@ const routes: Routes = [
     component: AllUsersTotalComponent
   },
   {
-    path: 'detailview',
+    path: 'detailview/:title/:type',
     component: DetailViewComponent
   }
 ]

@@ -67,8 +67,9 @@ export class ItemTemplateComponent implements OnInit {
   }
 
   public getInfo(item: Item): void {
+    console.log('+_+_+_+_________________________________')
       this._PassingDataService.setItemForDetailView(item)
-      this._router.navigateByUrl('/detailview')
+      this._router.navigateByUrl('/detailview/' + `${item.title}` + `/${item.type}`)
   }
 
 }
