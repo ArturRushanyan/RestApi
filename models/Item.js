@@ -8,6 +8,7 @@ const ItemSchema = new Schema({
   price: { type: Number, required: true },
   count: { type: Number },
   barcode: { type: String },
+  image: { type: String },
 });
 
 let Item = null;

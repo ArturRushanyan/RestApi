@@ -13,6 +13,7 @@ export class PassingDataService {
     price: 0,
     barcode: '',
     count: 1,
+    image: null,
   }
 
   public emptyStringForSearch: string
@@ -32,6 +33,7 @@ export class PassingDataService {
     price: 0,
     count: 0,
     id: '',
+    image: null,
   }]
 
   private _updateItemSubject = new BehaviorSubject<Item>(this.emptyEditItem)

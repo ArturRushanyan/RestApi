@@ -29,12 +29,14 @@ exports.create = (req, res) => {
   if (!authenticationWithJoi.Item(req, res)) {
     return Error.sendError(req, 400, Constants.MESSAGES.ITEM_BODY_CAN_NOT_BE_EMPTY);
   }
+  console.log('+_+_+_+_+_+_++__ in server side in create func req.body.item.image =', req.body.item.image)
   const NewItem = new Item({
     type: req.body.item.type,
     title: req.body.item.title,
     price: req.body.item.price,
     count: req.body.item.count,
     barcode: req.body.item.barcode,
+    image: req.body.item.image,
   });
   NewItem.save().then(data => {
     res.status(200).json({ data });

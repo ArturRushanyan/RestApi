@@ -5,4 +5,5 @@ export interface ShoppingCart {
   price: number,
   count: number,
   quantity: number,
+  image: any
 }

@@ -22,6 +22,7 @@ export class DetailViewComponent implements OnInit {
     price: 0,
     count: 0,
     quantity: 0,
+    image: null,
   }
 
   constructor(
