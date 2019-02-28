@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { Ng2ImgMaxService } from 'ng2-img-max'
 import { Item } from 'src/app/Interfaces/Item'
 import { EventService } from '../../Services/event.service'
 
@@ -19,9 +20,11 @@ export class AddComponent implements OnInit {
     barcode: '',
     image: null,
   }
+
   constructor(
     private _event: EventService,
-    private _router: Router
+    private _router: Router,
+    private _ng2ImageMax: Ng2ImgMaxService,
     ) { }
 
   private _token: string
@@ -31,7 +34,6 @@ export class AddComponent implements OnInit {
   }
 
   public addData(): void {
-    // console.log('+_+_+_+_+_+ in addData func =', this.addItemData)
     this._event.addItem(this.addItemData, this._token)
       .subscribe(
         res => this._router.navigate(['/item']),
@@ -39,15 +41,45 @@ export class AddComponent implements OnInit {
       )
   }
 
-  public getItemEvnet(file: any): void {
-    const reader = new FileReader()
-    reader.readAsDataURL(file.target.files[0])
-    reader.onload = () => {
-      console.log('+_+_+_+_+ in getItemEventFunc =', reader.result)
-      this.addItemData.image = reader.result
-    }
-    reader.onerror = (err) => {
-      console.log('Error =>', err)
-    }
+  public getImageEvent(event: any): void {
+    console.log('+_+_+_+_+ log 1 in func')
+    const file = event.target.files[0]
+    console.log('+_+_+_+_+ log 2 in func')
+    this._ng2ImageMax.resizeImage(file, 400, 400).subscribe(
+      result => {
+        console.log('+_+_+_+_+ log 3 in func')
+        this._ng2ImageMax.compressImage(result, 0.070).subscribe(
+          result1 => {
+            console.log('+_+_+_+_+ log 4 in func')
+            const reader = new FileReader()
+            reader.readAsDataURL(result1)
+            reader.onload = () => {
+              console.log('+_+_+_+_+ in getImageEvent =', reader.result)
+              this.addItemData.image = reader.result
+            }
+            reader.onerror = (err) => {
+              console.log('Error => ', err)
+            }
+          },
+          error => {
+            console.log('Error =>', error)
+          }
+        )
+      },
+      error => {
+        console.log('Error => ', error)
+      }
+    )
   }
+  // public getItemEvnet(file: any): void {
+  // const reader = new FileReader()
+  //   reader.readAsDataURL(file.target.files[0])
+  //   reader.onload = () => {
+  //     console.log('+_+_+_+_+ in getItemEventFunc =', reader.result)
+  //     this.addItemData.image = reader.result
+  //   }
+  //   reader.onerror = (err) => {
+  //     console.log('Error =>', err)
+  //   }
+  // }
 }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { Ng2ImgMaxModule } from 'ng2-img-max'
 import { CookieService } from 'ngx-cookie-service'
 
 import { AppRoutingModule } from './app-routing.module'
@@ -42,6 +43,7 @@ import { PassingDataService } from './Services/passing_data_service'
   ],
   imports: [
     NgbModule.forRoot(),
+    Ng2ImgMaxModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,

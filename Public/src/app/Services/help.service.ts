@@ -16,6 +16,7 @@ export class HelpService {
     price: 0,
     count: 0,
     quantity: 0,
+    image: null
   }
   constructor(
     private _PassingDataService: PassingDataService,
@@ -61,6 +62,7 @@ export class HelpService {
       price: item.price,
       count: item.count,
       quantity: buyingItemQuantity,
+      image: item.image
     }
     this._PassingDataService.setBuyingItem(this.buyingItem)
   }
@@ -73,6 +75,7 @@ export class HelpService {
       price: item.price,
       count: item.count,
       quantity: buyingItemQuantity,
+      image: item.image,
     }
     this.userMustPay = parseInt(localStorage.getItem('mustPay'), 10)
     this.userMustPay += (this.buyingItem.price * this.buyingItem.quantity)
