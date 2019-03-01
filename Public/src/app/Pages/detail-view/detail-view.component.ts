@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Item } from 'src/app/Interfaces/Item'
 import { ShoppingCart } from '../../Interfaces/ShoppingCart'
+import { EventService } from '../../Services/event.service'
 import { HelpService } from '../../Services/help.service'
 import { PassingDataService } from '../../Services/passing_data_service'
 
@@ -28,7 +29,8 @@ export class DetailViewComponent implements OnInit {
   constructor(
     private _passingDataService: PassingDataService,
     private _router: Router,
-    private _HelpService: HelpService
+    private _HelpService: HelpService,
+    private _eventService: EventService,
     ) { }
 
   public ngOnInit(): void {
@@ -39,8 +41,21 @@ export class DetailViewComponent implements OnInit {
       } else {
         this.isGetted = true
         this.itemFromPassingData = val
+        console.log('+_+_+_+_+_+ in angular detail view component this.itemFromPassingData.image = ',
+        this.itemFromPassingData.image)
       }
     })
+
+    this._eventService.getItemImage(this.itemFromPassingData.image)
+    .subscribe(
+      res => {
+        console.log('+_+_+_+_+_+_+ log for image res =', res)
+      },
+      err => {
+        console.log('+_+_+_+_+_+ log for image err =', err)
+      }
+    )
+
   }
 
   public addToCart(): void {

@@ -1,7 +1,7 @@
 import JWT from 'jsonwebtoken';
-import Error from './errors';
+import Error from './Errors';
 import Config from '../config';
-import Constants from './messages';
+import Constants from './Messages';
 
 exports.newToken = (res, email) => {
   return new Promise((resolve, reject) => {

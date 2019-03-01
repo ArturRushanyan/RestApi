@@ -1,12 +1,12 @@
 import JWT from 'jsonwebtoken';
-import User from '../../models/user';
-import Errors from '../../helpers/errors';
-import Constants from '../../helpers/messages';
+import User from '../../models/User';
+import Errors from '../../helpers/Errors';
+import Constants from '../../helpers/Messages';
 import Config from '../../config';
 
 exports.getAll = (req, res) => {
   User.find().then((NewUser) => {
-    res.status(200).send( NewUser );
+    res.status(200).send(NewUser);
   }).catch((err) => {
     return Errors.sendError(res, 400, err);
   });

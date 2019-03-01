@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-import User from '../../models/user';
-import Error from '../../helpers/errors';
+import User from '../../models/User';
+import Error from '../../helpers/Errors';
 import authenticationWithJoi from '../../helpers/joi_verify';
-import generateToken from '../../helpers/generate_token';
+import generateToken from '../../helpers/Generate_token';
 import * as Hash from '../../helpers/hash';
-import Constants from '../../helpers/messages';
-import Config from '../../config';
+import Constants from '../../helpers/Messages';
+
 
 exports.SignUp = (req, res) => {
   if (!authenticationWithJoi.Registration(req)) {
@@ -55,7 +55,7 @@ exports.Login = (req, res) => {
     }
     return Hash.ComparyPassword(req.body.password, user.password);
   }).then((result) => {
-    if(!result) {
+    if (!result) {
       return Error.sendError(res, 403, Constants.MESSAGES.PASSWORDS_DOES_NOT_MATCH);
     }
     generateToken.newToken(res, req.body.email)
@@ -76,5 +76,3 @@ exports.Login = (req, res) => {
     return Error.sendError(res, 500, err);
   });
 };
-
-

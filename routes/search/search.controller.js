@@ -1,6 +1,6 @@
-import Item from '../../models/item';
-import Error from '../../helpers/errors';
-import Constants from '../../helpers/messages';
+import Item from '../../models/Item';
+import Error from '../../helpers/Errors';
+import Constants from '../../helpers/Messages';
 
 exports.search = (req, res) => {
   const ItemName = req.params.name;

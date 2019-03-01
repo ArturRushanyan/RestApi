@@ -67,7 +67,7 @@ export class ItemTemplateComponent implements OnInit {
     return !!this._HelpService.isAdmin()
   }
 
-  public getInfo(item: Item): void {
+  public detailview(item: Item): void {
     this._PassingDataService.setItemForDetailView(item)
     this._router.navigateByUrl('/detailview/' + `${item.title}` + `/${item.type}`)
   }

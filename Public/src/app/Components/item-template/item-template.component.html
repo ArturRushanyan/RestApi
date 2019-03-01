@@ -13,7 +13,7 @@
         (click)="editItem(ComingItems)" src="../../../assets/Images/edit.png">
       <!-- End Edit -->
     </div>
-    <h5 class="card-title" id="detailView" (click)="getInfo(ComingItems)">{{ComingItems.title}}</h5>
+    <h5 class="card-title" id="detailView" (click)="detailview(ComingItems)">{{ComingItems.title}}</h5>
     <p class="card-text">{{ComingItems.type}}</p>
       <input id="input"  type="number" min="1" max="{{ComingItems.count}}" value="1" [(ngModel)]="buyingItemQuantity">
     <!-- buttons -->

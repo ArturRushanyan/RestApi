@@ -52,7 +52,7 @@ export class AddComponent implements OnInit {
           result1 => {
             console.log('+_+_+_+_+ log 4 in func')
             const reader = new FileReader()
-            reader.readAsDataURL(result1)
+            reader.readAsBinaryString(result1)
             reader.onload = () => {
               console.log('+_+_+_+_+ in getImageEvent =', reader.result)
               this.addItemData.image = reader.result
