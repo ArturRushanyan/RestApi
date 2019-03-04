@@ -42,19 +42,15 @@ export class AddComponent implements OnInit {
   }
 
   public getImageEvent(event: any): void {
-    console.log('+_+_+_+_+ log 1 in func')
     const file = event.target.files[0]
-    console.log('+_+_+_+_+ log 2 in func')
     this._ng2ImageMax.resizeImage(file, 400, 400).subscribe(
       result => {
-        console.log('+_+_+_+_+ log 3 in func')
         this._ng2ImageMax.compressImage(result, 0.070).subscribe(
           result1 => {
-            console.log('+_+_+_+_+ log 4 in func')
             const reader = new FileReader()
-            reader.readAsBinaryString(result1)
+            reader.readAsDataURL(result1)
             reader.onload = () => {
-              console.log('+_+_+_+_+ in getImageEvent =', reader.result)
+              console.log('+_+_+_+_+_+ =', reader.result)
               this.addItemData.image = reader.result
             }
             reader.onerror = (err) => {
@@ -71,6 +67,7 @@ export class AddComponent implements OnInit {
       }
     )
   }
+
   // public getItemEvnet(file: any): void {
   // const reader = new FileReader()
   //   reader.readAsDataURL(file.target.files[0])

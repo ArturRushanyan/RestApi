@@ -33,7 +33,7 @@ export class EventService {
   }
 
   public addItem(item: Item, token: string): Observable<Item> {
-    console.log('+_+_+_+_+_+_+_+_+_+ log in addItem event =', item.image)
+    console.log('+_+_+_+_+_+_+_+_+_+ log in addItem event =', item)
     return this.http.post<Item>(this._ItemUrl, {item: item, token: token})
   }
 

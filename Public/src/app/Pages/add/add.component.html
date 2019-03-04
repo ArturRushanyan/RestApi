@@ -33,14 +33,6 @@
                 <input id="image" type="file" (change)="getImageEvent($event)" name="image" accept="image/*">
               </div>
 
-              <div *ngIf="loading">
-                <div class="loader"></div>
-              </div>
-
-              <div *ngIf="uploaded">
-                  <h3 id="uploaded">File uploaded</h3>  
-              </div>
-
               <button type="button" (click)="addData()" class="btn btn-primary float-right">Add</button>
             </form>
         </div>
