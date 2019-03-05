@@ -13,6 +13,7 @@ import { PassingDataService } from '../../Services/passing_data_service'
 export class UpdateComponent implements OnInit {
 
   public itemForUpdate: Item
+  public selectedFile: string | ArrayBuffer
 
   constructor(
     private _updateService: PassingDataService,
@@ -50,6 +51,7 @@ export class UpdateComponent implements OnInit {
             const reader = new FileReader()
             reader.readAsDataURL(result1)
             reader.onload = () => {
+              this.selectedFile = reader.result
               this.itemForUpdate.image = reader.result
             }
             reader.onerror = (err) => {

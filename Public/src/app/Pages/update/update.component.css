@@ -1,0 +1,18 @@
+.img-preview-container {
+  background-color: #f7f7f7;
+  position: relative;
+  height: 150px;
+  width: 200px;
+}
+
+.img-preview {
+    background: center center no-repeat;
+    background-size: contain;
+    height: 150px;
+    width: 150px;
+    margin: auto;
+}
+
+.image-upload-container {
+  cursor: pointer;
+}
