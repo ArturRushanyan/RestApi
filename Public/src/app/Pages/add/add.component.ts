@@ -20,6 +20,7 @@ export class AddComponent implements OnInit {
     barcode: '',
     image: null,
   }
+  public selectedFile: string | ArrayBuffer
 
   constructor(
     private _event: EventService,
@@ -50,7 +51,7 @@ export class AddComponent implements OnInit {
             const reader = new FileReader()
             reader.readAsDataURL(result1)
             reader.onload = () => {
-              console.log('+_+_+_+_+_+ =', reader.result)
+              this.selectedFile = reader.result
               this.addItemData.image = reader.result
             }
             reader.onerror = (err) => {

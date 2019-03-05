@@ -41,20 +41,8 @@ export class DetailViewComponent implements OnInit {
       } else {
         this.isGetted = true
         this.itemFromPassingData = val
-        console.log('+_+_+_+_+_+ in angular detail view component this.itemFromPassingData.image = ',
-        this.itemFromPassingData.image)
       }
     })
-
-    this._eventService.getItemImage(this.itemFromPassingData.image)
-    .subscribe(
-      res => {
-        console.log('+_+_+_+_+_+_+ log for image res =', res)
-      },
-      err => {
-        console.log('+_+_+_+_+_+ log for image err =', err)
-      }
-    )
 
   }
 

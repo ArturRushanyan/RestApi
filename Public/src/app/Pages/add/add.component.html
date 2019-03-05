@@ -32,6 +32,12 @@
                 <label>Image</label>
                 <input id="image" type="file" (change)="getImageEvent($event)" name="image" accept="image/*">
               </div>
+              
+              <div *ngIf="selectedFile" class="img-preview-container">
+                <div class="img-preview"
+                  [ngStyle]="{'background-image': 'url('+ selectedFile + ')'}">
+                </div>
+              </div>
 
               <button type="button" (click)="addData()" class="btn btn-primary float-right">Add</button>
             </form>

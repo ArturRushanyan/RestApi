@@ -27,11 +27,6 @@ export class EventService {
     return this.http.get<Item[]>(this._ItemUrl)
   }
 
-  public getItemImage(imageId: string): Observable<string> {
-    console.log('+_+_+_+___+_+ item.image ====', imageId)
-    return this.http.get<string>(`${this._ItemUrl}/${imageId}`)
-  }
-
   public addItem(item: Item, token: string): Observable<Item> {
     console.log('+_+_+_+_+_+_+_+_+_+ log in addItem event =', item)
     return this.http.post<Item>(this._ItemUrl, {item: item, token: token})
