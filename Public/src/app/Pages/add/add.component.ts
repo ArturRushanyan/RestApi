@@ -37,7 +37,8 @@ export class AddComponent implements OnInit {
   public addData(): void {
     this._event.addItem(this.addItemData, this._token)
       .subscribe(
-        res => this._router.navigate(['/item']),
+        res => console.log('hayyyyy'),
+        // res => this._router.navigate(['/item']),
         err => console.log(err)
       )
   }

@@ -10,6 +10,8 @@ import { PassingDataService } from '../../Services/passing_data_service'
 })
 export class ItemComponent implements OnInit {
 
+  public itemsQuantity: number
+  public page = 1
   public itemsFromRes: Item[]
 
   constructor(
@@ -22,6 +24,7 @@ export class ItemComponent implements OnInit {
       .subscribe(
         res => {
           this.itemsFromRes = res,
+          this.itemsQuantity = this.itemsFromRes.length,
           this.filter(this.itemsFromRes)
         },
         err => console.log(err)

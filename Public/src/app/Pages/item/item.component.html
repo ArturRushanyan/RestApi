@@ -1,5 +1,10 @@
 <div class="row mt-5">
-    <div class="col-md-3 mb-3" *ngFor="let item of itemsFromRes">
+    <div class="col-md-3 mb-3" *ngFor="let item of itemsFromRes | slice: (page-1) * 8 : (page-1) * 8 + 8">
         <sweetbox-item-template [ComingItems]="item"></sweetbox-item-template>
     </div>
 </div>
+<ngb-pagination
+    [(page)]="page"
+    [pageSize]= 8
+    [collectionSize]="itemsQuantity">
+</ngb-pagination>
