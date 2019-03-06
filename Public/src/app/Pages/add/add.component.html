@@ -29,6 +29,11 @@
               </div>
 
               <div class="form-group">
+                  <label>Barcode</label>
+                  <input type="text" (keydown.enter)="addData()" [(ngModel)]="addItemData.barcode" name="count" class="form-control rounded-0">
+                </div>
+
+              <div class="form-group">
                 <label>Image</label>
                 <input id="image" type="file" (change)="getImageEvent($event)" name="image" accept="image/*">
               </div>
