@@ -15,6 +15,7 @@ export class ShoppingCartComponent implements OnInit {
   public noItem = false
   public userPay: number = parseInt(localStorage.getItem('mustPay'), 10)
   public showModal = false
+  public totalPrice: number
 
   constructor(
     private _passigData: PassingDataService,
@@ -31,6 +32,12 @@ export class ShoppingCartComponent implements OnInit {
           if (res[0].title !== '') {
             this.noItem = !this.noItem
             this.shoppingItemsArray = res
+            this.totalPrice = 0
+            console.log('+_+_+_+_+_+_+_+_+__+ this.shoppingItemsArray =', this.shoppingItemsArray)
+            this.shoppingItemsArray.forEach(element => {
+              this.totalPrice += (element.price * element.quantity)
+            })
+            console.log('_+_+_+_+__+_+_+_+_+_+ total Price =', this.totalPrice)
             this._isHave = true
           }
       }

@@ -12,3 +12,13 @@
 #buyAllbutton {
   margin-top: 15px;
 }
+
+#totalPrice {
+  margin-top: 15px;
+  width: 290px;
+  background-color: white
+}
+
+#buyAllButton {
+  margin-left: 10px;
+}

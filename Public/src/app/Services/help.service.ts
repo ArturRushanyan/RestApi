@@ -21,7 +21,7 @@ export class HelpService {
   constructor(
     private _PassingDataService: PassingDataService,
     private _router: Router,
-    private _eventService: EventService
+    private _eventService: EventService,
     ) { }
 
   public editItem(editItem: Item): void {

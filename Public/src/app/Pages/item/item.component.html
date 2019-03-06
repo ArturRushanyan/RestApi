@@ -3,7 +3,7 @@
         <sweetbox-item-template [ComingItems]="item"></sweetbox-item-template>
     </div>
 </div>
-<ngb-pagination
+<ngb-pagination *ngIf="itemsQuantity > 8"
     [(page)]="page"
     [pageSize]= 8
     [collectionSize]="itemsQuantity">
