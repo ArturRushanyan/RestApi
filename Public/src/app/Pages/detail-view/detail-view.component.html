@@ -10,12 +10,12 @@
         min="1" max={{itemFromPassingData.count}} value="1" [(ngModel)]="buyingItemQuantity"></p>
       <p class="card-text" style=" font-size: 30px;"><span id="style">Price </span>
         <span style="color:red">{{itemFromPassingData.price}} ֏</span></p>
-      <button class="btn btn-info" data-target="#buyModal" data-toggle="modal">Buy</button>
+      <button class="btn btn-info" data-target="#buyModal" (click)="onBuyButton()" data-toggle="modal">Buy</button>
   </div>
 </div>
 
 
-<div class="modal fade" id="buyModal" role="dialog">
+<div class="modal fade" id="buyModal" *ngIf="showModal" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">

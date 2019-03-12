@@ -18,7 +18,7 @@
       <input id="input"  type="number" min="1" max="{{ComingItems.count}}" value="1" [(ngModel)]="buyingItemQuantity">
     <!-- buttons -->
       <button id="buyButton" class="btn btn-success"
-        data-target="#buyModal" data-toggle="modal"  (click)="showModal=true" type="button">Buy</button>
+        data-target="#buyModal" data-toggle="modal"  (click)="onBuyButton()" type="button">Buy</button>
       <br>
       <div *ngIf="isAdmin()">
         <img id="garbage" title="Delete" data-target="#DeleteModal" (click)="showModal = true"

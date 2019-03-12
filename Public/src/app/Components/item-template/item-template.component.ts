@@ -35,6 +35,15 @@ export class ItemTemplateComponent implements OnInit {
   public ngOnInit(): void {
   }
 
+  public onBuyButton(): void {
+    console.log('+_+_+_+_+_+__+ this.buyintItemQunatity =', this.buyingItemQuantity)
+    if (this.buyingItemQuantity < 1) {
+      alert('Invalid input')
+    } else {
+      this.showModal = true
+    }
+  }
+
   public addToCart(item: Item): void {
     if (!this._HelpService.loggedIn()) {
       this._router.navigateByUrl('/login')

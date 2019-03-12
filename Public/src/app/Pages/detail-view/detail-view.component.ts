@@ -15,6 +15,7 @@ export class DetailViewComponent implements OnInit {
 
   public itemFromPassingData: Item
   public isGetted = false
+  public showModal = false
   public buyingItemQuantity = 1
   public buyingItem: ShoppingCart = {
     id: '',
@@ -43,7 +44,15 @@ export class DetailViewComponent implements OnInit {
         this.itemFromPassingData = val
       }
     })
+  }
 
+  public onBuyButton(): void {
+    console.log('+_+_+_+_+_+__+ this.buyintItemQunatity =', this.buyingItemQuantity)
+    if (this.buyingItemQuantity < 1) {
+      alert('Invalid input')
+    } else {
+      this.showModal = true
+    }
   }
 
   public addToCart(): void {
