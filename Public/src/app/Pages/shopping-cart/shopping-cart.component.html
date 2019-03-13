@@ -3,7 +3,7 @@
 </div>
 <div class="card-body" id="totalPrice" *ngIf='noItem'>
   <div class="row">
-    <h4>Total Price:<span style="color: red; margin-left: 10px;"> {{totalPrice}}</span>֏</h4>
+    <h4>Total Price:<span style="color: red; margin-left: 5px;"> {{totalPrice}}</span>֏</h4>
     <button class="btn btn-danger" id="buyAllButton" type="button" (click)="buyAll()">Buy All</button>
   </div>
 </div>
@@ -15,7 +15,7 @@
         <p class="card-text">{{item.type}}</p>
         <!-- buttons -->
           <input class="text-center" type="number" id="inputID" min="1" max={{item.count}} 
-          value={{item.quantity}}  (click)="inputNewQuantity($event.target.value, item.id)">
+          value={{item.quantity}}  (focusout)="inputNewQuantity($event.target.value, item.id)">
         <br>
         <div>
           <img title="Delete" id="pencil" (click)="showModal=true; getDeletingItem(item)" data-toggle="modal" 

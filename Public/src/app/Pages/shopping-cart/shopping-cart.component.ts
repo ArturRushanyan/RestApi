@@ -34,11 +34,9 @@ export class ShoppingCartComponent implements OnInit {
             this.noItem = !this.noItem
             this.shoppingItemsArray = res
             this.totalPrice = 0
-            console.log('+_+_+_+_+_+_+_+_+__+ this.shoppingItemsArray =', this.shoppingItemsArray)
             this.shoppingItemsArray.forEach(element => {
               this.totalPrice += (element.price * element.quantity)
             })
-            console.log('_+_+_+_+__+_+_+_+_+_+ total Price =', this.totalPrice)
             this._isHave = true
           }
       }
@@ -49,18 +47,20 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public getDeletingItem(deletingItem: Item): void {
-    console.log('+_+_+_+ getDeleteingItem =', deletingItem)
     this._item = deletingItem
   }
 
   public inputNewQuantity(newQuantity: number, itemid: string): void {
+    console.log('+_+_+_+_+_+_+_+_+_+ log1')
     if (newQuantity < 1) {
       alert('Invalid input')
     } else {
       for (let i = 0; i < this.shoppingItemsArray.length; i++) {
         if (itemid === this.shoppingItemsArray[i].id) {
           this.shoppingItemsArray[i].quantity = newQuantity
-          console.log('+_+ log =', this.shoppingItemsArray[i])
+          console.log('+_+_+_+_+_+_+_+_+_+_+_ in if case this.shoppingItemsArray[i].quantity =',
+          this.shoppingItemsArray[i].quantity)
+          this._ValidInput = true
         }
       }
     }
@@ -91,25 +91,23 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public buyAll(): void {
-    console.log('+_+++++++++++++++++++++++++++++++++++++')
     for (let i = 0; i < this.shoppingItemsArray.length; i++) {
-      console.log('___________________________________')
-      if (this.shoppingItemsArray[i].quantity < 1) {
-        console.log('+_+_+_+_+_+_+__+_+_+_+_+ this.shoppingItemsArray[i].quantity', this.shoppingItemsArray[i].quantity)
+      if (this.shoppingItemsArray[i].quantity < 0) {
         alert('Invalid quantity')
       } else {
         this.userPay += (this.shoppingItemsArray[i].price * this.shoppingItemsArray[i].quantity)
-        this._ValidInput = true
       }
     }
     if (this._ValidInput) {
       localStorage.setItem('mustPay', this.userPay.toString())
       this._buyAllItem = this.shoppingItemsArray
-      // this._eventService.buyAllItems(this._buyAllItem, this.userPay,
-      //   localStorage.getItem('userEmail'), localStorage.getItem('token'))
-      //   .subscribe(
-      //     res => { window.location.reload() },
-      //     err => { console.log('+_+_+_+ log in buyAll err =>', err) })
+      this._eventService.buyAllItems(this._buyAllItem, this.userPay,
+        localStorage.getItem('userEmail'), localStorage.getItem('token'))
+        .subscribe(
+          res => { window.location.reload() },
+          err => { console.log('+_+_+_+ log in buyAll err =>', err) })
+    } else {
+      alert('Invalid input')
     }
   }
 }
