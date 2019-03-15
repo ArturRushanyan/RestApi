@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
+import { AddToCartQuantity } from '../Interfaces/addToCartQuantity'
 import { Item } from '../Interfaces/Item'
 import { ShoppingCart } from '../Interfaces/ShoppingCart'
 
@@ -36,11 +37,15 @@ export class PassingDataService {
     image: null,
   }]
 
+  private _emptyArrayForAddToCartQuantity: AddToCartQuantity[] = []
+
   private _updateItemSubject = new BehaviorSubject<Item>(this.emptyEditItem)
   private _searchingItemSubject = new BehaviorSubject<string>(this.emptyStringForSearch)
   private _SubjectForShoppingCart = new BehaviorSubject<ShoppingCart[]>(this._emptyItem)
   private _SubjectForAutocomplete = new BehaviorSubject<string[]>(this.Autocomplete)
   private _SubjectForDetailView = new BehaviorSubject<Item>(this.detailView)
+  private _SubjectForAddToCartItemQuantity =
+    new BehaviorSubject<AddToCartQuantity[]>(this._emptyArrayForAddToCartQuantity)
 
   public setUpdateingItem(item: Item): void {
     this._updateItemSubject.next(item)
@@ -85,6 +90,16 @@ export class PassingDataService {
 
   public getItemForDetailView(): BehaviorSubject<Item> {
     return this._SubjectForDetailView
+  }
+
+  public setAddToCartItemQuantity(item: AddToCartQuantity): void {
+    this._emptyArrayForAddToCartQuantity.push(item)
+    this._SubjectForAddToCartItemQuantity.next(this._emptyArrayForAddToCartQuantity)
+    console.log('+_+_+_+_+_+_+_+_+_+_+_+_+_+_+ = ', this._SubjectForAddToCartItemQuantity.value)
+  }
+
+  public getAddToCartItemQuantity(): BehaviorSubject<AddToCartQuantity[]> {
+    return this._SubjectForAddToCartItemQuantity
   }
 
 }

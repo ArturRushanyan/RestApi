@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { AddToCartQuantity } from '../../Interfaces/addToCartQuantity'
 import { Item } from '../../Interfaces/Item'
 import { ShoppingCart } from '../../Interfaces/ShoppingCart'
 import { HelpService } from '../../Services/help.service'
@@ -33,10 +34,18 @@ export class ItemTemplateComponent implements OnInit {
     ) { }
 
   public ngOnInit(): void {
+    this._PassingDataService.getAddToCartItemQuantity().subscribe(val => {
+      if (val) {
+        for (let i = 0; i < val.length; i++) {
+          if (val[i].id === this.ComingItems._id) {
+            this.ComingItems.count -= val[i].quantity
+          }
+        }
+      }
+    })
   }
 
   public onBuyButton(): void {
-    console.log('+_+_+_+_+_+__+ this.buyintItemQunatity =', this.buyingItemQuantity)
     if (this.buyingItemQuantity < 1) {
       alert('Invalid input')
     } else {
@@ -48,6 +57,11 @@ export class ItemTemplateComponent implements OnInit {
     if (!this._HelpService.loggedIn()) {
       this._router.navigateByUrl('/login')
     } else {
+      const body: AddToCartQuantity = {
+        id: this.ComingItems._id,
+        quantity: this.buyingItemQuantity
+      }
+      this._PassingDataService.setAddToCartItemQuantity(body)
       this.showModal = false
       this._HelpService.addToCart(item, this.buyingItemQuantity)
     }
