@@ -46,7 +46,7 @@ export class ItemTemplateComponent implements OnInit {
   }
 
   public onBuyButton(): void {
-    if (this.buyingItemQuantity < 1) {
+    if ((this.buyingItemQuantity < 1) || (this.ComingItems.count < this.buyingItemQuantity)) {
       alert('Invalid input')
     } else {
       this.showModal = true

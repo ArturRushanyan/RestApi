@@ -95,7 +95,6 @@ export class PassingDataService {
   public setAddToCartItemQuantity(item: AddToCartQuantity): void {
     this._emptyArrayForAddToCartQuantity.push(item)
     this._SubjectForAddToCartItemQuantity.next(this._emptyArrayForAddToCartQuantity)
-    console.log('+_+_+_+_+_+_+_+_+_+_+_+_+_+_+ = ', this._SubjectForAddToCartItemQuantity.value)
   }
 
   public getAddToCartItemQuantity(): BehaviorSubject<AddToCartQuantity[]> {
