@@ -47,7 +47,6 @@ export class DetailViewComponent implements OnInit {
   }
 
   public onBuyButton(): void {
-    console.log('+_+_+_+_+_+__+ this.buyintItemQunatity =', this.buyingItemQuantity)
     if (this.buyingItemQuantity < 1) {
       alert('Invalid input')
     } else {

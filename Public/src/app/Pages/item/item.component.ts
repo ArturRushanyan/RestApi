@@ -27,7 +27,7 @@ export class ItemComponent implements OnInit {
           this.itemsQuantity = this.itemsFromRes.length,
           this.filter(this.itemsFromRes)
         },
-        err => console.log(err)
+        err => console.error(err)
         )
   }
 

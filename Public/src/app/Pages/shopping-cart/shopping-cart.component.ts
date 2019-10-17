@@ -51,15 +51,12 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public inputNewQuantity(newQuantity: number, itemid: string): void {
-    console.log('+_+_+_+_+_+_+_+_+_+ log1')
     if (newQuantity < 1) {
       alert('Invalid input')
     } else {
       for (let i = 0; i < this.shoppingItemsArray.length; i++) {
         if (itemid === this.shoppingItemsArray[i].id) {
           this.shoppingItemsArray[i].quantity = newQuantity
-          console.log('+_+_+_+_+_+_+_+_+_+_+_ in if case this.shoppingItemsArray[i].quantity =',
-          this.shoppingItemsArray[i].quantity)
           this._ValidInput = true
         }
       }
@@ -105,7 +102,9 @@ export class ShoppingCartComponent implements OnInit {
         localStorage.getItem('userEmail'), localStorage.getItem('token'))
         .subscribe(
           res => { window.location.reload() },
-          err => { console.log('+_+_+_+ log in buyAll err =>', err) })
+          // err => { console.log('+_+_+_+ log in buyAll err =>', err) })
+          err => console.error('Err => ', err)
+        );
     } else {
       alert('Invalid input')
     }

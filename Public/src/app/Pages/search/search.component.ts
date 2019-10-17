@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
     this._eventService.searchItem(this._SearchingItemName)
     .subscribe(
       res => this.itemFromRes = res,
-      err => console.log('err =>', err)
+      err => console.error('Err =>', err)
       )
   }
 

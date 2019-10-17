@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('token', res.token)
         this._router.navigate(['/item'])
       },
-      err => console.log(err),
+      err => console.error(err),
     )
   }
 }

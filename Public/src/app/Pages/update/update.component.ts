@@ -35,7 +35,7 @@ export class UpdateComponent implements OnInit {
       this._eventService.updateItem(this.itemForUpdate, this.token)
       .subscribe(
         res => this._router.navigateByUrl('/item'),
-        err => console.log(err)
+        err => console.error(err)
       )
     } else {
       this._router.navigateByUrl('/item')
@@ -55,16 +55,16 @@ export class UpdateComponent implements OnInit {
               this.itemForUpdate.image = reader.result
             }
             reader.onerror = (err) => {
-              console.log('Error => ', err)
+              console.error('Error => ', err)
             }
           },
           error => {
-            console.log('Error =>', error)
+            console.error('Error =>', error)
           }
         )
       },
       error => {
-        console.log('Error => ', error)
+        console.error('Error => ', error)
       }
     )
   }

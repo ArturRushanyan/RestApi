@@ -23,7 +23,7 @@ export class AllUsersTotalComponent implements OnInit {
     this._eventService.getAllUsers()
     .subscribe(
       res => this.allUsers = res,
-      err => console.log('+_+_+_+ err =>', err)
+      err => console.error('Err =>', err)
     )
   }
 
@@ -38,7 +38,7 @@ export class AllUsersTotalComponent implements OnInit {
     this._eventService.resetUserDebt(this._resetingUserDebt, this._token)
     .subscribe(
       res => window.location.reload(),
-      err => console.log('+_+ err =>', err)
+      err => console.error('Err =>', err)
     )
   }
 
@@ -49,7 +49,7 @@ export class AllUsersTotalComponent implements OnInit {
         localStorage.setItem('mustPay', '0')
         window.location.reload()
       },
-      err => console.log('+_+_+ err=> ', err)
+      err => console.error('Err=> ', err)
     )
   }
 }

@@ -38,7 +38,7 @@ export class AddComponent implements OnInit {
     this._event.addItem(this.addItemData, this._token)
       .subscribe(
         res => this._router.navigate(['/item']),
-        err => console.log(err)
+        err => console.error(err)
       )
   }
 
@@ -55,16 +55,16 @@ export class AddComponent implements OnInit {
               this.addItemData.image = reader.result
             }
             reader.onerror = (err) => {
-              console.log('Error => ', err)
+              console.error('Error => ', err)
             }
           },
           error => {
-            console.log('Error =>', error)
+            console.error('Error =>', error)
           }
         )
       },
       error => {
-        console.log('Error => ', error)
+        console.error('Error => ', error)
       }
     )
   }
